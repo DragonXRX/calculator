@@ -4,12 +4,13 @@ function App() {
 
 // error - wa rdam 3la css lmara jaya
 // error - matkatar bazaf mn css ;)
-// error - sala7 l error li f page yamkan ykon lmochkil
-// - className
-// - {"cvvcv"}
+
+// error - chof hhh sir t3alam chwiya l grid
+// errro - bach riglo section nta3 button f calc in css
+
 
 return (
-    <div iv className="App">
+    <div className="App">
        <div className='main_clc'>
            <div className='show_result'>
               <p className='inputHere'>1+1</p>

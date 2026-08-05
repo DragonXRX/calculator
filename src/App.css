@@ -1,1 +1,44 @@
 
+
+
+/* Main body*/
+.main_clc {
+    background-color: rgb(15, 15, 15);
+    border-radius: 15px;
+    margin: 30px auto;
+    width: 500px;
+    color: white;
+    padding: 15px;
+}
+
+
+/* result section*/
+.main_clc .show_result {
+    background-color: white;
+    color: initial;
+    padding: 5px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.main_clc p {
+     margin: 5px 0;
+     font-size: 20px;
+}
+
+.main_clc .inputHere {
+    text-align: start;
+}
+
+.main_clc .resultHere {
+    text-align: end;
+}
+
+/*buttons section*/
+
+.main_clc .calculator_buttons {
+    padding: 5px;
+    display: grid;
+    grid: 10px 10px;
+    grid-template-columns: repeat(4, auto);
+}
