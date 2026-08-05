@@ -4,6 +4,9 @@ function App() {
 
 // error - wa rdam 3la css lmara jaya
 // error - matkatar bazaf mn css ;)
+// error - sala7 l error li f page yamkan ykon lmochkil
+// - className
+// - {"cvvcv"}
 
 return (
     <div iv className="App">
