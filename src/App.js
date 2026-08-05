@@ -1,25 +1,47 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+// error - wa rdam 3la css lmara jaya
+// error - matkatar bazaf mn css ;)
+
+return (
+    <div iv className="App">
+       <div className='main_clc'>
+           <div className='show_result'>
+              <p className='inputHere'>1+1</p>
+              <p className='resultHere'>2</p>
+           </div>
+           <div className='calculator_buttons'>
+              <button>C</button>
+              <button>{"()"}</button>
+              <button>H</button>
+              <button>÷</button>
+
+              <button>7</button>
+              <button>8</button>
+              <button>9</button>
+              <button>{"×"}</button>
+
+              <button>4</button>
+              <button>5</button>
+              <button>6</button>
+              <button>-</button>
+
+              <button>1</button>
+              <button>2</button>
+              <button>3</button>
+              <button>+</button>
+
+              <button>D</button>
+              <button>0</button>
+              <button>.</button>
+              <button>=</button>
+           </div>
+       </div>
     </div>
   );
 }
 
 export default App;
+  
