@@ -5,9 +5,8 @@ function App() {
 // error - wa rdam 3la css lmara jaya
 // error - matkatar bazaf mn css ;)
 
-// error - chof hhh sir t3alam chwiya l grid
-// errro - bach riglo section nta3 button f calc in css
-
+// error - rdam 3la varible nta3 l colors f css
+// error - 7isa jaya dorol l fa9rat logique
 
 return (
     <div className="App">
@@ -17,30 +16,30 @@ return (
               <p className='resultHere'>2</p>
            </div>
            <div className='calculator_buttons'>
-              <button>C</button>
-              <button>{"()"}</button>
-              <button>H</button>
-              <button>÷</button>
+              <button className='thisSimpleGray'>C</button>
+              <button className='thisSimpleGray'>{"()"}</button>
+              <button className='thisSimpleGray'>H</button>
+              <button className='thisOrange'>÷</button>
 
               <button>7</button>
               <button>8</button>
               <button>9</button>
-              <button>{"×"}</button>
+              <button className='thisOrange'>{"×"}</button>
 
               <button>4</button>
               <button>5</button>
               <button>6</button>
-              <button>-</button>
+              <button className='thisOrange'>-</button>
 
               <button>1</button>
               <button>2</button>
               <button>3</button>
-              <button>+</button>
+              <button className='thisOrange'>+</button>
 
               <button>D</button>
               <button>0</button>
               <button>.</button>
-              <button>=</button>
+              <button className='thisOrange'>=</button>
            </div>
        </div>
     </div>
