@@ -1,38 +1,44 @@
 
+:root {
+    --MainBlack: rgb(15, 15, 15);
+    --MainWhite: #eee;
+    --MainOrange: #FF6500;
+    --MainGrey: #2B2B2B;
+    --SecondGrey: #1A1A1A;
+    --ThirdGrey: #565656;
+}
 
 /* Reusable */
 
 .thisOrange {
-    background-color: #FF6500 !important;
+    background-color: var(--MainOrange) !important;
 }
 
 .thisGray {
-    background-color: #2B2B2B !important;
+    background-color: var(--MainGrey) !important;
 }
 
 .thisHardGray {
-    background-color: #1A1A1A !important;
+    background-color: var(--SecondGrey) !important;
 }
 
-
 .thisSimpleGray {
-    background-color: #565656 !important;
+    background-color: var(--ThirdGrey) !important;
 }
 
 /* Main body*/
 .main_clc {
-    background-color: rgb(15, 15, 15);
+    background-color: var(--MainBlack);
     border-radius: 15px;
     margin: 30px auto;
     max-width: 400px;
-    color: white;
     padding: 15px;
 }
 
 
 /* result section*/
 .main_clc .show_result {
-    background-color: #eee;
+    background-color: var(--MainWhite);
     color: initial;
     padding: 5px 15px;
     border-radius: 5px;
@@ -66,8 +72,8 @@
     border-radius: 20px;
     height: 50px;
     border: none;
-    color: white;
-    background-color: #2B2B2B;
+    color: var(--MainWhite);
+    background-color: var(--MainGrey);
     cursor: pointer;
     font-weight: bolder;
 }

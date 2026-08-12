@@ -2,11 +2,7 @@ import './App.css';
 
 function App() {
 
-// error - wa rdam 3la css lmara jaya
-// error - matkatar bazaf mn css ;)
-
-// error - rdam 3la varible nta3 l colors f css
-// error - 7isa jaya dorol l fa9rat logique
+   // error - 7isa jaya dorol l fa9rat logique
 
 return (
     <div className="App">
