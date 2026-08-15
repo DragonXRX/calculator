@@ -1,41 +1,46 @@
+// import { useRef } from 'react';
 import './App.css';
+import ButtonCalculator from './components/buttons_calculator';
+import ShowResult from './components/show_result';
 
 function App() {
 
-   // error - 7isa jaya dorol l fa9rat logique
+// erro - idafat function matrasasa f calculation
+// error - kol function bo7adha  I guess
+// error - wlakin kifach hadok l value li rahom mtfar9in njama3hom 
+// error - props work = parent ==> child i guess it douesnt work I mean this child ==> parent
+
 
 return (
     <div className="App">
        <div className='main_clc'>
-           <div className='show_result'>
-              <p className='inputHere'>1+1</p>
-              <p className='resultHere'>2</p>
-           </div>
+           <ShowResult />
            <div className='calculator_buttons'>
-              <button className='thisSimpleGray'>C</button>
-              <button className='thisSimpleGray'>{"()"}</button>
-              <button className='thisSimpleGray'>H</button>
-              <button className='thisOrange'>÷</button>
+              <ButtonCalculator element="C" classNames="thisSimpleGray" />
+              <ButtonCalculator element="()" classNames="thisSimpleGray" />
+              <ButtonCalculator element="H" classNames="thisSimpleGray" />
+              <ButtonCalculator element="÷" classNames="thisOrange" />
 
-              <button>7</button>
-              <button>8</button>
-              <button>9</button>
-              <button className='thisOrange'>{"×"}</button>
+              <ButtonCalculator element="7" classNames="" />
+              <ButtonCalculator element="8" classNames="" />
+              <ButtonCalculator element="9" classNames="" />
+              <ButtonCalculator element="x" classNames="thisOrange" />
 
-              <button>4</button>
-              <button>5</button>
-              <button>6</button>
-              <button className='thisOrange'>-</button>
+              <ButtonCalculator element="4" classNames="" />
+              <ButtonCalculator element="5" classNames="" />
+              <ButtonCalculator element="6" classNames="" />
+              <ButtonCalculator element="-" classNames="thisOrange" />
 
-              <button>1</button>
-              <button>2</button>
-              <button>3</button>
-              <button className='thisOrange'>+</button>
+              <ButtonCalculator element="1" classNames="" />
+              <ButtonCalculator element="2" classNames="" />
+              <ButtonCalculator element="3" classNames="" />
+              <ButtonCalculator element="+" classNames="thisOrange" />
 
-              <button>D</button>
-              <button>0</button>
-              <button>.</button>
-              <button className='thisOrange'>=</button>
+              <ButtonCalculator element="D" classNames="" />
+              <ButtonCalculator element="0" classNames="" />
+              <ButtonCalculator element="." classNames="" />
+              <ButtonCalculator element="=" classNames="thisOrange" />
+
            </div>
        </div>
     </div>
@@ -43,4 +48,3 @@ return (
 }
 
 export default App;
-  
