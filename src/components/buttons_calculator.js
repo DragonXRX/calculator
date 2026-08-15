@@ -1,17 +1,23 @@
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 function ButtonCalculator ({element, classNames}) {        
     let buttonClc = useRef(null);
-    let testq = "";
+    let [arr, setArr] = useState([]);
 
 
     function clicked () {
-        // error - how can i exit the variable from this scope
+        // error - child to parent????
         let testq = buttonClc.current.innerText;
-        return testq;
+        setArr([...arr, testq]);
     }
-    console.log(testq);
+
+    // error - to3amal kol function bo7adha hadi hiya natija
+    // error - ["7"]
+    // error - ["5"]
+    console.log(arr);
+    
+    
     return <button className={classNames} onClick={clicked} ref={buttonClc}>{element}</button>
 }
 

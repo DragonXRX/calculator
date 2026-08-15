@@ -1,10 +1,10 @@
 
 
-function ShowResult () {
+function ShowResult ({inputHere, resultFinal}) {
      return (
      <div className='show_result'>
-        <p className='inputHere'>1+1</p>
-        <p className='resultHere'>2</p>
+        <p className='inputHere'>{inputHere}</p>
+        <p className='resultHere'>{resultFinal}</p>
     </div>
     )
 }

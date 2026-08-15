@@ -14,7 +14,7 @@ function App() {
 return (
     <div className="App">
        <div className='main_clc'>
-           <ShowResult />
+           <ShowResult inputHere={"1+1"} resultFinal={"2"}/>
            <div className='calculator_buttons'>
               <ButtonCalculator element="C" classNames="thisSimpleGray" />
               <ButtonCalculator element="()" classNames="thisSimpleGray" />
