@@ -1,15 +1,15 @@
-// import { useRef } from 'react';
 import './App.css';
 import ButtonCalculator from './components/buttons_calculator';
 import ShowResult from './components/show_result';
 
 function App() {
 
-// erro - idafat function matrasasa f calculation
-// error - kol function bo7adha  I guess
+// error - idafat function matrasasa f calculation
 // error - wlakin kifach hadok l value li rahom mtfar9in njama3hom 
 // error - props work = parent ==> child i guess it douesnt work I mean this child ==> parent
-
+// error - ila makanch 3anda chi 7al w7awalt
+// error - dir ai wla raja3 button l asl nta3ha bla components
+// error - yamkan l9it l7al chof dir componets kijma3 kol button wkiyarod l value nta3hom 3ad stad3ihom f had l page
 
 return (
     <div className="App">

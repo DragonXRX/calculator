@@ -1,24 +1,24 @@
 
+
 import { useRef, useState } from "react";
 
+// error - hanya rani hawalt n5araj prps man child to parent
+// error - ma9aditch lmohim bla mathawal t5araj let wla dir chi function
+// error - mowaziya liha fhad lfile lmohim 7awal tl9a tari9a o5ra
+
 function ButtonCalculator ({element, classNames}) {        
-    let buttonClc = useRef(null);
-    let [arr, setArr] = useState([]);
 
+let [arr, setArr] = useState();
+let buttonClc = useRef(null);
 
-    function clicked () {
-        // error - child to parent????
+    function clicked (e) {
         let testq = buttonClc.current.innerText;
-        setArr([...arr, testq]);
+        setArr(testq);
     }
-
-    // error - to3amal kol function bo7adha hadi hiya natija
-    // error - ["7"]
-    // error - ["5"]
-    console.log(arr);
-    
-    
-    return <button className={classNames} onClick={clicked} ref={buttonClc}>{element}</button>
+    console.log(arr);  
+    return <button className={classNames} ref={buttonClc} onClick={clicked} myvalue={arr}>{element}</button>
 }
+
+
 
 export default ButtonCalculator;
