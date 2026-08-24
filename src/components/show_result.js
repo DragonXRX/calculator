@@ -2,7 +2,7 @@
 
 function ShowResult ({inputHere, resultFinal}) {
      
-    // error - you cant converte info from parent to child
+    // error - chof momkin n fawto props man child to parent chof m3a AI
     
     return (
      <div className='show_result'>
