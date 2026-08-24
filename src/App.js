@@ -15,33 +15,7 @@ return (
     <div className="App">
        <div className='main_clc'>
            <ShowResult inputHere={"1+1"} resultFinal={"2"}/>
-           <div className='calculator_buttons'>
-              <ButtonCalculator element="C" classNames="thisSimpleGray" />
-              <ButtonCalculator element="()" classNames="thisSimpleGray" />
-              <ButtonCalculator element="H" classNames="thisSimpleGray" />
-              <ButtonCalculator element="÷" classNames="thisOrange" />
-
-              <ButtonCalculator element="7" classNames="" />
-              <ButtonCalculator element="8" classNames="" />
-              <ButtonCalculator element="9" classNames="" />
-              <ButtonCalculator element="x" classNames="thisOrange" />
-
-              <ButtonCalculator element="4" classNames="" />
-              <ButtonCalculator element="5" classNames="" />
-              <ButtonCalculator element="6" classNames="" />
-              <ButtonCalculator element="-" classNames="thisOrange" />
-
-              <ButtonCalculator element="1" classNames="" />
-              <ButtonCalculator element="2" classNames="" />
-              <ButtonCalculator element="3" classNames="" />
-              <ButtonCalculator element="+" classNames="thisOrange" />
-
-              <ButtonCalculator element="D" classNames="" />
-              <ButtonCalculator element="0" classNames="" />
-              <ButtonCalculator element="." classNames="" />
-              <ButtonCalculator element="=" classNames="thisOrange" />
-
-           </div>
+           <ButtonCalculator />
        </div>
     </div>
   );
