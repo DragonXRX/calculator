@@ -1,5 +1,4 @@
 
-
 import { useState } from "react";
 
 
@@ -13,7 +12,7 @@ function ButtonCalculator () {
             // - wjami3 l machakil daharho 3la chakal message error()
 // warn - chof rani 7alt haja bsita man l mochkil walakin mazal lmochkil lkbir 1+1.......
 // warn - wtf rani hanaya rani dayar ta3afon nta3 l coding
-// b9ali chiya wna7ma9 chof bla mat7awal tafham makayanch logique
+// give up - b9ali chiya wna7ma9 chof bla mat7awal tafham makayanch logique
 
 let [arr, setArr] = useState([]);
 
@@ -23,62 +22,34 @@ let [arr, setArr] = useState([]);
     }
 
     if(!(arr.length === 0)) {
-        let bigbang = [];
-        let smoleArray = [];
-        const addff = arr.map((es) => {
-            
-             if(!(isNaN(+es))) {
-                smoleArray.push(es); 
-      
-                return +es;
-             } 
-      
-            console.log('justyy>>>>>  ', smoleArray);
-             
-             if(isNaN(+es)) {
-                bigbang.concat(smoleArray);
-                return es;
-             }
-        });
-
-        console.log("this is a array with no NaN", bigbang);
-        console.log("this is a main array", addff);
+        let result1 = arr.map((ele) => {
+            if(isNaN(ele)) return "+";
+            return +ele;
+        }).splice(0, arr.indexOf("+"));
 
 
 
+        // splice(start, end)
+        // slice(start) in let
+        // indexOf(""); // start
+        //arr.indexOf("+") 
+        //arr.length
+        // .join("")
 
-    
-                        // let result1 = arr.map((ele) => {
-                        //     if(isNaN(ele)) return "+";
-                        //     return +ele;
-                        // }).splice(0, arr.indexOf("+"));
+        let addresult = Number(result1.join(""));
 
-
-
-                        // // splice(start, end)
-                        // // slice(start) in let
-                        // // indexOf(""); // start
-                        // //arr.indexOf("+") 
-                        // //arr.length
-                        // // .join("")
-
-                        // let addresult = Number(result1.join(""));
-
-                        // if (arr.includes("+")) {
-                        // let result2 = arr.map((ele) => {
-                        //     if(isNaN(ele)) return "+";
-                        //     return +ele;
-                        // }).splice((arr.indexOf("+") + 1), arr.length); 
-                        // console.log("this is result 2",result2);
-                        // addresult += Number(result2.join(""));
-                        // }
-                        
-                        
-                        
-                        // console.log("Your final result is:", addresult);
-                        
-                        // console.log("this is result 1",result1);
-            
+        if (arr.includes("+")) {
+        let result2 = arr.map((ele) => {
+            if(isNaN(ele)) return "+";
+            return +ele;
+        }).splice((arr.indexOf("+") + 1), arr.length); 
+        console.log("this is result 2",result2);
+        addresult += Number(result2.join(""));
+        }
+        
+        console.log("Your final result is:", addresult);
+        console.log("this is result 1",result1);
+        console.log("arr ==> ", arr);
     }
     
     return (
