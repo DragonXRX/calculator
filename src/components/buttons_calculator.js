@@ -10,24 +10,27 @@ function ButtonCalculator () {
             // - may7sab l function 7ta tkamal 458 + 1 3ad 7sab
             // - wla 7ta yadrak l user 3la calculation
             // - wjami3 l machakil daharho 3la chakal message error()
-// warn - chof rani 7alt haja bsita man l mochkil walakin mazal lmochkil lkbir 1+1.......
 // warn - wtf rani hanaya rani dayar ta3afon nta3 l coding
-// give up - b9ali chiya wna7ma9 chof bla mat7awal tafham makayanch logique
+
 
 let [arr, setArr] = useState([]);
 
     function clicked (e) {
         let Myele = e.target.innerText;
-        setArr([...arr, Myele]);
+        if(Myele === "x") Myele = "*";
+        if(Myele === "÷") Myele = "/";
+        if(Myele !== "C" && Myele !== "()" && Myele !== "H" && Myele !== "=") {    
+            setArr([...arr, Myele]);
+        }
     }
-
+    if (arr[0] === "+" || arr[0] === "x" || arr[0] === "-" || arr[0] === "÷" || arr[0] === "=") {
+        arr.length = 0;
+        console.error("you can't start with operators");
+    };
     if(!(arr.length === 0)) {
         let result1 = arr.map((ele) => {
-            if(isNaN(ele)) return "+";
             return +ele;
         }).splice(0, arr.indexOf("+"));
-
-
 
         // splice(start, end)
         // slice(start) in let
