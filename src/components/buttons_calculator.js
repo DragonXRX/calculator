@@ -15,46 +15,58 @@ function ButtonCalculator () {
 
 let [arr, setArr] = useState([]);
 
+// error - hnaya dir function tajribiya katajma3 wsafi
     function clicked (e) {
         let Myele = e.target.innerText;
         if(Myele === "x") Myele = "*";
         if(Myele === "÷") Myele = "/";
-        if(Myele !== "C" && Myele !== "()" && Myele !== "H" && Myele !== "=") {    
+        if(Myele !== "C" && Myele !== "()" && Myele !== "H") {    
             setArr([...arr, Myele]);
         }
     }
-    if (arr[0] === "+" || arr[0] === "x" || arr[0] === "-" || arr[0] === "÷" || arr[0] === "=") {
-        arr.length = 0;
+    function addshit() {
+             let result = 0;
+             for (let i = 0; i < arguments.length; i++) {
+                result += arguments[i];
+             }
+             return result;
+    }
+    if (arr[0] === "+" || arr[0] === "*" || arr[0] === "-" || arr[0] === "/" || arr[0] === "=") {
+        setArr([]);
         console.error("you can't start with operators");
     };
     if(!(arr.length === 0)) {
-        let result1 = arr.map((ele) => {
-            return +ele;
-        }).splice(0, arr.indexOf("+"));
-
-        // splice(start, end)
-        // slice(start) in let
-        // indexOf(""); // start
-        //arr.indexOf("+") 
-        //arr.length
-        // .join("")
-
-        let addresult = Number(result1.join(""));
-
-        if (arr.includes("+")) {
-        let result2 = arr.map((ele) => {
-            if(isNaN(ele)) return "+";
-            return +ele;
-        }).splice((arr.indexOf("+") + 1), arr.length); 
-        console.log("this is result 2",result2);
-        addresult += Number(result2.join(""));
+        let number1 = [...arr].splice(0, arr.indexOf("+"));
+        console.log("this is result 1",number1);
+        let operator = "";
+        if(arr.includes("+")) {
+            operator = "+";
+            console.log(operator);
         }
+        if(arr.includes("/")) {
+            operator = "/";
+            console.log(operator);
+        }
+        if(arr.includes("*")) {
+            operator = "+";
+            console.log(operator);
+        }
+        if(arr.includes("-")) {
+            operator = "+";
+            console.log(operator);
+        }
+        let number2 = [...arr].splice((arr.indexOf("+") + 1), arr.length); 
+        console.log("this is result 2",number2);
         
-        console.log("Your final result is:", addresult);
-        console.log("this is result 1",result1);
+        console.log(addshit(Number(number1.join("")), Number(number2.join(""))));
+        if (arr.includes("=")) {
+           
+        }
         console.log("arr ==> ", arr);
     }
+
     
+
     return (
     <div className='calculator_buttons'>
         <button className="thisSimpleGray"  onClick={clicked} >{"C"}</button>
