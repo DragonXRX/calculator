@@ -29,8 +29,10 @@ let [arr, setArr] = useState([]);
     // info - lmohima nta3ha hiya katajma3 l ar9am
     function addshit(op, ...numbers) {
              let result = 0;
+                 if(Array.isArray(numbers)) console.log("lol");
                 // result ++ falawal 0 + number
-                for (let i = 0; i < numbers.length; i++) {
+                for (let i = 1; i < numbers.length; i++) {
+                if((i - 1) === 0) result += numbers[0];
                 if (op === "+") {
                     result += numbers[i];    
                 }
@@ -38,7 +40,7 @@ let [arr, setArr] = useState([]);
                     result -= numbers[i];    
                 }
                 if (op === "*") {
-                    result = numbers[i] * result;    
+                    result *= numbers[i];    
                 }
                 if (op === "/") {
                     result /= numbers[i];    
