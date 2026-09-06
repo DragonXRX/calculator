@@ -1,5 +1,31 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+// info - kandon bi ana had function raha blwa9t wta9dar nbadalh
+// info - lmohima nta3ha hiya katajma3 l ar9am
+function addshit(op, ...numbers) {
+            let result = 0;
+            // warn - result ++ falawal 0 + number
+            
+                for (let i = 1; i < numbers.length; i++) {
+                    // info - hadi hiya li katwazan l clc wkat5aliha s7i7a
+                        if((i - 1) === 0) result = numbers[0];
+                        if (op === "+") {
+                            result += numbers[i];    
+                        }
+                        if (op === "-") {
+                            result -= numbers[i];    
+                        }
+                        if (op === "*") {
+                            result *= numbers[i];    
+                        }
+                        if (op === "/") {
+                            result /= numbers[i];    
+                        }
+                
+                }
+            return result;
+}
 
 
 function ButtonCalculator () {        
@@ -24,29 +50,6 @@ let [arr, setArr] = useState([]);
         if(Myele !== "C" && Myele !== "()" && Myele !== "H") {    
             setArr([...arr, Myele]);
         }
-    }
-    // info - kandon bi ana had function raha blwa9t wta9dar nbadalh
-    // info - lmohima nta3ha hiya katajma3 l ar9am
-    function addshit(op, ...numbers) {
-             let result = 0;
-                 if(Array.isArray(numbers)) console.log("lol");
-                // result ++ falawal 0 + number
-                for (let i = 1; i < numbers.length; i++) {
-                if((i - 1) === 0) result += numbers[0];
-                if (op === "+") {
-                    result += numbers[i];    
-                }
-                if (op === "-") {
-                    result -= numbers[i];    
-                }
-                if (op === "*") {
-                    result *= numbers[i];    
-                }
-                if (op === "/") {
-                    result /= numbers[i];    
-                }
-             }
-             return result;
     }
     // info - had l condition ki checky ila user ktab chihaja mrir ra9m f lbiday nta3 l calculator
     if (arr[0] === "+" || arr[0] === "*" || arr[0] === "-" || arr[0] === "/" || arr[0] === "=") {
@@ -90,13 +93,16 @@ let [arr, setArr] = useState([]);
         console.log("this is result 2",number2);
         
         // info - hadi rah katbiyan i l result niha iya
-        console.log(addshit( operator,Number(number1.join("")), Number(number2.join(""))));
+        if (operator.length !== 0) console.log(addshit( operator,Number(number1.join("")), Number(number2.join(""))));
+        
         console.log("arr ==> ", arr);
         }
         
     }
 
-    
+    useEffect(() => {
+        console.log("render");
+    }, []);
 
     return (
     <div className='calculator_buttons'>
