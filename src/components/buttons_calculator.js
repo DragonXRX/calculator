@@ -57,6 +57,13 @@ let [arr, setArr] = useState([]);
         console.error("you can't start with operators");
     };
     // info - ila kan l array ktar man 0 hna kibda work
+    // error - mazal rak dayar render + calculation bjoj fhad l condition 
+    // error - l code ki7awal y7alal w ya7sab
+    // error - wfach l user kidrat 3la operator ==> render + ki7sab
+    // error - wahna l mochkil golt l user ila drat 3la ay click ki7sab machi ila drat 3la "=" dir calculation hadi mochkil
+    // error - kisamiwah tana9od f tasmim
+
+    // error - chof dir validation mali tabri ta7sab 45 +* 5 ==> error
     if(!(arr.length === 0)) {
         // error - hnaya rah 9at7a9a9 man ila kan "=" adi ta7sab walakin mazal makamaltha 
         if (arr.includes("=")) {
