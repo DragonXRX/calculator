@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 
+// error - hnaya dir function tajribiya katajma3 wsafi
 // info - kandon bi ana had function raha blwa9t wta9dar nbadalh
 // info - lmohima nta3ha hiya katajma3 l ar9am
 function addshit(op, ...numbers) {
@@ -37,11 +38,12 @@ function ButtonCalculator () {
             // - wla 7ta yadrak l user 3la calculation
             // - wjami3 l machakil daharho 3la chakal message error()
 
+// Variables
 
 let [arr, setArr] = useState([]);
-
-// error - hnaya dir function tajribiya katajma3 wsafi
+let [check, setCheck] = useState(false);
     function clicked (e) {
+        // error - chof sala7 renders f code kamal rak tama rahna 9rina 3liha
         let Myele = e.target.innerText;
         // info - hnaya ki7awal l id5al li kidarlo user bach yshal lahsab
         if(Myele === "x") Myele = "*";
@@ -51,26 +53,45 @@ let [arr, setArr] = useState([]);
             setArr([...arr, Myele]);
         }
     }
+    
+
     // info - had l condition ki checky ila user ktab chihaja mrir ra9m f lbiday nta3 l calculator
     if (arr[0] === "+" || arr[0] === "*" || arr[0] === "-" || arr[0] === "/" || arr[0] === "=") {
         setArr([]);
         console.error("you can't start with operators");
     };
+
+    
+    if (arr.length !== 0) {
+        let forTR = [...arr].reduce((acc, curr) => {
+            // true and false ==> false
+            // false and false ==> false
+            // true and true ==> true
+            if (isNaN(acc) && isNaN(curr)) {
+                console.error("you can't put 2 operators together");
+                setArr([]);
+            }
+            return acc + curr;
+        });
+        console.log("///////////// ===> ", forTR);
+     }
+    
+
     // info - ila kan l array ktar man 0 hna kibda work
     // error - mazal rak dayar render + calculation bjoj fhad l condition 
     // error - l code ki7awal y7alal w ya7sab
     // error - wfach l user kidrat 3la operator ==> render + ki7sab
     // error - wahna l mochkil golt l user ila drat 3la ay click ki7sab machi ila drat 3la "=" dir calculation hadi mochkil
-    // error - kisamiwah tana9od f tasmim
 
     // error - chof dir validation mali tabri ta7sab 45 +* 5 ==> error
-    if(!(arr.length === 0)) {
-        // error - hnaya rah 9at7a9a9 man ila kan "=" adi ta7sab walakin mazal makamaltha 
-        if (arr.includes("=")) {
-           let newArr = [...arr].filter(ele => ele !== "=");
-           setArr(newArr);
-           console.log("clicked =");
-        } else {
+    // error - hnaya rah 9at7a9a9 man ila kan "=" adi ta7sab walakin mazal makamaltha 
+    
+    if (arr.includes("=")) {
+            let newArr = [...arr].filter(ele => ele !== "=");
+            // render
+            setArr(newArr);
+            console.log("clicked =");
+    } else {
         // info - hna rah i kantesty f kicha nafsal bin numbers w operator 
         let operator = "";
         if(arr.includes("+")) {
@@ -100,13 +121,14 @@ let [arr, setArr] = useState([]);
         console.log("this is result 2",number2);
         
         // info - hadi rah katbiyan i l result niha iya
-        if (operator.length !== 0) console.log(addshit( operator,Number(number1.join("")), Number(number2.join(""))));
+        // calculation
+        console.log(addshit( operator,Number(number1.join("")), Number(number2.join(""))));
         
         console.log("arr ==> ", arr);
-        }
-        
-    }
+    
+}
 
+    // for testing purpose
     useEffect(() => {
         console.log("render");
     }, []);
