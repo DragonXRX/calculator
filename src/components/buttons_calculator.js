@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // info - lmohima nta3ha hiya katajma3 l ar9am
 function addshit(op, ...numbers) {
@@ -36,13 +36,17 @@ function ButtonCalculator () {
             // - wla 7ta yadrak l user 3la calculation
             // - wjami3 l machakil daharho 3la chakal message error()
 // error - lmochkil howa ila drat 3la "=" kidir render l array jdida walakin 7ta ki5raj man scope 3ad ya7sab mazyan
+// error - l mara jaya dir f <button> = <> wa7ad l onClick bo7dha iwa hadik li adi tabda ta7sab
+// error - kadalik matansach l <button> la5rin dir nafs tari9a m3a delete w history ga3 matarbathom bnafs l function
 
 // Variables
    
     let [arr, setArr] = useState([]);
-    let [check, setCheck] = useState(false);
+    let [num1, setNum1] = useState(0);
+    let [num2, setNum2] = useState(0);
+    let [operator, setOperator] = useState("");
 
-    function clicked (e) {
+    function clickedForCalc (e) {
         // error - chof sala7 renders f code kamal rak tama rahna 9rina 3liha
         let Myele = e.target.innerText;
         // info - hnaya ki7awal l id5al li kidarlo user bach yshal lahsab
@@ -70,38 +74,38 @@ function ButtonCalculator () {
                 return acc + curr;
         });
         console.log("///////////// ===> ", forTR);
-     }
     }
 
-    // info - hna rah i kantesty f kicha nafsal bin numbers w operator 
-    let operator = "";
+    // warn - hadi mazyana walakin kol click eevent kadir render wkadif operator kol mara b7al loop
     if(arr.includes("+")) {
-        operator = "+";
-        console.log(operator);
+        setOperator("+");
     }
     if(arr.includes("/")) {
-        operator = "/";
-        console.log(operator);
+        setOperator("/");
     }
     if(arr.includes("*")) {
-        operator = "*";
-        console.log(operator);
+        setOperator("*");
     }
     if(arr.includes("-")) {
-        operator = "-";
-        console.log(operator);
+        setOperator("-");
     }
 
-    // info - hada rah kiyarad l 9ima lawla majmo3a
-    let number1 = [...arr].splice(0, arr.indexOf(operator));
-    console.log("this is result 1",number1);
-
-    // info - hada rah kiyarad l 9ima jawja majmo3a
     // error - walakin hnaya l mochkil f hadi ... + 15255 + 565
-    let number2 = [...arr].splice((arr.indexOf(operator) + 1), arr.length); 
-    console.log("this is result 2",number2);
+    // info - hada rah kiyarad l 9ima lawla majmo3a
+    setNum1(Number([...arr].splice(0, arr.indexOf(operator)).join("")));
+    // info - hada rah kiyarad l 9ima jawja majmo3a
+    setNum2(Number([...arr].splice((arr.indexOf(operator) + 1), arr.length).join("")));
+    console.log("arr in event ==> ", arr);
     
+    }
+
+    console.log("this is result 1",num1);
+    console.log("this is result 2",num2);
     console.log("arr out ==> ", arr);
+    // info - hna rah i kantesty f kicha nafsal bin numbers w operator 
+    
+
+    
     
     // error - wahna l mochkil golt l user ila drat 3la ay click ki7sab machi ila drat 3la "=" dir calculation hadi mochkil
     // info - hnaya rah 9at7a9a9 man ila kan "=" adi ta7sab 
@@ -114,37 +118,47 @@ function ButtonCalculator () {
         
         // info - hadi rah katbiyan i l result niha iya
         // calculation
-        console.log(addshit( operator,Number(number1.join("")), Number(number2.join(""))));
+        console.log("operator ==> ", operator);
+
+        // warn - hna rah kirdam bl array la9dima 1 + 1 =
+        console.log(addshit( operator, num1, num2));
         
-        console.log("arr in ==> ", arr);
-    } 
+        // warn - wmoraha katwali l array jdida 1 + 1
+        console.log("arr in the (=) ==> ", arr);
+    }
+
+    function calculateNow () {
+        // info - hadi rah katbiyan i l result niha iya
+        // calculation
+        console.log("Calculated ");
+    }
 
     return (
     <div className='calculator_buttons'>
-        <button className="thisSimpleGray"  onClick={clicked} >{"C"}</button>
-        <button className="thisSimpleGray"  onClick={clicked} >{"()"}</button>
-        <button className="thisSimpleGray"  onClick={clicked} >{"H"}</button>
-        <button className="thisOrange" onClick={clicked} >{"÷"}</button>
+        <button className="thisSimpleGray">{"C"}</button>
+        <button className="thisSimpleGray"  onClick={clickedForCalc} >{"()"}</button>
+        <button className="thisSimpleGray">{"H"}</button>
+        <button className="thisOrange" onClick={clickedForCalc} >{"÷"}</button>
 
-        <button className=""  onClick={clicked} >{"7"}</button>
-        <button className=""  onClick={clicked} >{"8"}</button>
-        <button className="" onClick={clicked} >{"9"}</button>
-        <button className="thisOrange" onClick={clicked} >{"x"}</button>
+        <button className=""  onClick={clickedForCalc} >{"7"}</button>
+        <button className=""  onClick={clickedForCalc} >{"8"}</button>
+        <button className="" onClick={clickedForCalc} >{"9"}</button>
+        <button className="thisOrange" onClick={clickedForCalc} >{"x"}</button>
 
-        <button className=""  onClick={clicked} >{"4"}</button>
-        <button className=""  onClick={clicked} >{"5"}</button>
-        <button className=""  onClick={clicked} >{"6"}</button>
-        <button className="thisOrange"  onClick={clicked} >{"-"}</button>
+        <button className=""  onClick={clickedForCalc} >{"4"}</button>
+        <button className=""  onClick={clickedForCalc} >{"5"}</button>
+        <button className=""  onClick={clickedForCalc} >{"6"}</button>
+        <button className="thisOrange"  onClick={clickedForCalc} >{"-"}</button>
 
-        <button className="" onClick={clicked} >{"1"}</button>
-        <button className="" onClick={clicked} >{"2"}</button>
-        <button className="" onClick={clicked} >{"3"}</button>
-        <button className="thisOrange" onClick={clicked} >{"+"}</button>
+        <button className="" onClick={clickedForCalc} >{"1"}</button>
+        <button className="" onClick={clickedForCalc} >{"2"}</button>
+        <button className="" onClick={clickedForCalc} >{"3"}</button>
+        <button className="thisOrange" onClick={clickedForCalc} >{"+"}</button>
 
-        <button className=""  onClick={clicked} >{"D"}</button>
-        <button className=""  onClick={clicked} >{"0"}</button>
-        <button className=""  onClick={clicked} >{"."}</button>
-        <button className="thisOrange" onClick={clicked} >{"="}</button>
+        <button className=""  onClick={clickedForCalc} >{"D"}</button>
+        <button className=""  onClick={clickedForCalc} >{"0"}</button>
+        <button className=""  onClick={clickedForCalc} >{"."}</button>
+        <button className="thisOrange" onClick={calculateNow} >{"="}</button>
 
     </div>
     );
