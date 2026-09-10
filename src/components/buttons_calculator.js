@@ -53,11 +53,11 @@ function ButtonCalculator () {
         if(Myele === "x") Myele = "*";
         if(Myele === "÷") Myele = "/";
         // info - hnay kayan l validation nta3 l calculator
-        if(Myele !== "C" && Myele !== "()" && Myele !== "H") {    
+        if(Myele !== "()") {    
             setArr([...arr, Myele]);
         }
         // info - had l condition ki checky ila user ktab chihaja mrir ra9m f lbiday nta3 l calculator
-        if (arr[0] === "+" || arr[0] === "*" || arr[0] === "-" || arr[0] === "/" || arr[0] === "=") {
+        if (arr[0] === "+" || arr[0] === "*" || arr[0] === "-" || arr[0] === "/") {
             setArr([]);
             console.error("you can't start with operators");
         };
@@ -102,20 +102,11 @@ function ButtonCalculator () {
     console.log("this is result 1",num1);
     console.log("this is result 2",num2);
     console.log("arr out ==> ", arr);
-    // info - hna rah i kantesty f kicha nafsal bin numbers w operator 
-    
 
-    
-    
-    // error - wahna l mochkil golt l user ila drat 3la ay click ki7sab machi ila drat 3la "=" dir calculation hadi mochkil
-    // info - hnaya rah 9at7a9a9 man ila kan "=" adi ta7sab 
-    if (arr.includes("=")) {          
-        // info - hadi kadir l filtering nta3 l "=" bach t9der tdir l calculation
-        let newArr = [...arr].filter(ele => ele !== "=");
-        // render
-        setArr(newArr);
-        console.log("clicked =");
-        
+    // info - hadi rah katbiyan i l result niha iya
+    // error - rak kadir render hta drat 3la =
+    function calculateNow () {
+
         // info - hadi rah katbiyan i l result niha iya
         // calculation
         console.log("operator ==> ", operator);
@@ -125,12 +116,9 @@ function ButtonCalculator () {
         
         // warn - wmoraha katwali l array jdida 1 + 1
         console.log("arr in the (=) ==> ", arr);
-    }
 
-    function calculateNow () {
-        // info - hadi rah katbiyan i l result niha iya
-        // calculation
         console.log("Calculated ");
+
     }
 
     return (
