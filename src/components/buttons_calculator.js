@@ -35,33 +35,45 @@ function ButtonCalculator () {
             // - may7sab l function 7ta tkamal 458 + 1 3ad 7sab
             // - wla 7ta yadrak l user 3la calculation
             // - wjami3 l machakil daharho 3la chakal message error()
+
 // error - lmochkil howa ila drat 3la "=" kidir render l array jdida walakin 7ta ki5raj man scope 3ad ya7sab mazyan
-// error - l mara jaya dir f <button> = <> wa7ad l onClick bo7dha iwa hadik li adi tabda ta7sab
-// error - kadalik matansach l <button> la5rin dir nafs tari9a m3a delete w history ga3 matarbathom bnafs l function
+
+// error - Check the new array inside the event.
+// error - Do not rely on the old `arr` after `setArr`.
+
 
 // Variables
    
     let [arr, setArr] = useState([]);
+    // error - hado n9ad najma3hom f state wa7da
     let [num1, setNum1] = useState(0);
     let [num2, setNum2] = useState(0);
     let [operator, setOperator] = useState("");
 
+    // info - hadi function katkon f event "click"
     function clickedForCalc (e) {
-        // error - chof sala7 renders f code kamal rak tama rahna 9rina 3liha
         let Myele = e.target.innerText;
         // info - hnaya ki7awal l id5al li kidarlo user bach yshal lahsab
         if(Myele === "x") Myele = "*";
         if(Myele === "÷") Myele = "/";
         // info - hnay kayan l validation nta3 l calculator
-        if(Myele !== "()") {    
-            setArr([...arr, Myele]);
+        // warn - chof hnay hanya yamkan dir Myele li anaha nta3 had local
+        if(Myele !== "()") { 
+            const newArr = [...arr, Myele];
         }
         // info - had l condition ki checky ila user ktab chihaja mrir ra9m f lbiday nta3 l calculator
+        // error - hna rah mazal mawslat l 9ima lawla li ana l state mazal madarat bach t render
+        // error - hhh ya3ni 7ta l click jaya 3ad yt7adaf state
         if (arr[0] === "+" || arr[0] === "*" || arr[0] === "-" || arr[0] === "/") {
+            // error - hhh ya3ni hna state mazal almlawi mayt7adat 7ta l click jaya
+            // error - l7al howa 3la 7sab l ai dir array jdida katamatal l( array la9dima + jdida ) tkon local
+            // hint - const newArr = [...arr, Myele];
+            // hint - had l7al yamkan y7al lmochkil nta3 twali l array l7aliya hiya lita5dam machi la9dima
+            // error - 3ad hnaya f7as ila brit taf7as kanahdar 3la arr[0]
             setArr([]);
             console.error("you can't start with operators");
         };
-        // info - hadi katabda 1<= l f array "arr" + w kadir l validation nta3 l calculator
+        // info - hadi katabda 1<= l f array "arr" + w kadir l validation nta3 l calculator la9dima
         if (arr.length !== 0) {
             let forTR = [...arr].reduce((acc, curr) => {
                 // true and false ==> false
@@ -77,6 +89,10 @@ function ButtonCalculator () {
     }
 
     // warn - hadi mazyana walakin kol click eevent kadir render wkadif operator kol mara b7al loop
+    // error - hadi walat error nichan man l5atir ndir joj render f compent wa7ad
+    // error - hadi 9alna man5aliwhach bara rasak tarbatha m3a l event
+    // error - walakin l mochkil how l calculation l7isabi makit3arafch 3la operation
+
     if(arr.includes("+")) {
         setOperator("+");
     }
@@ -91,6 +107,9 @@ function ButtonCalculator () {
     }
 
     // error - walakin hnaya l mochkil f hadi ... + 15255 + 565
+    // error - hadi walat error nichan man l5atir ndir joj render f componente wa7ad
+
+
     // info - hada rah kiyarad l 9ima lawla majmo3a
     setNum1(Number([...arr].splice(0, arr.indexOf(operator)).join("")));
     // info - hada rah kiyarad l 9ima jawja majmo3a
@@ -104,10 +123,9 @@ function ButtonCalculator () {
     console.log("arr out ==> ", arr);
 
     // info - hadi rah katbiyan i l result niha iya
-    // error - rak kadir render hta drat 3la =
+    // error - rak kadir render hta drat 3la = aw ay number a5or
     function calculateNow () {
 
-        // info - hadi rah katbiyan i l result niha iya
         // calculation
         console.log("operator ==> ", operator);
 
