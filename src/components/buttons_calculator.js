@@ -2,10 +2,10 @@
 import { useState } from "react";
 
 // info - lmohima nta3ha hiya katajma3 l ar9am
+// error - hna mazal rasni n7al movhkil nta3 var1 + var2 + var3 ... (op or var)
 function addshit(op, ...numbers) {
             let result = 0;
             // warn - result ++ falawal 0 + number
-            
                 for (let i = 1; i < numbers.length; i++) {
                     // info - hadi hiya li katwazan l clc wkat5aliha s7i7a
                         if((i - 1) === 0) result = numbers[0];
@@ -35,12 +35,9 @@ function ButtonCalculator () {
             // - may7sab l function 7ta tkamal 458 + 1 3ad 7sab
             // - wla 7ta yadrak l user 3la calculation
             // - wjami3 l machakil daharho 3la chakal message error()
-
-// error - lmochkil howa ila drat 3la "=" kidir render l array jdida walakin 7ta ki5raj man scope 3ad ya7sab mazyan
-
+            // - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
 // error - Check the new array inside the event.
-// error - Do not rely on the old `arr` after `setArr`.
-
+// error - make sure you do review
 
 // Variables
    
@@ -48,61 +45,64 @@ function ButtonCalculator () {
     // error - hado n9ad najma3hom f state wa7da
     let [num1, setNum1] = useState(0);
     let [num2, setNum2] = useState(0);
+    let [justgg, setGG] = useState({
+        num1: 0,
+        num2: 1,
+    });
     let [operator, setOperator] = useState("");
 
     // info - hadi function katkon f event "click"
     function clickedForCalc (e) {
         let Myele = e.target.innerText;
-        // info - hnaya ki7awal l id5al li kidarlo user bach yshal lahsab
+        let newArr = [...arr];
+        let newNum1 = num1;
+        let newNum2 = num1;
+        const opp = ["+", "*", "-", "/"];
+
+        // info - change input into operators
         if(Myele === "x") Myele = "*";
         if(Myele === "÷") Myele = "/";
         // info - hnay kayan l validation nta3 l calculator
         // warn - chof hnay hanya yamkan dir Myele li anaha nta3 had local
-        if(Myele !== "()") { 
-            const newArr = [...arr, Myele];
+        if(Myele !== "()") {
+            // info - hadi raha jdida "newArr" machi b7al 9dima "arr"
+             newArr = [...arr, Myele];
         }
+        console.log("this is newArr out 1", newArr);
         // info - had l condition ki checky ila user ktab chihaja mrir ra9m f lbiday nta3 l calculator
-        // error - hna rah mazal mawslat l 9ima lawla li ana l state mazal madarat bach t render
-        // error - hhh ya3ni 7ta l click jaya 3ad yt7adaf state
-        if (arr[0] === "+" || arr[0] === "*" || arr[0] === "-" || arr[0] === "/") {
-            // error - hhh ya3ni hna state mazal almlawi mayt7adat 7ta l click jaya
-            // error - l7al howa 3la 7sab l ai dir array jdida katamatal l( array la9dima + jdida ) tkon local
-            // hint - const newArr = [...arr, Myele];
+        if (opp.map(ele => ele === newArr[0] ? true : false).includes(true) === true) {
             // hint - had l7al yamkan y7al lmochkil nta3 twali l array l7aliya hiya lita5dam machi la9dima
-            // error - 3ad hnaya f7as ila brit taf7as kanahdar 3la arr[0]
-            setArr([]);
+            newArr = [...arr];
             console.error("you can't start with operators");
         };
+        console.log("this is newArr out 2", newArr);
         // info - hadi katabda 1<= l f array "arr" + w kadir l validation nta3 l calculator la9dima
-        if (arr.length !== 0) {
-            let forTR = [...arr].reduce((acc, curr) => {
-                // true and false ==> false
-                // false and false ==> false
-                // true and true ==> true
+        if (newArr.length !== 0) {
+            let forTR = [...newArr].reduce((acc, curr) => {
                 if (isNaN(acc) && isNaN(curr)) {
                     console.error("you can't put 2 operators together");
-                    setArr([]);
+                    newArr = [...arr];
                 }
                 return acc + curr;
-        });
-        console.log("///////////// ===> ", forTR);
-    }
-
+            });
+            console.log("///////////// ===> ", forTR);
+        }
+    
     // warn - hadi mazyana walakin kol click eevent kadir render wkadif operator kol mara b7al loop
     // error - hadi walat error nichan man l5atir ndir joj render f compent wa7ad
     // error - hadi 9alna man5aliwhach bara rasak tarbatha m3a l event
     // error - walakin l mochkil how l calculation l7isabi makit3arafch 3la operation
 
-    if(arr.includes("+")) {
+    if(newArr.includes("+")) {
         setOperator("+");
     }
-    if(arr.includes("/")) {
+    if(newArr.includes("/")) {
         setOperator("/");
     }
-    if(arr.includes("*")) {
+    if(newArr.includes("*")) {
         setOperator("*");
     }
-    if(arr.includes("-")) {
+    if(newArr.includes("-")) {
         setOperator("-");
     }
 
@@ -111,16 +111,30 @@ function ButtonCalculator () {
 
 
     // info - hada rah kiyarad l 9ima lawla majmo3a
-    setNum1(Number([...arr].splice(0, arr.indexOf(operator)).join("")));
+    newNum1 = (Number([...newArr].splice(0, arr.indexOf(operator)).join("")));
     // info - hada rah kiyarad l 9ima jawja majmo3a
-    setNum2(Number([...arr].splice((arr.indexOf(operator) + 1), arr.length).join("")));
-    console.log("arr in event ==> ", arr);
+    newNum2 = (Number([...newArr].splice((newArr.indexOf(operator) + 1), arr.length).join("")));
+
+    console.log("arr in event arr 9dima ==> ", arr);
+    console.log("arr in event newArr jdida ==> ", newArr);
+    console.log("this is new result 1",newNum1);
+    console.log("this is new result 2",newNum2);
+   
     
+    // info - hadi li kadir ta7dit l arr <== newArr
+    // info - hadi li kadir ta7dit l num(N) <== newNum(N)
+
+    // error - mazal rasni render o5ra bach ta7sab 1 + 1 =
+    // error - render - 1
+    setNum1(newNum1);
+    setNum2(newNum2);
+    setArr(newArr);   
     }
 
-    console.log("this is result 1",num1);
-    console.log("this is result 2",num2);
+    console.log("this is old result 1",num1);
+    console.log("this is old result 2",num2);
     console.log("arr out ==> ", arr);
+    console.log("operator out ==>", operator);
 
     // info - hadi rah katbiyan i l result niha iya
     // error - rak kadir render hta drat 3la = aw ay number a5or
