@@ -7,10 +7,7 @@ function addshit(num, ops) {
             // for test
     // hint - hadi walat hiya l7al rasmiyan
     // hint - ch7al wana ndor 3la had l7al
-     num = [ 1, 3, 4];
-     ops = [ "*", "*"];
     let fordd = num.reduce((acc, curr, i) => {
-          console.log(i - 1);
           if(ops[i - 1] === "+") {
               return acc + curr;
           }
@@ -27,6 +24,9 @@ function addshit(num, ops) {
     console.log("this for testing / show for loop>", fordd);
 }
 
+// sipmle exemple
+// console.log(addshit([ 1, 1, 1], [ "+", "+"]));
+
 // info - main function 
 function ButtonCalculator () {        
 
@@ -37,8 +37,6 @@ function ButtonCalculator () {
             // - wla 7ta yadrak l user 3la calculation
             // - wjami3 l machakil daharho 3la chakal message error()
             // - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
-// error - Check the new array inside the event.
-// error - make sure you do review
 
 // Variables
    
@@ -58,6 +56,7 @@ function ButtonCalculator () {
         let newNum1 = num1;
         let newNum2 = num2;
         const opp = ["+", "*", "-", "/"];
+        const ForbiddenOpp = ["*", "/"];
 
         // info - change input into operators
         if(Myele === "x") Myele = opp[1];
@@ -69,8 +68,8 @@ function ButtonCalculator () {
         }
         console.log("this is newArr out 1", newArr);
         // info - had l condition ki checky ila user ktab chihaja mrir ra9m f lbiday nta3 l calculator
-        if (opp.map(ele => ele === newArr[0] ? true : false).includes(true) === true) {
-            // hint - had l7al yamkan y7al lmochkil nta3 twali l array l7aliya hiya lita5dam machi la9dima
+        if (ForbiddenOpp.map(ele => ele === newArr[0] ? true : false).includes(true) === true) {
+            // info - li rasni ndirlhom l 7adr homa (* /) 
             newArr = [...arr];
             console.error("you can't start with operators");
         };
@@ -78,10 +77,18 @@ function ButtonCalculator () {
         // info - hadi kadir l validation ila tla9a joj operators (5 + * 6 ==> error)
         if (newArr.length !== 0) {
             let forTR = [...newArr].reduce((acc, curr) => {
-            if (isNaN(acc) && isNaN(curr)) {
+            // solved - hna error ras t7al fach kataktab 1 + + 1 ==> error mazyan
+            // solved - walakin fach kataktab  1 + 1 + 1 ==> error again hna rasni n7alha
+            // solved - acc ==> 1 + 1 ==> NaN 
+            // hint - isNaN(acc[acc.length - 1]) ==> + ==> good ==> error
+            // 1 ==> number ==> No ==> work normal
+            // solved - curr ==> + (1) ==> NaN
+            if (isNaN(acc[acc.length - 1]) && isNaN(curr)) {
                 console.error("you can't put 2 operators together");
                 newArr = [...arr];
             }
+            console.log("this acc ==> ", acc);
+            console.log("this curr ==> ", curr);
             return acc + curr;
             });
             console.log("///////////// ===> ", forTR);
