@@ -2,7 +2,6 @@
 import { useState } from "react";
 
 // info - lmohima nta3ha hiya katajma3 l ar9am
-// error - hna mazal rasni n7al movhkil nta3 var1 + var2 + var3 ... (op or var)
 function addshit(num, ops) {
             // for test
     // hint - hadi walat hiya l7al rasmiyan
@@ -77,37 +76,34 @@ function ButtonCalculator () {
         // info - hadi kadir l validation ila tla9a joj operators (5 + * 6 ==> error)
         if (newArr.length !== 0) {
             let forTR = [...newArr].reduce((acc, curr) => {
-            // solved - hna error ras t7al fach kataktab 1 + + 1 ==> error mazyan
-            // solved - walakin fach kataktab  1 + 1 + 1 ==> error again hna rasni n7alha
-            // solved - acc ==> 1 + 1 ==> NaN 
-            // hint - isNaN(acc[acc.length - 1]) ==> + ==> good ==> error
-            // 1 ==> number ==> No ==> work normal
-            // solved - curr ==> + (1) ==> NaN
+            // info - hna t7alat lmochkil nta3 fach kataktab 1 + + 1 ==> error mazyan
             if (isNaN(acc[acc.length - 1]) && isNaN(curr)) {
                 console.error("you can't put 2 operators together");
                 newArr = [...arr];
             }
-            console.log("this acc ==> ", acc);
-            console.log("this curr ==> ", curr);
             return acc + curr;
             });
             console.log("///////////// ===> ", forTR);
         }
         
-    
-        // warn - hadi mazyana walakin kol click event kadir render wkadif operator kol mara b7al loop
         // error - hadi walat error nichan man l5atir ndir joj render f compent wa7ad
-
         // info - hna kanardam b operator jdida machi la9dima li katsawi ""
         let newOper = newArr.find((item) => opp.includes(item)) || "";
     
         // error - walakin hnaya l mochkil f hadi ... + 15255 + 565
-        // error - hadi walat error nichan man l5atir ndir joj render f componente wa7ad
-
-
         // slice - make a copie
         // splice - make a copy 
         const operatorIndex = newArr.indexOf(newOper);
+        
+        // for test
+        // error - darori t7al had l mochkil nta3 ras tfara9 num 3ta string
+        // [ 1, 1, 2, 2] ==> nah
+        // [ 11, 22] ==> yah
+        // [ +, +, * ...] ==> yah
+        const regularEX =  /\d+/g;
+        let resuld = newArr.join().matchAll(regularEX);
+        console.log(resuld);
+
         if (operatorIndex !== -1) {
             // info - hada rah kiyarad l 9ima lawla majmo3a
             newNum1 = (Number(newArr.slice(0, operatorIndex).join("")));
