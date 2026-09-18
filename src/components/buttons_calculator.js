@@ -63,7 +63,7 @@ function ButtonCalculator () {
         // info - hnay kayan l validation nta3 l calculator
         if(Myele !== "()") {
             // info - hadi raha jdida "newArr" machi b7al 9dima "arr"
-             newArr = [...arr, Myele];
+            newArr = [...arr, Myele];
         }
         console.log("this is newArr out 1", newArr);
         // info - had l condition ki checky ila user ktab chihaja mrir ra9m f lbiday nta3 l calculator
@@ -86,10 +86,12 @@ function ButtonCalculator () {
             console.log("///////////// ===> ", forTR);
         }
         
-        // error - hadi walat error nichan man l5atir ndir joj render f compent wa7ad
         // info - hna kanardam b operator jdida machi la9dima li katsawi ""
-        let newOper = newArr.find((item) => opp.includes(item)) || "";
-    
+        // learn - find like filter in hight order function
+        // learn - include return boolean
+        // error - ba3da n7alo had lmochkil
+        let newOper = newArr.filter((item) => opp.includes(item));
+
         // error - walakin hnaya l mochkil f hadi ... + 15255 + 565
         // slice - make a copie
         // splice - make a copy 
@@ -99,11 +101,13 @@ function ButtonCalculator () {
         // error - darori t7al had l mochkil nta3 ras tfara9 num 3ta string
         // [ 1, 1, 2, 2] ==> nah
         // [ 11, 22] ==> yah
-        // [ +, +, * ...] ==> yah
+        // [ +, +, * ...] ==> solved
         const regularEX =  /\d+/g;
-        let resuld = newArr.join().matchAll(regularEX);
-        console.log(resuld);
+        let resuld = newArr.join().match(regularEX);
+        console.log("=======> REGULAR EXP:", resuld);
 
+        // error - rasni n7al lmochkil li9bal bach rakaz 3la hadi
+        // error - hadi rasha tam7a
         if (operatorIndex !== -1) {
             // info - hada rah kiyarad l 9ima lawla majmo3a
             newNum1 = (Number(newArr.slice(0, operatorIndex).join("")));
@@ -115,13 +119,9 @@ function ButtonCalculator () {
         console.log("arr in event newArr jdida ==> ", newArr);
         console.log("this is new result 1",newNum1);
         console.log("this is new result 2",newNum2);
-    
-        
+         
+        // info - set New Array ==> replace the old one
         // info - hadi li kadir ta7dit l arr <== newArr
-        // info - hadi li kadir ta7dit l num(N) <== newNum(N)
-
-        // error - mazal rasni render o5ra bach ta7sab 1 + 1 =
-        // error - render - 1
         setNum1(newNum1);
         setNum2(newNum2);
         setOperator(newOper);
@@ -134,18 +134,10 @@ function ButtonCalculator () {
     console.log("operator out ==>", operator);
 
     // info - hadi rah katbiyan i l result niha iya
-    // error - rak kadir render hta drat 3la = aw ay number a5or
     function calculateNow () {
-
         // calculation
         console.log("operator ==> ", operator);
-
-        // warn - hado daralhom 3la chakl array
-        console.log(addshit(num1, num2, operator));
-        
-        // warn - wmoraha katwali l array jdida 1 + 1
-        console.log("arr in the (=) ==> ", arr);
-
+        // console.log(addshit([ 1, 1, 1], operator));
         console.log("Calculated ");
 
     }
