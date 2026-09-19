@@ -86,10 +86,9 @@ function ButtonCalculator () {
             console.log("///////////// ===> ", forTR);
         }
         
-        // info - hna kanardam b operator jdida machi la9dima li katsawi ""
+        // info - kadaral jami3 l operators daral array
         // learn - find like filter in hight order function
         // learn - include return boolean
-        // error - ba3da n7alo had lmochkil
         let newOper = newArr.filter((item) => opp.includes(item));
 
         // error - walakin hnaya l mochkil f hadi ... + 15255 + 565
@@ -102,9 +101,18 @@ function ButtonCalculator () {
         // [ 1, 1, 2, 2] ==> nah
         // [ 11, 22] ==> yah
         // [ +, +, * ...] ==> solved
-        const regularEX =  /\d+/g;
-        let resuld = newArr.join().match(regularEX);
+
+        // hint - l hmd lilah lmohim rani wjat nas l7al [ 11, +55, +61] ==> [ 11, 55, 61]
+        // hint - 7awal tal9a 7al lhad lmochkila
+        // hint - 7awal tnawa3 fl7al (+ - * /) ==> machi i (+)
+        const regularEX =  /(\d+(?=\+)|\+\d+)/g;
+        // error - useless
+        const regularEX4 = /\+\d+/g;
+        let resuld = newArr.join("").match(regularEX);
         console.log("=======> REGULAR EXP:", resuld);
+        // error - useless
+        let resulds = newArr.join("").match(regularEX4);
+        console.log("=======> REGULAR EXP:", resulds);
 
         // error - rasni n7al lmochkil li9bal bach rakaz 3la hadi
         // error - hadi rasha tam7a
