@@ -105,6 +105,7 @@ function ButtonCalculator () {
         // hint - l hmd lilah lmohim rani wjat nas l7al [ 11, +55, +61] ==> [ 11, 55, 61]
         // hint - 7awal tal9a 7al lhad lmochkila
         // hint - 7awal tnawa3 fl7al (+ - * /) ==> machi i (+)
+        // hint - ta3dil mochkil dohor ra9m f lawal dir (/d|....) bach yadhar wamaya3tamadch 3la (+) fadohor
         const regularEX =  /(\d+(?=\+)|\+\d+)/g;
         // error - useless
         const regularEX4 = /\+\d+/g;
