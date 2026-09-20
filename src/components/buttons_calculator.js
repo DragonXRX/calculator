@@ -40,10 +40,9 @@ function ButtonCalculator () {
 // Variables
    
     let [arr, setArr] = useState([]);
-    // error - hado n9ad najma3hom f state wa7da
-    let [num1, setNum1] = useState(0);
-    let [num2, setNum2] = useState(0);
+    let [numCalculated, setnumCalculated] = useState([]);
     let [operator, setOperator] = useState("");
+    let [startOp, setStartOP] = useState("");
 
     
 
@@ -52,8 +51,7 @@ function ButtonCalculator () {
     function clickedForCalc (e) {
         let Myele = e.target.innerText;
         let newArr = [...arr];
-        let newNum1 = num1;
-        let newNum2 = num2;
+        let newStartOP = startOp;
         const opp = ["+", "*", "-", "/"];
         const ForbiddenOpp = ["*", "/"];
 
@@ -71,7 +69,13 @@ function ButtonCalculator () {
             // info - li rasni ndirlhom l 7adr homa (* /) 
             newArr = [...arr];
             console.error("you can't start with operators");
-        };
+        }
+        // error - hana kayna mochkila ila bda user b + wacha adi w9a3
+        // error - hna kata3ti error
+        if (newArr[0] === "+") {
+             newStartOP = "+";
+             newArr = [...arr];
+        }
         console.log("this is newArr out 2", newArr);
         // info - hadi kadir l validation ila tla9a joj operators (5 + * 6 ==> error)
         if (newArr.length !== 0) {
@@ -86,67 +90,48 @@ function ButtonCalculator () {
             console.log("///////////// ===> ", forTR);
         }
         
-        // info - kadaral jami3 l operators daral array
-        // learn - find like filter in hight order function
-        // learn - include return boolean
-        let newOper = newArr.filter((item) => opp.includes(item));
+        setStartOP(newStartOP);
+        if((newArr[0] !== "+") && (newArr.length !== 0)) {
+            // info - kadaral jami3 l operators daral array
+            // learn - find like filter in hight order function
+            // learn - include return boolean
+            let newOper = newArr.filter((item) => opp.includes(item));
+     
+            // for test
+            // error - darori t7al had l mochkil nta3 ras tfara9 num 3ta string
+            // [ 1, 1, 2, 2] ==> nah
+            // [ 11, 22] ==> yah
+            // [ +, +, * ...] ==> solved
 
-        // error - walakin hnaya l mochkil f hadi ... + 15255 + 565
-        // slice - make a copie
-        // splice - make a copy 
-        const operatorIndex = newArr.indexOf(newOper);
-        
-        // for test
-        // error - darori t7al had l mochkil nta3 ras tfara9 num 3ta string
-        // [ 1, 1, 2, 2] ==> nah
-        // [ 11, 22] ==> yah
-        // [ +, +, * ...] ==> solved
+            // info - l hmd lilah lmohim rani wjat l7al [ 11, *55, -61, +11] ==> [ 11, 55, 61, 11]
+            const regularEX =  /(\d+)|(\d+(?=\+)|(?=\+)\d+)|(\d+(?=\*)|(?=\*)\d+)|(\d+(?=\-)|(?=\-)\d+)|(\d+(?=\/)|(?=\/)\d+)/g;
 
-        // hint - l hmd lilah lmohim rani wjat nas l7al [ 11, +55, +61] ==> [ 11, 55, 61]
-        // hint - 7awal tal9a 7al lhad lmochkila
-        // hint - 7awal tnawa3 fl7al (+ - * /) ==> machi i (+)
-        // hint - ta3dil mochkil dohor ra9m f lawal dir (/d|....) bach yadhar wamaya3tamadch 3la (+) fadohor
-        const regularEX =  /(\d+(?=\+)|\+\d+)/g;
-        // error - useless
-        const regularEX4 = /\+\d+/g;
-        let resuld = newArr.join("").match(regularEX);
-        console.log("=======> REGULAR EXP:", resuld);
-        // error - useless
-        let resulds = newArr.join("").match(regularEX4);
-        console.log("=======> REGULAR EXP:", resulds);
-
-        // error - rasni n7al lmochkil li9bal bach rakaz 3la hadi
-        // error - hadi rasha tam7a
-        if (operatorIndex !== -1) {
-            // info - hada rah kiyarad l 9ima lawla majmo3a
-            newNum1 = (Number(newArr.slice(0, operatorIndex).join("")));
-            // info - hada rah kiyarad l 9ima jawja majmo3a
-            // Number("") ==> 0
-            newNum2 = (Number(newArr.slice((operatorIndex + 1), newArr.length).join("")));
+            const resuld = newArr.join("").match(regularEX);
+            console.log("=======> REGULAR EXP:", resuld);
+            
+            const changeTonumber = resuld.map((ele) => +ele); 
+            
+            console.log("arr in event arr 9dima ==> ", arr);
+            console.log("arr in event newArr jdida ==> ", newArr);
+            
+            // info - set New Array ==> replace the old one
+            // info - hadi li kadir ta7dit l arr <== newArr
+            setnumCalculated(changeTonumber);
+            setOperator(newOper);
+            setArr(newArr);
         }
-        console.log("arr in event arr 9dima ==> ", arr);
-        console.log("arr in event newArr jdida ==> ", newArr);
-        console.log("this is new result 1",newNum1);
-        console.log("this is new result 2",newNum2);
-         
-        // info - set New Array ==> replace the old one
-        // info - hadi li kadir ta7dit l arr <== newArr
-        setNum1(newNum1);
-        setNum2(newNum2);
-        setOperator(newOper);
-        setArr(newArr);   
     }
 
-    console.log("this is old result 1",num1);
-    console.log("this is old result 2",num2);
+    console.log("this is out result", numCalculated);
     console.log("arr out ==> ", arr);
     console.log("operator out ==>", operator);
+    console.log("My start OP ===========++++> newStartOP:", startOp);
 
     // info - hadi rah katbiyan i l result niha iya
     function calculateNow () {
         // calculation
         console.log("operator ==> ", operator);
-        // console.log(addshit([ 1, 1, 1], operator));
+        console.log(addshit( numCalculated, operator));
         console.log("Calculated ");
 
     }
