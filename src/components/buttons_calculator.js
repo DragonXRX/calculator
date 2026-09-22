@@ -113,6 +113,7 @@ function ButtonCalculator () {
             // warn - awalan "+" makatrayarch sign nta3 num
             // warn - taniyan "-" katrayar man sign
             // error - chof 7awal tab7at 3la function kat7awal +num ==> -num
+            // learn - rah machi i "+" li kat7awal l num kayan 7ta "-"
             // if(startOp === "-") changeTonumber[0] = +changeTonumber[0]
             
             console.log("arr in event arr 9dima ==> ", arr);
