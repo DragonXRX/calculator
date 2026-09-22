@@ -43,9 +43,7 @@ function ButtonCalculator () {
     let [numCalculated, setnumCalculated] = useState([]);
     let [operator, setOperator] = useState("");
     let [startOp, setStartOP] = useState("");
-
     
-
 
     // info - hadi function katkon f event "click"
     function clickedForCalc (e) {
@@ -72,9 +70,11 @@ function ButtonCalculator () {
         }
         // error - hana kayna mochkila ila bda user b + wacha adi w9a3
         // error - hna kata3ti error
-        if (newArr[0] === "+") {
-             newStartOP = "+";
+        if (newArr[0] === "-") {
+             newStartOP = "-";
              newArr = [...arr];
+        } else if (newArr[0] === "+") {
+            newArr = [...arr];
         }
         console.log("this is newArr out 2", newArr);
         // info - hadi kadir l validation ila tla9a joj operators (5 + * 6 ==> error)
@@ -91,14 +91,13 @@ function ButtonCalculator () {
         }
         
         setStartOP(newStartOP);
-        if((newArr[0] !== "+") && (newArr.length !== 0)) {
+        if(newArr.length !== 0) {
             // info - kadaral jami3 l operators daral array
             // learn - find like filter in hight order function
             // learn - include return boolean
             let newOper = newArr.filter((item) => opp.includes(item));
      
             // for test
-            // error - darori t7al had l mochkil nta3 ras tfara9 num 3ta string
             // [ 1, 1, 2, 2] ==> nah
             // [ 11, 22] ==> yah
             // [ +, +, * ...] ==> solved
@@ -110,6 +109,11 @@ function ButtonCalculator () {
             console.log("=======> REGULAR EXP:", resuld);
             
             const changeTonumber = resuld.map((ele) => +ele); 
+
+            // warn - awalan "+" makatrayarch sign nta3 num
+            // warn - taniyan "-" katrayar man sign
+            // error - chof 7awal tab7at 3la function kat7awal +num ==> -num
+            // if(startOp === "-") changeTonumber[0] = +changeTonumber[0]
             
             console.log("arr in event arr 9dima ==> ", arr);
             console.log("arr in event newArr jdida ==> ", newArr);
