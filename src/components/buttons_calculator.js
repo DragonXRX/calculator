@@ -110,13 +110,11 @@ function ButtonCalculator () {
             
             const changeTonumber = resuld.map((ele) => +ele); 
 
-            // warn - awalan "+" makatrayarch sign nta3 num
-            // warn - taniyan "-" katrayar man sign
-            // error - chof 7awal tab7at 3la function kat7awal +num ==> -num
             // learn - rah machi i "+" li kat7awal l num kayan 7ta "-"
-            // if(startOp === "-") changeTonumber[0] = +changeTonumber[0]
+            // info - change the first ele in the newArr to negativeNum 
+            if(startOp === "-") changeTonumber[0] = -changeTonumber[0];
             
-            console.log("arr in event arr 9dima ==> ", arr);
+            // info - it is important to check the state
             console.log("arr in event newArr jdida ==> ", newArr);
             
             // info - set New Array ==> replace the old one
