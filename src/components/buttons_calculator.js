@@ -20,7 +20,7 @@ function addshit(num, ops) {
               return acc / curr;
           }
     });
-    console.log("this for testing / show for loop>", fordd);
+    return fordd;
 }
 
 // sipmle exemple
@@ -36,12 +36,18 @@ function ButtonCalculator () {
             // - wla 7ta yadrak l user 3la calculation
             // - wjami3 l machakil daharho 3la chakal message error()
             // - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
+// error - rasni nzid wa7ad l newArray jdida mas ola 3la show data f page
+// error - rasni nardam 3la buuton clear()
+// error - hhhh mochkila jdida wlah madrabt liha la7sab wahiya 3+4*2=14 wrong 3+4*2=11
+// - kansab9o darb 3la l jam3
+// hint - ya9dar ykon l7al f revezarse()
+// warn - You made the algorithm execute operations in the order they appear, whereas in mathematics, multiplication (*) and division (/) take precedence over addition (+) and subtraction (-).
 
 // Variables
    
     let [arr, setArr] = useState([]);
     let [numCalculated, setnumCalculated] = useState([]);
-    let [operator, setOperator] = useState("");
+    let [operator, setOperator] = useState([]);
     let [startOp, setStartOP] = useState("");
     
 
@@ -68,12 +74,14 @@ function ButtonCalculator () {
             newArr = [...arr];
             console.error("you can't start with operators");
         }
-        // error - hana kayna mochkila ila bda user b + wacha adi w9a3
-        // error - hna kata3ti error
+        // info - hna l user ila bda b + adi tkamal l3amaliya 3adi 1+1 = +1+1
+        // info - hna l user ila bda b - adi tbadal l3amaliya 1-1 ==> -1-1
         if (newArr[0] === "-") {
+            // info - newArr.length === 0
              newStartOP = "-";
              newArr = [...arr];
         } else if (newArr[0] === "+") {
+            // info - newArr.length === 0
             newArr = [...arr];
         }
         console.log("this is newArr out 2", newArr);
@@ -87,10 +95,7 @@ function ButtonCalculator () {
             }
             return acc + curr;
             });
-            console.log("///////////// ===> ", forTR);
-        }
-        
-        setStartOP(newStartOP);
+        }  
         if(newArr.length !== 0) {
             // info - kadaral jami3 l operators daral array
             // learn - find like filter in hight order function
@@ -123,6 +128,7 @@ function ButtonCalculator () {
             setOperator(newOper);
             setArr(newArr);
         }
+            setStartOP(newStartOP);
     }
 
     console.log("this is out result", numCalculated);
@@ -134,14 +140,24 @@ function ButtonCalculator () {
     function calculateNow () {
         // calculation
         console.log("operator ==> ", operator);
+        console.log("sssssssssserie of num for calac ========>", numCalculated);
         console.log(addshit( numCalculated, operator));
         console.log("Calculated ");
 
     }
 
+    function clearData () {
+        setnumCalculated([]);
+        setOperator([]);
+        setArr([]);
+        setStartOP("");
+        console.warn("Data cleared!!!!!!");
+        console.clear();
+    }
+
     return (
     <div className='calculator_buttons'>
-        <button className="thisSimpleGray">{"C"}</button>
+        <button className="thisSimpleGray" onClick={clearData}>{"C"}</button>
         <button className="thisSimpleGray"  onClick={clickedForCalc} >{"()"}</button>
         <button className="thisSimpleGray">{"H"}</button>
         <button className="thisOrange" onClick={clickedForCalc} >{"÷"}</button>
