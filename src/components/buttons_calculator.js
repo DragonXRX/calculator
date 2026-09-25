@@ -3,9 +3,31 @@ import { useState } from "react";
 
 // info - lmohima nta3ha hiya katajma3 l ar9am
 function addshit(num, ops) {
-            // for test
-    // hint - hadi walat hiya l7al rasmiyan
-    // hint - ch7al wana ndor 3la had l7al
+    // error - rasni nzid wa7ad l newArray jdida mas ola 3la show data f page
+    // error - hhhh mochkila jdida wlah madrabt liha la7sab wahiya 3+4*2=14 wrong 3+4*2=11
+    // - kansab9o darb 3la l jam3
+    // hint - ya9dar ykon l7al f revezarse()
+    // warn - You made the algorithm execute operations in the order they appear, whereas in mathematics, multiplication (*) and division (/) take precedence over addition (+) and subtraction (-).
+    // High priority *   /
+    // Low priority +   -
+    // for if
+    // splice()
+
+    // num = [2, 3, 4] ==> index of ==> 1 / 2
+    // ops = ["+", "*"] ==> index of * ==> 1
+
+    // num = [1, 2, 3, 4] ==> index of ==> 1 / 2 / 3
+    // ops = ["+", "*", "*"] ==> index of * ==> 1 / 2
+    // errror - hna 3andna mochkil tikrar
+
+
+    for (let i = 0; i < ops.length; i++) {
+        if(ops[i] === "*") {
+            console.log("for i ===========>", i);
+            console.log("for n1 n2 ===========>", num[i], num[i + 1]);
+        }
+    }
+
     let fordd = num.reduce((acc, curr, i) => {
           if(ops[i - 1] === "+") {
               return acc + curr;
@@ -27,7 +49,7 @@ function addshit(num, ops) {
 // console.log(addshit([ 1, 1, 1], [ "+", "+"]));
 
 // info - main function 
-function ButtonCalculator () {        
+function ButtonCalculator () {
 
 // error - min chorot li rasni nha9a9hom homa
             // - yabda l user dayman b number
@@ -36,12 +58,6 @@ function ButtonCalculator () {
             // - wla 7ta yadrak l user 3la calculation
             // - wjami3 l machakil daharho 3la chakal message error()
             // - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
-// error - rasni nzid wa7ad l newArray jdida mas ola 3la show data f page
-// error - rasni nardam 3la buuton clear()
-// error - hhhh mochkila jdida wlah madrabt liha la7sab wahiya 3+4*2=14 wrong 3+4*2=11
-// - kansab9o darb 3la l jam3
-// hint - ya9dar ykon l7al f revezarse()
-// warn - You made the algorithm execute operations in the order they appear, whereas in mathematics, multiplication (*) and division (/) take precedence over addition (+) and subtraction (-).
 
 // Variables
    
