@@ -6,7 +6,7 @@ function addshit(num, ops) {
     // error - rasni nzid wa7ad l newArray jdida mas ola 3la show data f page
     // error - hhhh mochkila jdida wlah madrabt liha la7sab wahiya 3+4*2=14 wrong 3+4*2=11
     // - kansab9o darb 3la l jam3
-    // hint - ya9dar ykon l7al f revezarse()
+    // hint - ya9dar ykon l7al f revezarse() ==> I don't think so
     // warn - You made the algorithm execute operations in the order they appear, whereas in mathematics, multiplication (*) and division (/) take precedence over addition (+) and subtraction (-).
     // High priority *   /
     // Low priority +   -
@@ -124,23 +124,39 @@ function ButtonCalculator () {
             // [ +, +, * ...] ==> solved
 
             // info - l hmd lilah lmohim rani wjat l7al [ 11, *55, -61, +11] ==> [ 11, 55, 61, 11]
-            const regularEX =  /(\d+)|(\d+(?=\+)|(?=\+)\d+)|(\d+(?=\*)|(?=\*)\d+)|(\d+(?=\-)|(?=\-)\d+)|(\d+(?=\/)|(?=\/)\d+)/g;
-
-            const resuld = newArr.join("").match(regularEX);
-            console.log("=======> REGULAR EXP:", resuld);
+            // info - walat b7al hadi lljam3 w atar7 [ 11, *55, -61, +11, /5] ==> [61, 11]
+            // info - walat b7al hadi ldarb w l9isma [ 11, *55, -61, +11, /5] ==> [11, 55, /5]
             
-            const changeTonumber = resuld.map((ele) => +ele); 
+            // for test
+            // solved
+            const regularEXforjama =  /((\+)\d+|(\-)\d+)/g;
+            const resuld1 = newArr.join("").match(regularEXforjama);
+            // error
+            const regularEXfordarb =  /(\d+(?=\*)|(?=\*)\d+)|(\d+(?=\/)|(?=\/)\d+)/g;
+            const resuld2 = newArr.join("").match(regularEXfordarb);
+
+            console.log("=======> REGULAR EXP ( + - ):", resuld1);
+            console.log("=======> REGULAR EXP ( * / ):", resuld2);
+
+            
+            
+            // const regularEX =  /(\d+)|(\d+(?=\+)|(?=\+)\d+)|(\d+(?=\*)|(?=\*)\d+)|(\d+(?=\-)|(?=\-)\d+)|(\d+(?=\/)|(?=\/)\d+)/g;
+
+            // const resuld = newArr.join("").match(regularEX);
+            // console.log("=======> REGULAR EXP:", resuld);
+            
+            // const changeTonumber = resuld.map((ele) => +ele); 
 
             // learn - rah machi i "+" li kat7awal l num kayan 7ta "-"
             // info - change the first ele in the newArr to negativeNum 
-            if(startOp === "-") changeTonumber[0] = -changeTonumber[0];
+            //if(startOp === "-") changeTonumber[0] = -changeTonumber[0];
             
             // info - it is important to check the state
             console.log("arr in event newArr jdida ==> ", newArr);
             
             // info - set New Array ==> replace the old one
             // info - hadi li kadir ta7dit l arr <== newArr
-            setnumCalculated(changeTonumber);
+            //setnumCalculated(changeTonumber);
             setOperator(newOper);
             setArr(newArr);
         }
