@@ -6,7 +6,6 @@ function addshit(num, ops) {
     // error - rasni nzid wa7ad l newArray jdida mas ola 3la show data f page
     // error - hhhh mochkila jdida wlah madrabt liha la7sab wahiya 3+4*2=14 wrong 3+4*2=11
     // - kansab9o darb 3la l jam3
-    // hint - ya9dar ykon l7al f revezarse() ==> I don't think so
     // warn - You made the algorithm execute operations in the order they appear, whereas in mathematics, multiplication (*) and division (/) take precedence over addition (+) and subtraction (-).
     // High priority *   /
     // Low priority +   -
@@ -125,14 +124,16 @@ function ButtonCalculator () {
 
             // info - l hmd lilah lmohim rani wjat l7al [ 11, *55, -61, +11] ==> [ 11, 55, 61, 11]
             // info - walat b7al hadi lljam3 w atar7 [ 11, *55, -61, +11, /5] ==> [61, 11]
-            // info - walat b7al hadi ldarb w l9isma [ 11, *55, -61, +11, /5] ==> [11, 55, /5]
+            // info - walat b7al hadi ldarb w l9isma [ 11, *55, -61, +11, /5] ==> [11, 55, 5]
+            // error - chof t akad wach darb hiya lawla wla l9isma
+            // error - dir la7sab bach t akad man l 7sab
             
             // for test
             // solved
-            const regularEXforjama =  /((\+)\d+|(\-)\d+)/g;
+            const regularEXforjama =  /(^\d+((?=\+)|(?=\-))|(?<=\+)\d+|(?<=\-)\d+)/g;
             const resuld1 = newArr.join("").match(regularEXforjama);
             // error
-            const regularEXfordarb =  /(\d+(?=\*)|(?=\*)\d+)|(\d+(?=\/)|(?=\/)\d+)/g;
+            const regularEXfordarb =  /(^\d+((?=\*)|(?=\/))|(?<=\*)\d+|(?<=\/)\d+)/g;
             const resuld2 = newArr.join("").match(regularEXfordarb);
 
             console.log("=======> REGULAR EXP ( + - ):", resuld1);
