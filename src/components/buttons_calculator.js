@@ -117,34 +117,31 @@ function ButtonCalculator () {
             // learn - include return boolean
             let newOper = newArr.filter((item) => opp.includes(item));
      
-            // for test
-            // [ 1, 1, 2, 2] ==> nah
-            // [ 11, 22] ==> yah
-            // [ +, +, * ...] ==> solved
+            ////////////////////////
 
+            // info - wa7ad l info wahiya ana (* /) libda fihom howa li adi ta7sab
+            // info - dayman l () katkon 3andhom l awlawiya
+            // 3 * 2 / 6 ==> 1
+            // (3 * 2) / 6  ==> 1
+            // 6 / 2 * 3 ==> 9
+            // 6 / (2 * 3) ==> 1
+
+            /////////////////////////
+
+            // info - had regular expression katafra9 l num nta3 darb ( * / ) 3la nta3 l jam3 ( + - )
             // info - l hmd lilah lmohim rani wjat l7al [ 11, *55, -61, +11] ==> [ 11, 55, 61, 11]
             // info - walat b7al hadi lljam3 w atar7 [ 11, *55, -61, +11, /5] ==> [61, 11]
             // info - walat b7al hadi ldarb w l9isma [ 11, *55, -61, +11, /5] ==> [11, 55, 5]
-            // error - chof t akad wach darb hiya lawla wla l9isma
-            // error - dir la7sab bach t akad man l 7sab
-            
-            // for test
-            // solved
-            const regularEXforjama =  /(^\d+((?=\+)|(?=\-))|(?<=\+)\d+|(?<=\-)\d+)/g;
-            const resuld1 = newArr.join("").match(regularEXforjama);
-            // error
-            const regularEXfordarb =  /(^\d+((?=\*)|(?=\/))|(?<=\*)\d+|(?<=\/)\d+)/g;
-            const resuld2 = newArr.join("").match(regularEXfordarb);
+            const Addition_Subtraction =  /(^\d+((?=\+)|(?=\-))|(?<=\+)\d+|(?<=\-)\d+)/g;
+            const Addition_Subtraction_arr = newArr.join("").match(Addition_Subtraction);
 
-            console.log("=======> REGULAR EXP ( + - ):", resuld1);
-            console.log("=======> REGULAR EXP ( * / ):", resuld2);
+            const Multiplication_Division =  /(^\d+((?=\*)|(?=\/))|(?<=\*)\d+|(?<=\/)\d+)/g;
+            const Multiplication_Division_arr = newArr.join("").match(Multiplication_Division);
+
+            console.log("=======> REGULAR EXP ( + - ):", Addition_Subtraction_arr);
+            console.log("=======> REGULAR EXP ( * / ):", Multiplication_Division_arr);
 
             
-            
-            // const regularEX =  /(\d+)|(\d+(?=\+)|(?=\+)\d+)|(\d+(?=\*)|(?=\*)\d+)|(\d+(?=\-)|(?=\-)\d+)|(\d+(?=\/)|(?=\/)\d+)/g;
-
-            // const resuld = newArr.join("").match(regularEX);
-            // console.log("=======> REGULAR EXP:", resuld);
             
             // const changeTonumber = resuld.map((ele) => +ele); 
 
