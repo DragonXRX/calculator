@@ -93,11 +93,13 @@ function ButtonCalculator () {
         // info - hna l user ila bda b - adi tbadal l3amaliya 1-1 ==> -1-1
         if (newArr[0] === "-") {
             // info - newArr.length === 0
-             newStartOP = "-";
-             newArr = [...arr];
+             //newStartOP = "-";
+             //newArr = [...arr];
+             console.log("wait");
         } else if (newArr[0] === "+") {
             // info - newArr.length === 0
-            newArr = [...arr];
+            //newArr = [...arr];
+            console.log("wait");
         }
         console.log("this is newArr out 2", newArr);
         // info - hadi kadir l validation ila tla9a joj operators (5 + * 6 ==> error)
@@ -112,10 +114,18 @@ function ButtonCalculator () {
             });
         }  
         if(newArr.length !== 0) {
+
+            ////////////////////////
+            
             // info - kadaral jami3 l operators daral array
-            // learn - find like filter in hight order function
-            // learn - include return boolean
-            let newOper = newArr.filter((item) => opp.includes(item));
+            // learn - "find" like "filter" in hight order function
+            // if first ele ==> newArr is (+ * / -) ==> remove it
+            // if true ==> incluede it
+            
+            ////////////////////////
+
+            let newOper = newArr.filter((ele, i) => i === 0 ? !(opp.includes(ele)) : ele)
+                                .filter((ele) => opp.includes(ele));
      
             ////////////////////////
 
@@ -132,7 +142,27 @@ function ButtonCalculator () {
             // info - l hmd lilah lmohim rani wjat l7al [ 11, *55, -61, +11] ==> [ 11, 55, 61, 11]
             // info - walat b7al hadi lljam3 w atar7 [ 11, *55, -61, +11, /5] ==> [61, 11]
             // info - walat b7al hadi ldarb w l9isma [ 11, *55, -61, +11, /5] ==> [11, 55, 5]
-            const Addition_Subtraction =  /(^\d+((?=\+)|(?=\-))|(?<=\+)\d+|(?<=\-)\d+)/g;
+
+            // info - understand regular expretion
+
+                // Addition_Subtraction expretion 1
+
+                // info - / (^\+\d+|^\-\d+) / ==> hna l user ila bda b + wla - daral ==> l + wm3aha ga3 num +215
+                // info - / (?<=\+)\d+ / ==> 3tini ay ra9m kibda b + wmadaralhomch
+                // info - / (?<=\-)\d+ / ==> 3tini ay ra9m kibda b - wmadaralhomch
+
+                // Addition_Subtraction expretion 2
+                
+                // info - / ^\d+((?=\+)|(?=\-)) / ==> ay ra9m bda f serie b9adamo + wla - wmadaralhomch
+                // info - / (?<=\+)\d+ / ==> 3tini ay ra9m kibda b + wmadaralhomch
+                // info - / (?<=\-)\d+ / ==> 3tini ay ra9m kibda b - wmadaralhomch
+
+            ////////////////////////
+
+            let Addition_Subtraction = null;
+            if (newArr[0] === "+" || newArr[0] === "-") Addition_Subtraction =  /((^\+\d+|^\-\d+)|(?<=\+)\d+|(?<=\-)\d+)/g;
+            else Addition_Subtraction =  /((^\d+((?=\+)|(?=\-)))|(?<=\+)\d+|(?<=\-)\d+)/g;
+
             const Addition_Subtraction_arr = newArr.join("").match(Addition_Subtraction);
 
             const Multiplication_Division =  /(^\d+((?=\*)|(?=\/))|(?<=\*)\d+|(?<=\/)\d+)/g;
@@ -141,11 +171,17 @@ function ButtonCalculator () {
             console.log("=======> REGULAR EXP ( + - ):", Addition_Subtraction_arr);
             console.log("=======> REGULAR EXP ( * / ):", Multiplication_Division_arr);
 
-            
-            
-            // const changeTonumber = resuld.map((ele) => +ele); 
+            ////////////////////////
 
+            // info - change strange value to numbers
             // learn - rah machi i "+" li kat7awal l num kayan 7ta "-"
+            // error - chof rah +number ==> hadik l9ita li zatha rak akatrawar ++number
+
+            ////////////////////////
+
+            //const Addition_Subtraction_changedTonum = resuld.map((ele) => +ele); 
+            //const Multiplication_Division_changedTonum = resuld.map((ele) => +ele);
+
             // info - change the first ele in the newArr to negativeNum 
             //if(startOp === "-") changeTonumber[0] = -changeTonumber[0];
             
