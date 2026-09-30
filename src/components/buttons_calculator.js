@@ -102,10 +102,19 @@ function ButtonCalculator () {
             console.log("wait");
         }
         console.log("this is newArr out 2", newArr);
+        ////////////////////////
+
         // info - hadi kadir l validation ila tla9a joj operators (5 + * 6 ==> error)
+        
+        ////////////////////////
+        
         if (newArr.length !== 0) {
             let forTR = [...newArr].reduce((acc, curr) => {
+            ////////////////////////
+
             // info - hna t7alat lmochkil nta3 fach kataktab 1 + + 1 ==> error mazyan
+
+            ////////////////////////
             if (isNaN(acc[acc.length - 1]) && isNaN(curr)) {
                 console.error("you can't put 2 operators together");
                 newArr = [...arr];
