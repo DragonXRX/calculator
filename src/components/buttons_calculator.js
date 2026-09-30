@@ -107,7 +107,7 @@ function ButtonCalculator () {
         // info - hadi kadir l validation ila tla9a joj operators (5 + * 6 ==> error)
         
         ////////////////////////
-        
+
         if (newArr.length !== 0) {
             let forTR = [...newArr].reduce((acc, curr) => {
             ////////////////////////
@@ -197,9 +197,14 @@ function ButtonCalculator () {
             // info - it is important to check the state
             console.log("arr in event newArr jdida ==> ", newArr);
             
+            ////////////////////////
+
             // info - set New Array ==> replace the old one
             // info - hadi li kadir ta7dit l arr <== newArr
             //setnumCalculated(changeTonumber);
+
+            ////////////////////////
+
             setOperator(newOper);
             setArr(newArr);
         }
