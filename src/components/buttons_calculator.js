@@ -63,14 +63,12 @@ function ButtonCalculator () {
     let [arr, setArr] = useState([]);
     let [numCalculated, setnumCalculated] = useState([]);
     let [operator, setOperator] = useState([]);
-    let [startOp, setStartOP] = useState("");
     
 
     // info - hadi function katkon f event "click"
     function clickedForCalc (e) {
         let Myele = e.target.innerText;
         let newArr = [...arr];
-        let newStartOP = startOp;
         const opp = ["+", "*", "-", "/"];
         const ForbiddenOpp = ["*", "/"];
 
@@ -89,18 +87,7 @@ function ButtonCalculator () {
             newArr = [...arr];
             console.error("you can't start with operators");
         }
-        // info - hna l user ila bda b + adi tkamal l3amaliya 3adi 1+1 = +1+1
-        // info - hna l user ila bda b - adi tbadal l3amaliya 1-1 ==> -1-1
-        if (newArr[0] === "-") {
-            // info - newArr.length === 0
-             //newStartOP = "-";
-             //newArr = [...arr];
-             console.log("wait");
-        } else if (newArr[0] === "+") {
-            // info - newArr.length === 0
-            //newArr = [...arr];
-            console.log("wait");
-        }
+        
         console.log("this is newArr out 2", newArr);
         ////////////////////////
 
@@ -126,10 +113,10 @@ function ButtonCalculator () {
 
             ////////////////////////
             
-            // info - kadaral jami3 l operators daral array
+            // info - kadaral jami3 l <operators> daral array
             // learn - "find" like "filter" in hight order function
-            // if first ele ==> newArr is (+ * / -) ==> remove it
-            // if true ==> incluede it
+            // info - if first ele ==> newArr is (+ * / -) ==> remove it
+            // info - if true ==> incluede it
             
             ////////////////////////
 
@@ -172,24 +159,24 @@ function ButtonCalculator () {
             if (newArr[0] === "+" || newArr[0] === "-") Addition_Subtraction =  /((^\+\d+|^\-\d+)|(?<=\+)\d+|(?<=\-)\d+)/g;
             else Addition_Subtraction =  /((^\d+((?=\+)|(?=\-)))|(?<=\+)\d+|(?<=\-)\d+)/g;
 
+            // error
             const Addition_Subtraction_arr = newArr.join("").match(Addition_Subtraction);
-
-            const Multiplication_Division =  /(^\d+((?=\*)|(?=\/))|(?<=\*)\d+|(?<=\/)\d+)/g;
-            const Multiplication_Division_arr = newArr.join("").match(Multiplication_Division);
-
             console.log("=======> REGULAR EXP ( + - ):", Addition_Subtraction_arr);
-            console.log("=======> REGULAR EXP ( * / ):", Multiplication_Division_arr);
+            console.log(Addition_Subtraction_arr.length);
+            if(Addition_Subtraction_arr.length !== 0) {
+                let Add_Sub = [...Addition_Subtraction_arr].map((ele) => +ele);
+                console.log("=======> REGULAR EXP ( + - ) changedTonum:", Add_Sub);
+            }
+            
+            // error
+            const Multiplication_Division =  /(^\d+((?=\*)|(?=\/))|(?<=\*)\d+|(?<=\/)\d+)/g;
 
-            ////////////////////////
+            let Multiplication_Division_arr = newArr.join("").match(Multiplication_Division);
+            console.log("=======> REGULAR EXP ( * / ):",  Multiplication_Division_arr);
 
-            // info - change strange value to numbers
-            // learn - rah machi i "+" li kat7awal l num kayan 7ta "-"
-            // error - chof rah +number ==> hadik l9ita li zatha rak akatrawar ++number
+            // let Mul_Div = [...Multiplication_Division_arr].map((ele) => +ele);
+            // console.log("=======> REGULAR EXP ( * / ) changedTonum:", Mul_Div);            
 
-            ////////////////////////
-
-            //const Addition_Subtraction_changedTonum = resuld.map((ele) => +ele); 
-            //const Multiplication_Division_changedTonum = resuld.map((ele) => +ele);
 
             // info - change the first ele in the newArr to negativeNum 
             //if(startOp === "-") changeTonumber[0] = -changeTonumber[0];
@@ -208,15 +195,18 @@ function ButtonCalculator () {
             setOperator(newOper);
             setArr(newArr);
         }
-            setStartOP(newStartOP);
     }
 
     console.log("this is out result", numCalculated);
     console.log("arr out ==> ", arr);
     console.log("operator out ==>", operator);
-    console.log("My start OP ===========++++> newStartOP:", startOp);
 
+    ////////////////////////
+    
     // info - hadi rah katbiyan i l result niha iya
+    
+    ////////////////////////
+
     function calculateNow () {
         // calculation
         console.log("operator ==> ", operator);
@@ -226,11 +216,16 @@ function ButtonCalculator () {
 
     }
 
+    ////////////////////////
+
+    // info - hadi function kadir clear l data
+    
+    ////////////////////////
+
     function clearData () {
         setnumCalculated([]);
         setOperator([]);
         setArr([]);
-        setStartOP("");
         console.warn("Data cleared!!!!!!");
         console.clear();
     }
