@@ -138,7 +138,6 @@ function ButtonCalculator () {
             // info - l hmd lilah lmohim rani wjat l7al [ 11, *55, -61, +11] ==> [ 11, 55, 61, 11]
             // info - walat b7al hadi lljam3 w atar7 [ 11, *55, -61, +11, /5] ==> [61, 11]
             // info - walat b7al hadi ldarb w l9isma [ 11, *55, -61, +11, /5] ==> [11, 55, 5]
-
             // info - understand regular expretion
 
                 // Addition_Subtraction expretion 1
@@ -155,40 +154,42 @@ function ButtonCalculator () {
 
             ////////////////////////
 
-            let Addition_Subtraction = null;
+            // info - regular expression for Addition_Subtraction
+            let Addition_Subtraction = "";
             if (newArr[0] === "+" || newArr[0] === "-") Addition_Subtraction =  /((^\+\d+|^\-\d+)|(?<=\+)\d+|(?<=\-)\d+)/g;
             else Addition_Subtraction =  /((^\d+((?=\+)|(?=\-)))|(?<=\+)\d+|(?<=\-)\d+)/g;
 
-            // error
+            // info - hadi rah katbiyan l result nta3 l jam3 w l na9is
             const Addition_Subtraction_arr = newArr.join("").match(Addition_Subtraction);
-            console.log("=======> REGULAR EXP ( + - ):", Addition_Subtraction_arr);
-            console.log(Addition_Subtraction_arr.length);
-            if(Addition_Subtraction_arr.length !== 0) {
-                let Add_Sub = [...Addition_Subtraction_arr].map((ele) => +ele);
-                console.log("=======> REGULAR EXP ( + - ) changedTonum:", Add_Sub);
-            }
+            let checkArrNull_Add = Addition_Subtraction_arr !== null ? Addition_Subtraction_arr : [];
+            console.log("=======> REGULAR EXP ( + - ) checkArrNull:", checkArrNull_Add);
+            let Add_Sub = [...checkArrNull_Add].map((ele) => +ele);
+            console.log("=======> REGULAR EXP ( + - ) changedTonum:", Add_Sub);
             
-            // error
+            // info - regular expression for Multiplication_Division
             const Multiplication_Division =  /(^\d+((?=\*)|(?=\/))|(?<=\*)\d+|(?<=\/)\d+)/g;
 
+            // info - hadi rah katbiyan l result nta3 l darb w l qisma
             let Multiplication_Division_arr = newArr.join("").match(Multiplication_Division);
             console.log("=======> REGULAR EXP ( * / ):",  Multiplication_Division_arr);
-
-            // let Mul_Div = [...Multiplication_Division_arr].map((ele) => +ele);
-            // console.log("=======> REGULAR EXP ( * / ) changedTonum:", Mul_Div);            
-
-
-            // info - change the first ele in the newArr to negativeNum 
-            //if(startOp === "-") changeTonumber[0] = -changeTonumber[0];
-            
+            let checkArrNull_Mul = Multiplication_Division_arr !== null ? Multiplication_Division_arr : [];
+            console.log("=======> REGULAR EXP ( * / ) checkArrNull:", checkArrNull_Mul);
+            let Mul_Div = [...checkArrNull_Mul].map((ele) => +ele);
+            console.log("=======> REGULAR EXP ( * / ) changedTonum:", Mul_Div);            
+     
             // info - it is important to check the state
             console.log("arr in event newArr jdida ==> ", newArr);
             
             ////////////////////////
 
+            // error - daba ra7na far9na l arr jdida f 2 arrays (Add_Sub, Mul_Div) w hna rasni ndir l calculation
+            // error - yamkan rasak tratab operator w l num f array jdida w t7ssabha b wa7ad l function
+
+            ////////////////////////
+
             // info - set New Array ==> replace the old one
             // info - hadi li kadir ta7dit l arr <== newArr
-            //setnumCalculated(changeTonumber);
+            //setnumCalculated();
 
             ////////////////////////
 
