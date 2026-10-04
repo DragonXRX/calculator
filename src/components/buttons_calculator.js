@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // info - lmohima nta3ha hiya katajma3 l ar9am
-function addshit(num, ops) {
+function addshit(numA, numM, opsA, opsM) {
     // error - rasni nzid wa7ad l newArray jdida mas ola 3la show data f page
     // error - hhhh mochkila jdida wlah madrabt liha la7sab wahiya 3+4*2=14 wrong 3+4*2=11
     // - kansab9o darb 3la l jam3
@@ -12,20 +12,8 @@ function addshit(num, ops) {
     // for if
     // splice()
 
-    // num = [2, 3, 4] ==> index of ==> 1 / 2
-    // ops = ["+", "*"] ==> index of * ==> 1
-
-    // num = [1, 2, 3, 4] ==> index of ==> 1 / 2 / 3
-    // ops = ["+", "*", "*"] ==> index of * ==> 1 / 2
-    // errror - hna 3andna mochkil tikrar
-
-
-    for (let i = 0; i < ops.length; i++) {
-        if(ops[i] === "*") {
-            console.log("for i ===========>", i);
-            console.log("for n1 n2 ===========>", num[i], num[i + 1]);
-        }
-    }
+    // error - mazal rasak tri9al had l mochkila li 3ndk f l code
+    // error - daba l function katasta9bal 4 arrays
 
     let fordd = num.reduce((acc, curr, i) => {
           if(ops[i - 1] === "+") {
@@ -45,7 +33,22 @@ function addshit(num, ops) {
 }
 
 // sipmle exemple
-// console.log(addshit([ 1, 1, 1], [ "+", "+"]));
+// error
+// 5 + 2 + 3 = 7
+// * 6 / 2 ==> error
+
+// error - same order but not same result
+// 5 + 2 + 3 * 6 / 2 = 11
+// 5 2 3 
+// + +
+// * /
+// 5 + 2 * 6 + 3 / 2 = 14
+// 5 2 3
+// + +
+// * /
+
+
+ console.log(addshit([ 5, 2, 3], [ 6, 2], [ "+", "+"], [ "*", "/"])); 
 
 // info - main function 
 function ButtonCalculator () {
@@ -61,8 +64,9 @@ function ButtonCalculator () {
 // Variables
    
     let [arr, setArr] = useState([]);
-    let [numCalculated, setnumCalculated] = useState([]);
+    let [numCalculated, setnumCalculated] = useState({add: [], mul: []});
     let [operator, setOperator] = useState([]);
+    let [orderOper, setOrderOper] = useState({add: [], mul: []});
     
 
     // info - hadi function katkon f event "click"
@@ -71,6 +75,7 @@ function ButtonCalculator () {
         let newArr = [...arr];
         const opp = ["+", "*", "-", "/"];
         const ForbiddenOpp = ["*", "/"];
+        let newOper = [...operator];
 
         // info - change input into operators
         if(Myele === "x") Myele = opp[1];
@@ -97,16 +102,17 @@ function ButtonCalculator () {
 
         if (newArr.length !== 0) {
             let forTR = [...newArr].reduce((acc, curr) => {
-            ////////////////////////
+                ////////////////////////
 
-            // info - hna t7alat lmochkil nta3 fach kataktab 1 + + 1 ==> error mazyan
+                // info - hna t7alat lmochkil nta3 fach kataktab 1 + + 1 ==> error mazyan
 
-            ////////////////////////
-            if (isNaN(acc[acc.length - 1]) && isNaN(curr)) {
-                console.error("you can't put 2 operators together");
-                newArr = [...arr];
-            }
-            return acc + curr;
+                ////////////////////////
+
+                if (isNaN(acc[acc.length - 1]) && isNaN(curr)) {
+                    console.error("you can't put 2 operators together");
+                    newArr = [...arr];
+                }
+                return acc + curr;
             });
         }  
         if(newArr.length !== 0) {
@@ -155,21 +161,39 @@ function ButtonCalculator () {
             ////////////////////////
 
             // info - regular expression for Addition_Subtraction
+
+            ////////////////////////
+
             let Addition_Subtraction = "";
             if (newArr[0] === "+" || newArr[0] === "-") Addition_Subtraction =  /((^\+\d+|^\-\d+)|(?<=\+)\d+|(?<=\-)\d+)/g;
             else Addition_Subtraction =  /((^\d+((?=\+)|(?=\-)))|(?<=\+)\d+|(?<=\-)\d+)/g;
 
+            ////////////////////////
+
             // info - hadi rah katbiyan l result nta3 l jam3 w l na9is
+            
+            ////////////////////////
+            
             const Addition_Subtraction_arr = newArr.join("").match(Addition_Subtraction);
             let checkArrNull_Add = Addition_Subtraction_arr !== null ? Addition_Subtraction_arr : [];
             console.log("=======> REGULAR EXP ( + - ) checkArrNull:", checkArrNull_Add);
             let Add_Sub = [...checkArrNull_Add].map((ele) => +ele);
             console.log("=======> REGULAR EXP ( + - ) changedTonum:", Add_Sub);
             
+            ////////////////////////
+
             // info - regular expression for Multiplication_Division
+            
+            ////////////////////////
+
             const Multiplication_Division =  /(^\d+((?=\*)|(?=\/))|(?<=\*)\d+|(?<=\/)\d+)/g;
 
+            ////////////////////////
+
             // info - hadi rah katbiyan l result nta3 l darb w l qisma
+            
+            ////////////////////////
+
             let Multiplication_Division_arr = newArr.join("").match(Multiplication_Division);
             console.log("=======> REGULAR EXP ( * / ):",  Multiplication_Division_arr);
             let checkArrNull_Mul = Multiplication_Division_arr !== null ? Multiplication_Division_arr : [];
@@ -182,17 +206,24 @@ function ButtonCalculator () {
             
             ////////////////////////
 
-            // error - daba ra7na far9na l arr jdida f 2 arrays (Add_Sub, Mul_Div) w hna rasni ndir l calculation
-            // error - yamkan rasak tratab operator w l num f array jdida w t7ssabha b wa7ad l function
+            // info - katratab l operators f 2 arrays ==> one for (+ -) and the other for (* /)
 
             ////////////////////////
 
-            // info - set New Array ==> replace the old one
-            // info - hadi li kadir ta7dit l arr <== newArr
-            //setnumCalculated();
+            const orderOperAdd = newOper.filter((ele) => ele === "+" || ele === "-")
+            const orderOperMul = newOper.filter((ele) => ele === "*" || ele === "/")
+            setOrderOper({add: orderOperAdd, mul: orderOperMul});
 
             ////////////////////////
 
+            // info - set New Array ==> replace the old one with Add_Sub and Mul_Div
+
+            ////////////////////////
+
+            setnumCalculated({add: Add_Sub, mul: Mul_Div});
+
+            ////////////////////////
+            
             setOperator(newOper);
             setArr(newArr);
         }
@@ -200,7 +231,8 @@ function ButtonCalculator () {
 
     console.log("this is out result", numCalculated);
     console.log("arr out ==> ", arr);
-    console.log("operator out ==>", operator);
+    console.log("operator out Mul==>", orderOper.mul);
+    console.log("operator out Add==>", orderOper.add);
 
     ////////////////////////
     
@@ -212,9 +244,8 @@ function ButtonCalculator () {
         // calculation
         console.log("operator ==> ", operator);
         console.log("sssssssssserie of num for calac ========>", numCalculated);
-        console.log(addshit( numCalculated, operator));
+        console.log(addshit( numCalculated.add, numCalculated.mul, orderOper.add, orderOper.mul));
         console.log("Calculated ");
-
     }
 
     ////////////////////////
