@@ -3,74 +3,135 @@ import { useState } from "react";
 
 // info - lmohima nta3ha hiya katajma3 l ar9am
 function addshit(numA, numM, opsA, opsM) {
-    // error - rasni nzid wa7ad l newArray jdida mas ola 3la show data f page
-    // error - hhhh mochkila jdida wlah madrabt liha la7sab wahiya 3+4*2=14 wrong 3+4*2=11
-    // - kansab9o darb 3la l jam3
-    // warn - You made the algorithm execute operations in the order they appear, whereas in mathematics, multiplication (*) and division (/) take precedence over addition (+) and subtraction (-).
-    // High priority *   /
-    // Low priority +   -
-    // for if
-    // splice()
 
+    ////////////////////////
+
+    // info - You made the algorithm execute operations in the order they appear, whereas in mathematics, multiplication (*) and division (/) take precedence over addition (+) and subtraction (-).
     // error - mazal rasak tri9al had l mochkila li 3ndk f l code
     // error - daba l function katasta9bal 4 arrays
 
+    ////////////////////////
+
+    // sipmle exemple
+    // error
+    // 5 + 2 + 3 = 7
+    // * 6 / 2 ==> error
+
+    // error - same order but not same result
+    // error - l mochkil kolchi li rdamto mchali f ziro
+    // user input
+    // 5 + 2 * 6 + 3 / 2 = 18.5
+    // 5 2 3 
+    // + +
+    // * /
+    // how it calculated
+    // 5 + 2 + 3 * 6 / 2 = 16
+    // 5 2 3
+    // + +
+    // * /
+
+    // right
+    // 5 + ( 2 * 6 ) + ( 3 / 2 ) 
+    // = 5 + 12 + 1.5 = 18.5
+    // false
+    // ( 5 + 2 + 3 ) * 6 / 2
+    // = 10 * 6 / 2 = 16
+
+    ////////////////////////
+
+
+    // hint - this explenation is for the function "addshit" and how it works
+
+    // let nums = [...numbers];
+    // let ops = [...operators];
+
+    // for (let i = 0; i < ops.length; i++) {
+
+    //     if (ops[i] === "*" || ops[i] === "/") {
+
+    //         let result = ops[i] === "*" 
+    //             ? nums[i] * nums[i + 1] 
+    //             : nums[i] / nums[i + 1];
+
+    //         nums.splice(i, 2, result);
+    //         ops.splice(i, 1);
+    //         i--; 
+    //     }
+    // }
+
+    // return nums.reduce((acc, curr, i) => {
+    //     if (ops[i - 1] === "+") return acc + curr;
+    //     if (ops[i - 1] === "-") return acc - curr;
+    //     return acc;
+    // });
+
+    ////////////////////////
+
+    // hint - this explenation is for the function "addshit" and how it works
+
+    // before the loop:
+    // nums: [5, 2, 6, 3]
+    // ops:  [+, *, +]
+    //      ↑
+    //     i = 1  (ops[1] = "*")
+
+    // after the loop:
+    // nums: [5, 12, 3]   
+    // ops:  [+, +]
+
+    // hint - ta9dar dir had chi b filtar wla b map wla b reduce wla b for loop
+
+    // ta9sima l3adiya ==> arr ==> nums
+    // ta9sima nta3 ta9sima ==> arr ==> arr darb + arr jam3
+
+    
+    
+    ////////////////////////
+    
+
+
+
+
     let fordd = num.reduce((acc, curr, i) => {
-          if(ops[i - 1] === "+") {
-              return acc + curr;
-          }
-          if(ops[i - 1] === "*") {
-              return acc * curr;
-          }
-          if(ops[i - 1] === "-") {
-              return acc - curr;
-          }
-          if(ops[i - 1] === "/") {
-              return acc / curr;
-          }
+        if (ops[i - 1] === "+") {
+            return acc + curr;
+        }
+        if (ops[i - 1] === "*") {
+            return acc * curr;
+        }
+        if (ops[i - 1] === "-") {
+            return acc - curr;
+        }
+        if (ops[i - 1] === "/") {
+            return acc / curr;
+        }
     });
     return fordd;
 }
 
-// sipmle exemple
-// error
-// 5 + 2 + 3 = 7
-// * 6 / 2 ==> error
-
-// error - same order but not same result
-// 5 + 2 + 3 * 6 / 2 = 11
-// 5 2 3 
-// + +
-// * /
-// 5 + 2 * 6 + 3 / 2 = 14
-// 5 2 3
-// + +
-// * /
-
-
- console.log(addshit([ 5, 2, 3], [ 6, 2], [ "+", "+"], [ "*", "/"])); 
+// console.log(addshit([ 5, 2, 3], [ 6, 2], [ "+", "+"], [ "*", "/"])); 
 
 // info - main function 
-function ButtonCalculator () {
+function ButtonCalculator() {
 
-// error - min chorot li rasni nha9a9hom homa
-            // - yabda l user dayman b number
-            // - machi b + - * / bach tkon l3amaliya shiha
-            // - may7sab l function 7ta tkamal 458 + 1 3ad 7sab
-            // - wla 7ta yadrak l user 3la calculation
-            // - wjami3 l machakil daharho 3la chakal message error()
-            // - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
+    // error - min chorot li rasni nha9a9hom homa
+    // - yabda l user dayman b number
+    // - machi b + - * / bach tkon l3amaliya shiha
+    // - may7sab l function 7ta tkamal 458 + 1 3ad 7sab
+    // - wla 7ta yadrak l user 3la calculation
+    // - wjami3 l machakil daharho 3la chakal message error()
+    // - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
 
-// Variables
-   
+    // Variables
+
     let [arr, setArr] = useState([]);
-    let [numCalculated, setnumCalculated] = useState({add: [], mul: []});
+    let [numCalculated, setnumCalculated] = useState({ add: [], mul: [] });
     let [operator, setOperator] = useState([]);
-    let [orderOper, setOrderOper] = useState({add: [], mul: []});
-    
+    let [orderOper, setOrderOper] = useState({ add: [], mul: [] });
+
 
     // info - hadi function katkon f event "click"
-    function clickedForCalc (e) {
+    function clickedForCalc(e) {
         let Myele = e.target.innerText;
         let newArr = [...arr];
         const opp = ["+", "*", "-", "/"];
@@ -78,10 +139,10 @@ function ButtonCalculator () {
         let newOper = [...operator];
 
         // info - change input into operators
-        if(Myele === "x") Myele = opp[1];
-        if(Myele === "÷") Myele = opp[3];
+        if (Myele === "x") Myele = opp[1];
+        if (Myele === "÷") Myele = opp[3];
         // info - hnay kayan l validation nta3 l calculator
-        if(Myele !== "()") {
+        if (Myele !== "()") {
             // info - hadi raha jdida "newArr" machi b7al 9dima "arr"
             newArr = [...arr, Myele];
         }
@@ -92,12 +153,12 @@ function ButtonCalculator () {
             newArr = [...arr];
             console.error("you can't start with operators");
         }
-        
+
         console.log("this is newArr out 2", newArr);
         ////////////////////////
 
         // info - hadi kadir l validation ila tla9a joj operators (5 + * 6 ==> error)
-        
+
         ////////////////////////
 
         if (newArr.length !== 0) {
@@ -114,31 +175,22 @@ function ButtonCalculator () {
                 }
                 return acc + curr;
             });
-        }  
-        if(newArr.length !== 0) {
+        }
+        if (newArr.length !== 0) {
 
             ////////////////////////
-            
+
             // info - kadaral jami3 l <operators> daral array
             // learn - "find" like "filter" in hight order function
             // info - if first ele ==> newArr is (+ * / -) ==> remove it
             // info - if true ==> incluede it
-            
+
             ////////////////////////
 
             let newOper = newArr.filter((ele, i) => i === 0 ? !(opp.includes(ele)) : ele)
-                                .filter((ele) => opp.includes(ele));
-     
+                .filter((ele) => opp.includes(ele));
+
             ////////////////////////
-
-            // info - wa7ad l info wahiya ana (* /) libda fihom howa li adi ta7sab
-            // info - dayman l () katkon 3andhom l awlawiya
-            // 3 * 2 / 6 ==> 1
-            // (3 * 2) / 6  ==> 1
-            // 6 / 2 * 3 ==> 9
-            // 6 / (2 * 3) ==> 1
-
-            /////////////////////////
 
             // info - had regular expression katafra9 l num nta3 darb ( * / ) 3la nta3 l jam3 ( + - )
             // info - l hmd lilah lmohim rani wjat l7al [ 11, *55, -61, +11] ==> [ 11, 55, 61, 11]
@@ -146,17 +198,42 @@ function ButtonCalculator () {
             // info - walat b7al hadi ldarb w l9isma [ 11, *55, -61, +11, /5] ==> [11, 55, 5]
             // info - understand regular expretion
 
-                // Addition_Subtraction expretion 1
+            // Addition_Subtraction expretion 1
 
-                // info - / (^\+\d+|^\-\d+) / ==> hna l user ila bda b + wla - daral ==> l + wm3aha ga3 num +215
-                // info - / (?<=\+)\d+ / ==> 3tini ay ra9m kibda b + wmadaralhomch
-                // info - / (?<=\-)\d+ / ==> 3tini ay ra9m kibda b - wmadaralhomch
+            // info - / (^\+\d+|^\-\d+) / ==> hna l user ila bda b + wla - daral ==> l + wm3aha ga3 num +215
+            // info - / (?<=\+)\d+ / ==> 3tini ay ra9m kibda b + wmadaralhomch
+            // info - / (?<=\-)\d+ / ==> 3tini ay ra9m kibda b - wmadaralhomch
 
-                // Addition_Subtraction expretion 2
-                
-                // info - / ^\d+((?=\+)|(?=\-)) / ==> ay ra9m bda f serie b9adamo + wla - wmadaralhomch
-                // info - / (?<=\+)\d+ / ==> 3tini ay ra9m kibda b + wmadaralhomch
-                // info - / (?<=\-)\d+ / ==> 3tini ay ra9m kibda b - wmadaralhomch
+            // Addition_Subtraction expretion 2
+
+            // info - / ^\d+((?=\+)|(?=\-)) / ==> ay ra9m bda f serie b9adamo + wla - wmadaralhomch
+            // info - / (?<=\+)\d+ / ==> 3tini ay ra9m kibda b + wmadaralhomch
+            // info - / (?<=\-)\d+ / ==> 3tini ay ra9m kibda b - wmadaralhomch
+
+            ////////////////////////
+
+            // info - regular expression for Multiplication_Division
+
+            ////////////////////////
+
+            const Multiplication_Division = /(^\d+((?=\*)|(?=\/))|(?<=\*)\d+|(?<=\/)\d+)/g;
+
+            ////////////////////////
+
+            // info - hadi rah katbiyan l result nta3 l darb w l qisma
+
+            ////////////////////////
+
+            let Multiplication_Division_arr = newArr.join("").match(Multiplication_Division);
+            console.log("=======> REGULAR EXP ( * / ):", Multiplication_Division_arr);
+            let checkArrNull_Mul = Multiplication_Division_arr !== null ? Multiplication_Division_arr : [];
+            console.log("=======> REGULAR EXP ( * / ) checkArrNull:", checkArrNull_Mul);
+            let Mul_Div = [...checkArrNull_Mul].map((ele) => +ele);
+            console.log("=======> REGULAR EXP ( * / ) changedTonum:", Mul_Div);
+
+            // info - it is important to check the state
+            console.log("arr in event newArr jdida ==> ", newArr);
+
 
             ////////////////////////
 
@@ -165,45 +242,21 @@ function ButtonCalculator () {
             ////////////////////////
 
             let Addition_Subtraction = "";
-            if (newArr[0] === "+" || newArr[0] === "-") Addition_Subtraction =  /((^\+\d+|^\-\d+)|(?<=\+)\d+|(?<=\-)\d+)/g;
-            else Addition_Subtraction =  /((^\d+((?=\+)|(?=\-)))|(?<=\+)\d+|(?<=\-)\d+)/g;
+            if (newArr[0] === "+" || newArr[0] === "-") Addition_Subtraction = /((^\+\d+|^\-\d+)|(?<=\+)\d+|(?<=\-)\d+)/g;
+            else Addition_Subtraction = /((^\d+((?=\+)|(?=\-)))|(?<=\+)\d+|(?<=\-)\d+)/g;
 
             ////////////////////////
 
             // info - hadi rah katbiyan l result nta3 l jam3 w l na9is
-            
+
             ////////////////////////
-            
+
             const Addition_Subtraction_arr = newArr.join("").match(Addition_Subtraction);
             let checkArrNull_Add = Addition_Subtraction_arr !== null ? Addition_Subtraction_arr : [];
             console.log("=======> REGULAR EXP ( + - ) checkArrNull:", checkArrNull_Add);
             let Add_Sub = [...checkArrNull_Add].map((ele) => +ele);
             console.log("=======> REGULAR EXP ( + - ) changedTonum:", Add_Sub);
-            
-            ////////////////////////
 
-            // info - regular expression for Multiplication_Division
-            
-            ////////////////////////
-
-            const Multiplication_Division =  /(^\d+((?=\*)|(?=\/))|(?<=\*)\d+|(?<=\/)\d+)/g;
-
-            ////////////////////////
-
-            // info - hadi rah katbiyan l result nta3 l darb w l qisma
-            
-            ////////////////////////
-
-            let Multiplication_Division_arr = newArr.join("").match(Multiplication_Division);
-            console.log("=======> REGULAR EXP ( * / ):",  Multiplication_Division_arr);
-            let checkArrNull_Mul = Multiplication_Division_arr !== null ? Multiplication_Division_arr : [];
-            console.log("=======> REGULAR EXP ( * / ) checkArrNull:", checkArrNull_Mul);
-            let Mul_Div = [...checkArrNull_Mul].map((ele) => +ele);
-            console.log("=======> REGULAR EXP ( * / ) changedTonum:", Mul_Div);            
-     
-            // info - it is important to check the state
-            console.log("arr in event newArr jdida ==> ", newArr);
-            
             ////////////////////////
 
             // info - katratab l operators f 2 arrays ==> one for (+ -) and the other for (* /)
@@ -212,7 +265,7 @@ function ButtonCalculator () {
 
             const orderOperAdd = newOper.filter((ele) => ele === "+" || ele === "-")
             const orderOperMul = newOper.filter((ele) => ele === "*" || ele === "/")
-            setOrderOper({add: orderOperAdd, mul: orderOperMul});
+            setOrderOper({ add: orderOperAdd, mul: orderOperMul });
 
             ////////////////////////
 
@@ -220,10 +273,7 @@ function ButtonCalculator () {
 
             ////////////////////////
 
-            setnumCalculated({add: Add_Sub, mul: Mul_Div});
-
-            ////////////////////////
-            
+            setnumCalculated({ add: Add_Sub, mul: Mul_Div });
             setOperator(newOper);
             setArr(newArr);
         }
@@ -235,26 +285,26 @@ function ButtonCalculator () {
     console.log("operator out Add==>", orderOper.add);
 
     ////////////////////////
-    
+
     // info - hadi rah katbiyan i l result niha iya
-    
+
     ////////////////////////
 
-    function calculateNow () {
+    function calculateNow() {
         // calculation
         console.log("operator ==> ", operator);
         console.log("sssssssssserie of num for calac ========>", numCalculated);
-        console.log(addshit( numCalculated.add, numCalculated.mul, orderOper.add, orderOper.mul));
+        console.log(addshit(numCalculated.add, numCalculated.mul, orderOper.add, orderOper.mul));
         console.log("Calculated ");
     }
 
     ////////////////////////
 
     // info - hadi function kadir clear l data
-    
+
     ////////////////////////
 
-    function clearData () {
+    function clearData() {
         setnumCalculated([]);
         setOperator([]);
         setArr([]);
@@ -263,33 +313,33 @@ function ButtonCalculator () {
     }
 
     return (
-    <div className='calculator_buttons'>
-        <button className="thisSimpleGray" onClick={clearData}>{"C"}</button>
-        <button className="thisSimpleGray"  onClick={clickedForCalc} >{"()"}</button>
-        <button className="thisSimpleGray">{"H"}</button>
-        <button className="thisOrange" onClick={clickedForCalc} >{"÷"}</button>
+        <div className='calculator_buttons'>
+            <button className="thisSimpleGray" onClick={clearData}>{"C"}</button>
+            <button className="thisSimpleGray" onClick={clickedForCalc} >{"()"}</button>
+            <button className="thisSimpleGray">{"H"}</button>
+            <button className="thisOrange" onClick={clickedForCalc} >{"÷"}</button>
 
-        <button className=""  onClick={clickedForCalc} >{"7"}</button>
-        <button className=""  onClick={clickedForCalc} >{"8"}</button>
-        <button className="" onClick={clickedForCalc} >{"9"}</button>
-        <button className="thisOrange" onClick={clickedForCalc} >{"x"}</button>
+            <button className="" onClick={clickedForCalc} >{"7"}</button>
+            <button className="" onClick={clickedForCalc} >{"8"}</button>
+            <button className="" onClick={clickedForCalc} >{"9"}</button>
+            <button className="thisOrange" onClick={clickedForCalc} >{"x"}</button>
 
-        <button className=""  onClick={clickedForCalc} >{"4"}</button>
-        <button className=""  onClick={clickedForCalc} >{"5"}</button>
-        <button className=""  onClick={clickedForCalc} >{"6"}</button>
-        <button className="thisOrange"  onClick={clickedForCalc} >{"-"}</button>
+            <button className="" onClick={clickedForCalc} >{"4"}</button>
+            <button className="" onClick={clickedForCalc} >{"5"}</button>
+            <button className="" onClick={clickedForCalc} >{"6"}</button>
+            <button className="thisOrange" onClick={clickedForCalc} >{"-"}</button>
 
-        <button className="" onClick={clickedForCalc} >{"1"}</button>
-        <button className="" onClick={clickedForCalc} >{"2"}</button>
-        <button className="" onClick={clickedForCalc} >{"3"}</button>
-        <button className="thisOrange" onClick={clickedForCalc} >{"+"}</button>
+            <button className="" onClick={clickedForCalc} >{"1"}</button>
+            <button className="" onClick={clickedForCalc} >{"2"}</button>
+            <button className="" onClick={clickedForCalc} >{"3"}</button>
+            <button className="thisOrange" onClick={clickedForCalc} >{"+"}</button>
 
-        <button className=""  onClick={clickedForCalc} >{"D"}</button>
-        <button className=""  onClick={clickedForCalc} >{"0"}</button>
-        <button className=""  onClick={clickedForCalc} >{"."}</button>
-        <button className="thisOrange" onClick={calculateNow} >{"="}</button>
+            <button className="" onClick={clickedForCalc} >{"D"}</button>
+            <button className="" onClick={clickedForCalc} >{"0"}</button>
+            <button className="" onClick={clickedForCalc} >{"."}</button>
+            <button className="thisOrange" onClick={calculateNow} >{"="}</button>
 
-    </div>
+        </div>
     );
 }
 
