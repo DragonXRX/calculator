@@ -1,8 +1,23 @@
 
 import { useState } from "react";
 
+////////////////////////
+
+// error - min chorot li rasni nha9a9hom homa
+// - yabda l user dayman b number
+// - machi b + - * / bach tkon l3amaliya shiha
+// - may7sab l function 7ta tkamal 458 + 1 3ad 7sab
+// - wla 7ta yadrak l user 3la calculation
+// - wjami3 l machakil daharho 3la chakal message error()
+// - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
+
+////////////////////////
+
+
+
+
 // info - lmohima nta3ha hiya katajma3 l ar9am
-function addshit(numA, numM, opsA, opsM) {
+function addshit(num, ops) {
 
     ////////////////////////
 
@@ -110,25 +125,15 @@ function addshit(numA, numM, opsA, opsM) {
     return fordd;
 }
 
-// console.log(addshit([ 5, 2, 3], [ 6, 2], [ "+", "+"], [ "*", "/"])); 
 
 // info - main function 
 function ButtonCalculator() {
 
-    // error - min chorot li rasni nha9a9hom homa
-    // - yabda l user dayman b number
-    // - machi b + - * / bach tkon l3amaliya shiha
-    // - may7sab l function 7ta tkamal 458 + 1 3ad 7sab
-    // - wla 7ta yadrak l user 3la calculation
-    // - wjami3 l machakil daharho 3la chakal message error()
-    // - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
-
     // Variables
 
     let [arr, setArr] = useState([]);
-    let [numCalculated, setnumCalculated] = useState({ add: [], mul: [] });
+    let [numCalculated, setnumCalculated] = useState([]);
     let [operator, setOperator] = useState([]);
-    let [orderOper, setOrderOper] = useState({ add: [], mul: [] });
 
 
     // info - hadi function katkon f event "click"
@@ -165,6 +170,7 @@ function ButtonCalculator() {
             ////////////////////////
 
             let forTR = [...newArr].reduce((acc, curr) => {
+
                 ////////////////////////
 
                 // info - hna t7alat lmochkil nta3 fach kataktab 1 + + 1 ==> error mazyan
@@ -183,97 +189,32 @@ function ButtonCalculator() {
             // info - kadaral jami3 l <operators> daral array
             // learn - "find" like "filter" in hight order function
             // info - if first ele ==> newArr is (+ * / -) ==> remove it
-            // info - if true ==> incluede it
 
             ////////////////////////
 
             let newOper = newArr.filter((ele, i) => i === 0 ? !(opp.includes(ele)) : ele)
-                .filter((ele) => opp.includes(ele));
+                                .filter((ele) => opp.includes(ele));
+            
+            ////////////////////////
+
+            // info - hadi kat7awal l array l string ==> numbers
 
             ////////////////////////
 
-            // info - had regular expression katafra9 l num nta3 darb ( * / ) 3la nta3 l jam3 ( + - )
-            // info - l hmd lilah lmohim rani wjat l7al [ 11, *55, -61, +11] ==> [ 11, 55, 61, 11]
-            // info - walat b7al hadi lljam3 w atar7 [ 11, *55, -61, +11, /5] ==> [61, 11]
-            // info - walat b7al hadi ldarb w l9isma [ 11, *55, -61, +11, /5] ==> [11, 55, 5]
-            // info - understand regular expretion
-
-            // Addition_Subtraction expretion 1
-
-            // info - / (^\+\d+|^\-\d+) / ==> hna l user ila bda b + wla - daral ==> l + wm3aha ga3 num +215
-            // info - / (?<=\+)\d+ / ==> 3tini ay ra9m kibda b + wmadaralhomch
-            // info - / (?<=\-)\d+ / ==> 3tini ay ra9m kibda b - wmadaralhomch
-
-            // Addition_Subtraction expretion 2
-
-            // info - / ^\d+((?=\+)|(?=\-)) / ==> ay ra9m bda f serie b9adamo + wla - wmadaralhomch
-            // info - / (?<=\+)\d+ / ==> 3tini ay ra9m kibda b + wmadaralhomch
-            // info - / (?<=\-)\d+ / ==> 3tini ay ra9m kibda b - wmadaralhomch
-
-            ////////////////////////
-
-            // info - regular expression for Multiplication_Division
-
-            ////////////////////////
-
-            const Multiplication_Division = /(^\d+((?=\*)|(?=\/))|(?<=\*)\d+|(?<=\/)\d+)/g;
-
-            ////////////////////////
-
-            // info - hadi rah katbiyan l result nta3 l darb w l qisma
-
-            ////////////////////////
-
-            let Multiplication_Division_arr = newArr.join("").match(Multiplication_Division);
-            console.log("=======> REGULAR EXP ( * / ):", Multiplication_Division_arr);
-            let checkArrNull_Mul = Multiplication_Division_arr !== null ? Multiplication_Division_arr : [];
-            console.log("=======> REGULAR EXP ( * / ) checkArrNull:", checkArrNull_Mul);
-            let Mul_Div = [...checkArrNull_Mul].map((ele) => +ele);
-            console.log("=======> REGULAR EXP ( * / ) changedTonum:", Mul_Div);
-
-            // info - it is important to check the state
-            console.log("arr in event newArr jdida ==> ", newArr);
+            
+            let giveNum = newArr.filter((ele) => +ele)
+                                .map((ele) => +ele);
 
 
-            ////////////////////////
-
-            // info - regular expression for Addition_Subtraction
-
-            ////////////////////////
-
-            let Addition_Subtraction = "";
-            if (newArr[0] === "+" || newArr[0] === "-") Addition_Subtraction = /((^\+\d+|^\-\d+)|(?<=\+)\d+|(?<=\-)\d+)/g;
-            else Addition_Subtraction = /((^\d+((?=\+)|(?=\-)))|(?<=\+)\d+|(?<=\-)\d+)/g;
-
-            ////////////////////////
-
-            // info - hadi rah katbiyan l result nta3 l jam3 w l na9is
-
-            ////////////////////////
-
-            const Addition_Subtraction_arr = newArr.join("").match(Addition_Subtraction);
-            let checkArrNull_Add = Addition_Subtraction_arr !== null ? Addition_Subtraction_arr : [];
-            console.log("=======> REGULAR EXP ( + - ) checkArrNull:", checkArrNull_Add);
-            let Add_Sub = [...checkArrNull_Add].map((ele) => +ele);
-            console.log("=======> REGULAR EXP ( + - ) changedTonum:", Add_Sub);
-
-            ////////////////////////
-
-            // info - katratab l operators f 2 arrays ==> one for (+ -) and the other for (* /)
-
-            ////////////////////////
-
-            const orderOperAdd = newOper.filter((ele) => ele === "+" || ele === "-")
-            const orderOperMul = newOper.filter((ele) => ele === "*" || ele === "/")
-            setOrderOper({ add: orderOperAdd, mul: orderOperMul });
-
+            console.log("wwwwwwwwwwwwwwwwwiiiiiiii  sa7bi chof hadi =====> ", giveNum);
+            
             ////////////////////////
 
             // info - set New Array ==> replace the old one with Add_Sub and Mul_Div
 
             ////////////////////////
 
-            setnumCalculated({ add: Add_Sub, mul: Mul_Div });
+            setnumCalculated(giveNum);
             setOperator(newOper);
             setArr(newArr);
         }
@@ -281,8 +222,7 @@ function ButtonCalculator() {
 
     console.log("this is out result", numCalculated);
     console.log("arr out ==> ", arr);
-    console.log("operator out Mul==>", orderOper.mul);
-    console.log("operator out Add==>", orderOper.add);
+    console.log("operator out waaaaaa chof hna l oper ==>", orderOper, operator);
 
     ////////////////////////
 
@@ -294,7 +234,7 @@ function ButtonCalculator() {
         // calculation
         console.log("operator ==> ", operator);
         console.log("sssssssssserie of num for calac ========>", numCalculated);
-        console.log(addshit(numCalculated.add, numCalculated.mul, orderOper.add, orderOper.mul));
+        console.log(addshit(numCalculated));
         console.log("Calculated ");
     }
 
