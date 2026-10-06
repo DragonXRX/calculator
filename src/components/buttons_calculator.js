@@ -19,6 +19,7 @@ function addshit(numA, numM, opsA, opsM) {
 
     // error - same order but not same result
     // error - l mochkil kolchi li rdamto mchali f ziro
+
     // user input
     // 5 + 2 * 6 + 3 / 2 = 18.5
     // 5 2 3 
@@ -132,6 +133,7 @@ function ButtonCalculator() {
 
     // info - hadi function katkon f event "click"
     function clickedForCalc(e) {
+        // variables
         let Myele = e.target.innerText;
         let newArr = [...arr];
         const opp = ["+", "*", "-", "/"];
@@ -146,7 +148,6 @@ function ButtonCalculator() {
             // info - hadi raha jdida "newArr" machi b7al 9dima "arr"
             newArr = [...arr, Myele];
         }
-        console.log("this is newArr out 1", newArr);
         // info - had l condition ki checky ila user ktab chihaja mrir ra9m f lbiday nta3 l calculator
         if (ForbiddenOpp.map(ele => ele === newArr[0] ? true : false).includes(true) === true) {
             // info - li rasni ndirlhom l 7adr homa (* /) 
@@ -155,13 +156,14 @@ function ButtonCalculator() {
         }
 
         console.log("this is newArr out 2", newArr);
-        ////////////////////////
-
-        // info - hadi kadir l validation ila tla9a joj operators (5 + * 6 ==> error)
-
-        ////////////////////////
 
         if (newArr.length !== 0) {
+            ////////////////////////
+
+            // info - hadi kadir l validation ila tla9a joj operators (5 + * 6 ==> error)
+
+            ////////////////////////
+
             let forTR = [...newArr].reduce((acc, curr) => {
                 ////////////////////////
 
@@ -175,8 +177,6 @@ function ButtonCalculator() {
                 }
                 return acc + curr;
             });
-        }
-        if (newArr.length !== 0) {
 
             ////////////////////////
 
