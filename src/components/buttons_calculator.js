@@ -108,21 +108,23 @@ function addshit(num, ops) {
 
 
 
-    let fordd = num.reduce((acc, curr, i) => {
-        if (ops[i - 1] === "+") {
-            return acc + curr;
-        }
-        if (ops[i - 1] === "*") {
-            return acc * curr;
-        }
-        if (ops[i - 1] === "-") {
-            return acc - curr;
-        }
-        if (ops[i - 1] === "/") {
-            return acc / curr;
-        }
-    });
-    return fordd;
+    // let fordd = num.reduce((acc, curr, i) => {
+    //     if (ops[i - 1] === "+") {
+    //         return acc + curr;
+    //     }
+    //     if (ops[i - 1] === "*") {
+    //         return acc * curr;
+    //     }
+    //     if (ops[i - 1] === "-") {
+    //         return acc - curr;
+    //     }
+    //     if (ops[i - 1] === "/") {
+    //         return acc / curr;
+    //     }
+    // });
+    // return fordd;
+
+    return console.log("this is num, curr in the function addshit *====> ", num, ops);
 }
 
 
@@ -159,8 +161,6 @@ function ButtonCalculator() {
             newArr = [...arr];
             console.error("you can't start with operators");
         }
-
-        console.log("this is newArr out 2", newArr);
 
         if (newArr.length !== 0) {
             ////////////////////////
@@ -200,17 +200,16 @@ function ButtonCalculator() {
             // info - hadi kat7awal l array l string ==> numbers
 
             ////////////////////////
-
             
             let giveNum = newArr.filter((ele) => +ele)
                                 .map((ele) => +ele);
 
-
-            console.log("wwwwwwwwwwwwwwwwwiiiiiiii  sa7bi chof hadi =====> ", giveNum);
             
             ////////////////////////
 
-            // info - set New Array ==> replace the old one with Add_Sub and Mul_Div
+            // info - set New Array
+            // info - set New Operator
+            // info - set New Number not string
 
             ////////////////////////
 
@@ -220,21 +219,22 @@ function ButtonCalculator() {
         }
     }
 
+    // info - show the current situation
     console.log("this is out result", numCalculated);
     console.log("arr out ==> ", arr);
-    console.log("operator out waaaaaa chof hna l oper ==>", orderOper, operator);
+    console.log("operator out waaaaaa chof hna l oper ==>", operator);
 
     ////////////////////////
 
+    // calculation
     // info - hadi rah katbiyan i l result niha iya
 
     ////////////////////////
 
     function calculateNow() {
-        // calculation
-        console.log("operator ==> ", operator);
-        console.log("sssssssssserie of num for calac ========>", numCalculated);
-        console.log(addshit(numCalculated));
+        console.log("finale Operator ==> ", operator);
+        console.log("finale number ========>", numCalculated);
+        console.log(addshit(numCalculated, operator));
         console.log("Calculated ");
     }
 
