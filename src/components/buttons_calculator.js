@@ -58,9 +58,6 @@ function addshit(num, ops) {
 
     // hint - this explenation is for the function "addshit" and how it works
 
-    // let nums = [...numbers];
-    // let ops = [...operators];
-
     // for (let i = 0; i < ops.length; i++) {
 
     //     if (ops[i] === "*" || ops[i] === "/") {
@@ -106,7 +103,22 @@ function addshit(num, ops) {
     
 
 
-
+    // error - chof sir sala7 l state nta3 numbers l kitkalculaw rah kijiw mfar9in
+    // [1, 2, 3, 4, 5, 6, ] ==> error
+    // // [12, 3, 45, 6, ] ==> right
+    for(let i = 0; i < ops.length; i++) {
+        if(ops[i] === "*" || ops[i] === "/") {
+            console.log("for clc ==<", num[i], i);
+            console.log("for clc 1 ==< ", num[i + 1], i + 1);
+            let result = ops[i] === "*" 
+                        ? num[i] * num[i + 1] 
+                        : ops[i] === "/"
+                        ? num[i] / num[i + 1]
+                        : "" 
+            num.splice(i, 2, result); // ele ==> index , tow element selected , to replace
+            ops.splice(i, 1); // ele ==> index , tow element selected
+        }
+    }
 
     // let fordd = num.reduce((acc, curr, i) => {
     //     if (ops[i - 1] === "+") {
@@ -219,10 +231,18 @@ function ButtonCalculator() {
         }
     }
 
+    ////////////////////////
+
     // info - show the current situation
+    
+    ////////////////////////
+
+    console.log("/".repeat(55));
     console.log("this is out result", numCalculated);
     console.log("arr out ==> ", arr);
     console.log("operator out waaaaaa chof hna l oper ==>", operator);
+    console.log("/".repeat(55));
+
 
     ////////////////////////
 
@@ -232,10 +252,13 @@ function ButtonCalculator() {
     ////////////////////////
 
     function calculateNow() {
+        console.log("#".repeat(55));
         console.log("finale Operator ==> ", operator);
         console.log("finale number ========>", numCalculated);
         console.log(addshit(numCalculated, operator));
         console.log("Calculated ");
+        console.log("#".repeat(55));
+
     }
 
     ////////////////////////
