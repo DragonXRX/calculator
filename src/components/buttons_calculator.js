@@ -21,12 +21,6 @@ function addshit(num, ops) {
 
     ////////////////////////
 
-    // info - You made the algorithm execute operations in the order they appear, whereas in mathematics, multiplication (*) and division (/) take precedence over addition (+) and subtraction (-).
-    // error - mazal rasak tri9al had l mochkila li 3ndk f l code
-    // error - daba l function katasta9bal 4 arrays
-
-    ////////////////////////
-
     // sipmle exemple
     // error
     // 5 + 2 + 3 = 7
@@ -55,31 +49,6 @@ function addshit(num, ops) {
 
     ////////////////////////
 
-
-    // hint - this explenation is for the function "addshit" and how it works
-
-    // for (let i = 0; i < ops.length; i++) {
-
-    //     if (ops[i] === "*" || ops[i] === "/") {
-
-    //         let result = ops[i] === "*" 
-    //             ? nums[i] * nums[i + 1] 
-    //             : nums[i] / nums[i + 1];
-
-    //         nums.splice(i, 2, result);
-    //         ops.splice(i, 1);
-    //         i--; 
-    //     }
-    // }
-
-    // return nums.reduce((acc, curr, i) => {
-    //     if (ops[i - 1] === "+") return acc + curr;
-    //     if (ops[i - 1] === "-") return acc - curr;
-    //     return acc;
-    // });
-
-    ////////////////////////
-
     // hint - this explenation is for the function "addshit" and how it works
 
     // before the loop:
@@ -102,41 +71,39 @@ function addshit(num, ops) {
     ////////////////////////
     
 
-
-    // error - chof sir sala7 l state nta3 numbers l kitkalculaw rah kijiw mfar9in
-    // [1, 2, 3, 4, 5, 6, ] ==> error
-    // // [12, 3, 45, 6, ] ==> right
+    // hint - Final I solved this shit
+    // info - this for * / calculation
+    // info - You made the algorithm execute operations 
+    // in the order they appear, whereas in mathematics, 
+    // multiplication (*) and division (/) take precedence 
+    // over addition (+) and subtraction (-).
     for(let i = 0; i < ops.length; i++) {
         if(ops[i] === "*" || ops[i] === "/") {
             console.log("for clc ==<", num[i], i);
             console.log("for clc 1 ==< ", num[i + 1], i + 1);
             let result = ops[i] === "*" 
                         ? num[i] * num[i + 1] 
-                        : ops[i] === "/"
-                        ? num[i] / num[i + 1]
-                        : "" 
-            num.splice(i, 2, result); // ele ==> index , tow element selected , to replace
-            ops.splice(i, 1); // ele ==> index , tow element selected
+                        : num[i] / num[i + 1]
+            // ele ==> index , tow element selected , to replace
+            num.splice(i, 2, result); 
+            // ele ==> index , tow element selected
+            ops.splice(i, 1); 
+            // info - had l i-- kana7tajoha f ila kamalna man l3onsor l7ali maynagach yab9a nafso li anaho tbadal
+            i--
         }
     }
 
-    // let fordd = num.reduce((acc, curr, i) => {
-    //     if (ops[i - 1] === "+") {
-    //         return acc + curr;
-    //     }
-    //     if (ops[i - 1] === "*") {
-    //         return acc * curr;
-    //     }
-    //     if (ops[i - 1] === "-") {
-    //         return acc - curr;
-    //     }
-    //     if (ops[i - 1] === "/") {
-    //         return acc / curr;
-    //     }
-    // });
-    // return fordd;
-
-    return console.log("this is num, curr in the function addshit *====> ", num, ops);
+    // info - this for + - calculation
+    let fordd = num.reduce((acc, curr, i) => {
+        if (ops[i - 1] === "+") {
+            return acc + curr;
+        }
+        if (ops[i - 1] === "-") {
+            return acc - curr;
+        }
+        return curr;
+    });
+     return fordd;
 }
 
 
@@ -210,22 +177,37 @@ function ButtonCalculator() {
             ////////////////////////
 
             // info - hadi kat7awal l array l string ==> numbers
+            // info - regular expression for Addition_Subtraction
 
             ////////////////////////
-            
-            let giveNum = newArr.filter((ele) => +ele)
-                                .map((ele) => +ele);
 
-            
+            let numToClc_regularEx = "";
+            if (newArr[0] === "+" || newArr[0] === "-") numToClc_regularEx = /((^\+\d+|^\-\d+)|(?<=\+)\d+|(?<=\-)\d+|(?<=\*)\d+|(?<=\/)\d+)/g;
+            else numToClc_regularEx = /((^\d+((?=\+)|(?=\-)|(?=\*)|(?=\/)))|(?<=\+)\d+|(?<=\-)\d+|(?<=\*)\d+|(?<=\/)\d+)/g;
+
+            ////////////////////////
+
+            // info - hadi rah katbiyan l result nta3 l jam3 w l na9is
+
+            ////////////////////////
+
+            console.log("+".repeat(20));
+            const numToClc = newArr.join("").match(numToClc_regularEx);
+            let checkArrNull_Add = numToClc !== null ? numToClc : [];
+            console.log("=======> REGULAR EXP ( + - ) checkArrNull:", checkArrNull_Add);
+            let finalClc = [...checkArrNull_Add].map((ele) => +ele);
+            console.log("=======> REGULAR EXP ( + - ) changedTonum:", finalClc);
+            console.log("+".repeat(20));
+
             ////////////////////////
 
             // info - set New Array
             // info - set New Operator
-            // info - set New Number not string
+            // info - set New Array Number to be clc
 
             ////////////////////////
 
-            setnumCalculated(giveNum);
+            setnumCalculated(finalClc);
             setOperator(newOper);
             setArr(newArr);
         }
