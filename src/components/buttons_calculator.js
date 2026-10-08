@@ -5,16 +5,22 @@ import { useState } from "react";
 
 // error - min chorot li rasni nha9a9hom homa
 // - yabda l user dayman b number
-// - machi b + - * / bach tkon l3amaliya shiha
+// - machi b * / bach tkon l3amaliya shiha
 // - may7sab l function 7ta tkamal 458 + 1 3ad 7sab
 // - wla 7ta yadrak l user 3la calculation
 // - wjami3 l machakil daharho 3la chakal message error()
 // - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
 
+// error - daba adi na5dam 3la l 9adiya nta3 l ()
+// error - adi nraf3o state na3 had l file 7ta 5oh kadalik l parent ==> App.js
+// error - yamkan t9asam logik f page bo7adha w l button dahrin bo7adhom
+// warn - rdam 3la l click na3 "Delete" ay tam7i a5ir 3onsor
+// warn - rdam 3la ar9am l3achariya 1.333 ==> regular EXP
+// warn - rdam 3la zir H ==> hestory
+// warn - rdam 3la ta7sinat l basariya w song w sot
+
+
 ////////////////////////
-
-
-
 
 // info - lmohima nta3ha hiya katajma3 l ar9am
 function addshit(num, ops) {
@@ -61,22 +67,17 @@ function addshit(num, ops) {
     // nums: [5, 12, 3]   
     // ops:  [+, +]
 
-    // hint - ta9dar dir had chi b filtar wla b map wla b reduce wla b for loop
-
-    // ta9sima l3adiya ==> arr ==> nums
-    // ta9sima nta3 ta9sima ==> arr ==> arr darb + arr jam3
-
-    
-    
     ////////////////////////
     
-
     // hint - Final I solved this shit
     // info - this for * / calculation
     // info - You made the algorithm execute operations 
     // in the order they appear, whereas in mathematics, 
     // multiplication (*) and division (/) take precedence 
     // over addition (+) and subtraction (-).
+
+    ////////////////////////
+
     for(let i = 0; i < ops.length; i++) {
         if(ops[i] === "*" || ops[i] === "/") {
             console.log("for clc ==<", num[i], i);
@@ -106,12 +107,10 @@ function addshit(num, ops) {
      return fordd;
 }
 
-
 // info - main function 
 function ButtonCalculator() {
 
     // Variables
-
     let [arr, setArr] = useState([]);
     let [numCalculated, setnumCalculated] = useState([]);
     let [operator, setOperator] = useState([]);
@@ -129,6 +128,7 @@ function ButtonCalculator() {
         // info - change input into operators
         if (Myele === "x") Myele = opp[1];
         if (Myele === "÷") Myele = opp[3];
+
         // info - hnay kayan l validation nta3 l calculator
         if (Myele !== "()") {
             // info - hadi raha jdida "newArr" machi b7al 9dima "arr"
@@ -142,20 +142,9 @@ function ButtonCalculator() {
         }
 
         if (newArr.length !== 0) {
-            ////////////////////////
-
             // info - hadi kadir l validation ila tla9a joj operators (5 + * 6 ==> error)
-
-            ////////////////////////
-
             let forTR = [...newArr].reduce((acc, curr) => {
-
-                ////////////////////////
-
                 // info - hna t7alat lmochkil nta3 fach kataktab 1 + + 1 ==> error mazyan
-
-                ////////////////////////
-
                 if (isNaN(acc[acc.length - 1]) && isNaN(curr)) {
                     console.error("you can't put 2 operators together");
                     newArr = [...arr];
@@ -176,11 +165,22 @@ function ButtonCalculator() {
             
             ////////////////////////
 
-            // info - hadi kat7awal l array l string ==> numbers
-            // info - regular expression for Addition_Subtraction
+            // info - regular expression for numToClc_regularEx
+            // info - had regular expression katajma3 l num nta3 darb ( * / ) w nta3 l jam3 ( + - )
+            // info - [ 11, *55, -61, +11] ==> [ 11, 55, 61, 11]
+            
+            // numToClc_regularEx expretion 1
+
+            // info - / (^\+\d+|^\-\d+) / ==> hna l user ila bda b + wla - daral ==> l + wm3aha ga3 num +215
+            // info - / (?<=\+)\d+ / ==> 3tini ay ra9m kibda b + wmadaralhomch
+            // info - / (?<=\-)\d+ / ==> 3tini ay ra9m kibda b - wmadaralhomch
+
+            // info - / ^\d+((?=\+)|(?=\-)) / ==> ay ra9m bda f serie b9adamo + wla - wmadaralhomch
+            // info - / (?<=\+)\d+ / ==> 3tini ay ra9m kibda b + wmadaralhomch
+            // info - / (?<=\-)\d+ / ==> 3tini ay ra9m kibda b - wmadaralhomch
 
             ////////////////////////
-
+            
             let numToClc_regularEx = "";
             if (newArr[0] === "+" || newArr[0] === "-") numToClc_regularEx = /((^\+\d+|^\-\d+)|(?<=\+)\d+|(?<=\-)\d+|(?<=\*)\d+|(?<=\/)\d+)/g;
             else numToClc_regularEx = /((^\d+((?=\+)|(?=\-)|(?=\*)|(?=\/)))|(?<=\+)\d+|(?<=\-)\d+|(?<=\*)\d+|(?<=\/)\d+)/g;
@@ -188,6 +188,7 @@ function ButtonCalculator() {
             ////////////////////////
 
             // info - hadi rah katbiyan l result nta3 l jam3 w l na9is
+            // info - hadi kat7awal l array l string ==> numbers
 
             ////////////////////////
 
@@ -213,12 +214,7 @@ function ButtonCalculator() {
         }
     }
 
-    ////////////////////////
-
     // info - show the current situation
-    
-    ////////////////////////
-
     console.log("/".repeat(55));
     console.log("this is out result", numCalculated);
     console.log("arr out ==> ", arr);
@@ -243,12 +239,7 @@ function ButtonCalculator() {
 
     }
 
-    ////////////////////////
-
     // info - hadi function kadir clear l data
-
-    ////////////////////////
-
     function clearData() {
         setnumCalculated([]);
         setOperator([]);
@@ -287,7 +278,5 @@ function ButtonCalculator() {
         </div>
     );
 }
-
-
 
 export default ButtonCalculator;
