@@ -18,7 +18,7 @@ import { useState } from "react";
 // warn - rdam 3la ar9am l3achariya 1.333 ==> regular EXP
 // warn - rdam 3la zir H ==> hestory
 // warn - rdam 3la ta7sinat l basariya w song w sot
-
+// warn - learn how to use <npm run build>
 
 ////////////////////////
 
@@ -115,7 +115,6 @@ function ButtonCalculator() {
     let [numCalculated, setnumCalculated] = useState([]);
     let [operator, setOperator] = useState([]);
 
-
     // info - hadi function katkon f event "click"
     function clickedForCalc(e) {
         // variables
@@ -128,14 +127,10 @@ function ButtonCalculator() {
         // info - change input into operators
         if (Myele === "x") Myele = opp[1];
         if (Myele === "÷") Myele = opp[3];
-
-        // info - hnay kayan l validation nta3 l calculator
-        if (Myele !== "()") {
-            // info - hadi raha jdida "newArr" machi b7al 9dima "arr"
-            newArr = [...arr, Myele];
-        }
+        // info - add Myele ==> NewArry
+        newArr = [...arr, Myele];
         // info - had l condition ki checky ila user ktab chihaja mrir ra9m f lbiday nta3 l calculator
-        if (ForbiddenOpp.map(ele => ele === newArr[0] ? true : false).includes(true) === true) {
+        if (ForbiddenOpp.includes(newArr[0])) {
             // info - li rasni ndirlhom l 7adr homa (* /) 
             newArr = [...arr];
             console.error("you can't start with operators");
@@ -144,8 +139,7 @@ function ButtonCalculator() {
         if (newArr.length !== 0) {
             // info - hadi kadir l validation ila tla9a joj operators (5 + * 6 ==> error)
             let forTR = [...newArr].reduce((acc, curr) => {
-                // info - hna t7alat lmochkil nta3 fach kataktab 1 + + 1 ==> error mazyan
-                if (isNaN(acc[acc.length - 1]) && isNaN(curr)) {
+                if (opp.includes(acc[acc.length - 1]) && opp.includes(curr)) {
                     console.error("you can't put 2 operators together");
                     newArr = [...arr];
                 }
@@ -162,6 +156,14 @@ function ButtonCalculator() {
 
             let newOper = newArr.filter((ele, i) => i === 0 ? !(opp.includes(ele)) : ele)
                                 .filter((ele) => opp.includes(ele));
+
+
+            // error - rasni na5dam 3la () ==> hado ykono matfar9in
+            // error - rdam 3la had l3iba 
+            // put code here
+            let InParentheses = /(\w+)/g;
+            const InParentheses_s = newArr.join("").match(InParentheses);
+            console.log("this is for ==> ", InParentheses_s);
             
             ////////////////////////
 
@@ -251,8 +253,8 @@ function ButtonCalculator() {
     return (
         <div className='calculator_buttons'>
             <button className="thisSimpleGray" onClick={clearData}>{"C"}</button>
-            <button className="thisSimpleGray" onClick={clickedForCalc} >{"()"}</button>
-            <button className="thisSimpleGray">{"H"}</button>
+            <button className="thisSimpleGray" onClick={clickedForCalc} >{"("}</button>
+            <button className="thisSimpleGray" onClick={clickedForCalc} >{")"}</button>
             <button className="thisOrange" onClick={clickedForCalc} >{"÷"}</button>
 
             <button className="" onClick={clickedForCalc} >{"7"}</button>
