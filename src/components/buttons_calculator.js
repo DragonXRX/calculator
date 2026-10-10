@@ -107,6 +107,61 @@ function addshit(num, ops) {
      return fordd;
 }
 
+////////////////////////
+
+// info - kadaral jami3 l <operators> daral array
+// learn - "find" like "filter" in hight order function
+// info - if first ele ==> newArr is (+ * / -) ==> remove it
+
+////////////////////////
+
+function operera(var1, var2) {
+    let newOper = var1.filter((ele, i) => i === 0 ? !(var2.includes(ele)) : ele)
+                      .filter((ele) => var2.includes(ele));
+    console.log(newOper);
+    return newOper;
+}
+
+function regular(var1) {
+    ////////////////////////
+
+    // info - regular expression for numToClc_regularEx
+    // info - had regular expression katajma3 l num nta3 darb ( * / ) w nta3 l jam3 ( + - )
+    // info - [ 11, *55, -61, +11] ==> [ 11, 55, 61, 11]
+    
+    // numToClc_regularEx expretion 1
+
+    // info - / (^\+\d+|^\-\d+) / ==> hna l user ila bda b + wla - daral ==> l + wm3aha ga3 num +215
+    // info - / (?<=\+)\d+ / ==> 3tini ay ra9m kibda b + wmadaralhomch
+    // info - / (?<=\-)\d+ / ==> 3tini ay ra9m kibda b - wmadaralhomch
+
+    // info - / ^\d+((?=\+)|(?=\-)) / ==> ay ra9m bda f serie b9adamo + wla - wmadaralhomch
+    // info - / (?<=\+)\d+ / ==> 3tini ay ra9m kibda b + wmadaralhomch
+    // info - / (?<=\-)\d+ / ==> 3tini ay ra9m kibda b - wmadaralhomch
+
+    ////////////////////////
+    
+    let numToClc_regularEx = "";
+    if (var1[0] === "+" || var1[0] === "-") numToClc_regularEx = /((^\+\d+|^\-\d+)|(?<=\+)\d+|(?<=\-)\d+|(?<=\*)\d+|(?<=\/)\d+)/g;
+    else numToClc_regularEx = /((^\d+((?=\+)|(?=\-)|(?=\*)|(?=\/)))|(?<=\+)\d+|(?<=\-)\d+|(?<=\*)\d+|(?<=\/)\d+)/g;
+
+    ////////////////////////
+
+    // info - hadi rah katbiyan l result nta3 l jam3 w l na9is
+    // info - hadi kat7awal l array l string ==> numbers
+
+    ////////////////////////
+
+    console.log("+".repeat(20));
+    const numToClc = var1.join("").match(numToClc_regularEx);
+    let checkArrNull_Add = numToClc !== null ? numToClc : [];
+    console.log("=======> REGULAR EXP ( + - ) checkArrNull:", checkArrNull_Add);
+    let finalClc = [...checkArrNull_Add].map((ele) => +ele);
+    console.log("=======> REGULAR EXP ( + - ) changedTonum:", finalClc);
+    console.log("+".repeat(20));
+    return finalClc;
+}
+
 // info - main function 
 function ButtonCalculator() {
 
@@ -154,54 +209,34 @@ function ButtonCalculator() {
 
             ////////////////////////
 
-            let newOper = newArr.filter((ele, i) => i === 0 ? !(opp.includes(ele)) : ele)
-                                .filter((ele) => opp.includes(ele));
-
+            setOperator(operera(newArr, opp));
 
             // error - rasni na5dam 3la () ==> hado ykono matfar9in
             // error - rdam 3la had l3iba 
             // put code here
-            let InParentheses = /(\w+)/g;
-            const InParentheses_s = newArr.join("").match(InParentheses);
-            console.log("this is for ==> ", InParentheses_s);
+            for(let i = 0; i < newArr.length; i++) {
+                console.log(newArr.indexOf("("));
+                console.log(newArr.indexOf(")"));
+                if(newArr.indexOf("(") !== -1 && newArr.indexOf(")") !== -1) {
+                    let testgg = newArr.slice(newArr.indexOf("(") + 1, newArr.indexOf(")"));
+                    // info - prepare for calculate around this ()
+                    console.log(testgg);
+                    operera(testgg, opp);
+                    regular(testgg);                    
+                    // addshit function here
+                    console.log("my result in () ==>",addshit(regular(testgg), operera(testgg, opp)));
+                
+                    /////////////////////
+
+                    // error - hna rasak add function addshit
+                    // error - walakin bach difha rasak chorot
+                    // oper
+                    // numb
+
+                    /////////////////////
+                }     
+            }
             
-            ////////////////////////
-
-            // info - regular expression for numToClc_regularEx
-            // info - had regular expression katajma3 l num nta3 darb ( * / ) w nta3 l jam3 ( + - )
-            // info - [ 11, *55, -61, +11] ==> [ 11, 55, 61, 11]
-            
-            // numToClc_regularEx expretion 1
-
-            // info - / (^\+\d+|^\-\d+) / ==> hna l user ila bda b + wla - daral ==> l + wm3aha ga3 num +215
-            // info - / (?<=\+)\d+ / ==> 3tini ay ra9m kibda b + wmadaralhomch
-            // info - / (?<=\-)\d+ / ==> 3tini ay ra9m kibda b - wmadaralhomch
-
-            // info - / ^\d+((?=\+)|(?=\-)) / ==> ay ra9m bda f serie b9adamo + wla - wmadaralhomch
-            // info - / (?<=\+)\d+ / ==> 3tini ay ra9m kibda b + wmadaralhomch
-            // info - / (?<=\-)\d+ / ==> 3tini ay ra9m kibda b - wmadaralhomch
-
-            ////////////////////////
-            
-            let numToClc_regularEx = "";
-            if (newArr[0] === "+" || newArr[0] === "-") numToClc_regularEx = /((^\+\d+|^\-\d+)|(?<=\+)\d+|(?<=\-)\d+|(?<=\*)\d+|(?<=\/)\d+)/g;
-            else numToClc_regularEx = /((^\d+((?=\+)|(?=\-)|(?=\*)|(?=\/)))|(?<=\+)\d+|(?<=\-)\d+|(?<=\*)\d+|(?<=\/)\d+)/g;
-
-            ////////////////////////
-
-            // info - hadi rah katbiyan l result nta3 l jam3 w l na9is
-            // info - hadi kat7awal l array l string ==> numbers
-
-            ////////////////////////
-
-            console.log("+".repeat(20));
-            const numToClc = newArr.join("").match(numToClc_regularEx);
-            let checkArrNull_Add = numToClc !== null ? numToClc : [];
-            console.log("=======> REGULAR EXP ( + - ) checkArrNull:", checkArrNull_Add);
-            let finalClc = [...checkArrNull_Add].map((ele) => +ele);
-            console.log("=======> REGULAR EXP ( + - ) changedTonum:", finalClc);
-            console.log("+".repeat(20));
-
             ////////////////////////
 
             // info - set New Array
@@ -210,8 +245,7 @@ function ButtonCalculator() {
 
             ////////////////////////
 
-            setnumCalculated(finalClc);
-            setOperator(newOper);
+            setnumCalculated(regular(newArr));
             setArr(newArr);
         }
     }
