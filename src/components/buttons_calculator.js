@@ -122,12 +122,16 @@ function operera(var1, var2) {
     return newOper;
 }
 
+////////////////////////
+
+// info - regular expression for numToClc_regularEx
+// info - had regular expression katajma3 l num nta3 darb ( * / ) w nta3 l jam3 ( + - )
+// info - [ 11, *55, -61, +11] ==> [ 11, 55, 61, 11]
+
+////////////////////////
+
 function regular(var1) {
     ////////////////////////
-
-    // info - regular expression for numToClc_regularEx
-    // info - had regular expression katajma3 l num nta3 darb ( * / ) w nta3 l jam3 ( + - )
-    // info - [ 11, *55, -61, +11] ==> [ 11, 55, 61, 11]
     
     // numToClc_regularEx expretion 1
 
@@ -192,10 +196,18 @@ function ButtonCalculator() {
         }
 
         if (newArr.length !== 0) {
-            // info - hadi kadir l validation ila tla9a joj operators (5 + * 6 ==> error)
+            // info - hadi kadir l check and validation ila tla9a joj operators (5 + * 6 ==> error)
+            // info - hadi kadir l check and validation ila tla9a jor (())
             let forTR = [...newArr].reduce((acc, curr) => {
                 if (opp.includes(acc[acc.length - 1]) && opp.includes(curr)) {
                     console.error("you can't put 2 operators together");
+                    newArr = [...arr];
+                }
+                if(acc[acc.length - 1] === "(" && curr === "(") {
+                    console.error("you can't put 2 parentheses, I will fix it later");
+                    newArr = [...arr];
+                } else if(acc[acc.length - 1] === ")" && curr === ")") {
+                    console.error("you can't put 2 parentheses, I will fix it later");
                     newArr = [...arr];
                 }
                 return acc + curr;
@@ -206,41 +218,36 @@ function ButtonCalculator() {
             // info - kadaral jami3 l <operators> daral array
             // learn - "find" like "filter" in hight order function
             // info - if first ele ==> newArr is (+ * / -) ==> remove it
+            // info - set New Operator
+
 
             ////////////////////////
 
-            setOperator(operera(newArr, opp));
+            newOper = operera(newArr, opp);
+            setOperator(newOper);
 
-            // error - rasni na5dam 3la () ==> hado ykono matfar9in
-            // error - rdam 3la had l3iba 
-            // put code here
+            // info - hadi katkalkoli ay 3anasir daril l a9was ()
             for(let i = 0; i < newArr.length; i++) {
                 console.log(newArr.indexOf("("));
                 console.log(newArr.indexOf(")"));
                 if(newArr.indexOf("(") !== -1 && newArr.indexOf(")") !== -1) {
-                    let testgg = newArr.slice(newArr.indexOf("(") + 1, newArr.indexOf(")"));
-                    // info - prepare for calculate around this ()
-                    console.log(testgg);
-                    operera(testgg, opp);
-                    regular(testgg);                    
+                    // info - copy inside of ( this )
+                    const signToOp = operera(testgg, opp);
+                    const testgg = newArr.slice(newArr.indexOf("(") + 1, newArr.indexOf(")")); 
                     // addshit function here
-                    console.log("my result in () ==>",addshit(regular(testgg), operera(testgg, opp)));
-                
-                    /////////////////////
-
-                    // error - hna rasak add function addshit
-                    // error - walakin bach difha rasak chorot
-                    // oper
-                    // numb
-
-                    /////////////////////
+                    const resultOfa9was = addshit(regular(testgg), signToOp);
+                    // info - copy inside and outside like this ( this )
+                    const baynala9was = newArr.slice(newArr.indexOf("("), newArr.indexOf(")") + 1);
+                    // info - replace () with result
+                    newArr.splice(newArr.indexOf("("), baynala9was.length, resultOfa9was); // start n-delete
+                    // error - replace oper with nothis just delete it
+                                        
                 }     
             }
             
             ////////////////////////
 
             // info - set New Array
-            // info - set New Operator
             // info - set New Array Number to be clc
 
             ////////////////////////
