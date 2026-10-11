@@ -11,7 +11,6 @@ import { useState } from "react";
 // - wjami3 l machakil daharho 3la chakal message error()
 // - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
 
-// error - daba adi na5dam 3la l 9adiya nta3 l ()
 // error - adi nraf3o state na3 had l file 7ta 5oh kadalik l parent ==> App.js
 // error - yamkan t9asam logik f page bo7adha w l button dahrin bo7adhom
 // warn - rdam 3la l click na3 "Delete" ay tam7i a5ir 3onsor
@@ -182,6 +181,7 @@ function ButtonCalculator() {
         const opp = ["+", "*", "-", "/"];
         const ForbiddenOpp = ["*", "/"];
         let newOper = [...operator];
+        let newNum = [...numCalculated];
 
         // info - change input into operators
         if (Myele === "x") Myele = opp[1];
@@ -228,23 +228,23 @@ function ButtonCalculator() {
 
             // info - hadi katkalkoli ay 3anasir daril l a9was ()
             for(let i = 0; i < newArr.length; i++) {
-                console.log(newArr.indexOf("("));
-                console.log(newArr.indexOf(")"));
+                // info - check if the array has a parentheses ()
                 if(newArr.indexOf("(") !== -1 && newArr.indexOf(")") !== -1) {
                     // info - copy inside of ( this )
-                    const signToOp = operera(testgg, opp);
                     const testgg = newArr.slice(newArr.indexOf("(") + 1, newArr.indexOf(")")); 
+                    const signToOp = operera(testgg, opp);
                     // addshit function here
                     const resultOfa9was = addshit(regular(testgg), signToOp);
                     // info - copy inside and outside like this ( this )
                     const baynala9was = newArr.slice(newArr.indexOf("("), newArr.indexOf(")") + 1);
                     // info - replace () with result
                     newArr.splice(newArr.indexOf("("), baynala9was.length, resultOfa9was); // start n-delete
-                    // error - replace oper with nothis just delete it
-                                        
+                    // info - delete the operator of parentheses ()
+                    newOper.splice(newOper.length - 1, signToOp.length);
+                    setOperator(newOper);              
                 }     
             }
-            
+
             ////////////////////////
 
             // info - set New Array
@@ -252,7 +252,8 @@ function ButtonCalculator() {
 
             ////////////////////////
 
-            setnumCalculated(regular(newArr));
+            newNum = regular(newArr);
+            setnumCalculated(newNum);
             setArr(newArr);
         }
     }
@@ -283,12 +284,26 @@ function ButtonCalculator() {
     }
 
     // info - hadi function kadir clear l data
-    function clearData() {
+    function clearData() {         
         setnumCalculated([]);
         setOperator([]);
         setArr([]);
-        console.warn("Data cleared!!!!!!");
         console.clear();
+        console.warn("Data cleared!!!!!!");
+    }
+
+    // info - hadi function katam7i ele by ele
+    function clearOneEle() {
+        // clear one element by the time
+        let newArr = [...arr];
+        newArr.pop();
+        setArr(newArr);
+        // error - plz fix this
+        // error - chof fach adi tam7a chi3onsor darori ytam7awa 7ta hnaya
+        // error - sala7 7ta fach kita7sab l3onsor bo7do "15231" wla kandif oper bla number2 "121316 + "
+        // setOperator([]);
+        // setnumCalculated([]);
+        console.warn("delete !!!");
     }
 
     return (
@@ -313,7 +328,7 @@ function ButtonCalculator() {
             <button className="" onClick={clickedForCalc} >{"3"}</button>
             <button className="thisOrange" onClick={clickedForCalc} >{"+"}</button>
 
-            <button className="" onClick={clickedForCalc} >{"D"}</button>
+            <button className="" onClick={clearOneEle} >{"D"}</button>
             <button className="" onClick={clickedForCalc} >{"0"}</button>
             <button className="" onClick={clickedForCalc} >{"."}</button>
             <button className="thisOrange" onClick={calculateNow} >{"="}</button>
