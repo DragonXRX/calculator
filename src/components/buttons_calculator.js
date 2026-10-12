@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 ////////////////////////
 
@@ -18,6 +18,7 @@ import { useState } from "react";
 // warn - rdam 3la zir H ==> hestory
 // warn - rdam 3la ta7sinat l basariya w song w sot
 // warn - learn how to use <npm run build>
+// error - sala7 7ta fach kita7sab l3onsor bo7do "15231" wla kandif oper bla number2 "121316 + "
 
 ////////////////////////
 
@@ -172,10 +173,11 @@ function ButtonCalculator() {
     let [arr, setArr] = useState([]);
     let [numCalculated, setnumCalculated] = useState([]);
     let [operator, setOperator] = useState([]);
-
+    
     // info - hadi function katkon f event "click"
     function clickedForCalc(e) {
         // variables
+        if(e.target.innerText === undefined) e.target.innerText = "" 
         let Myele = e.target.innerText;
         let newArr = [...arr];
         const opp = ["+", "*", "-", "/"];
@@ -186,8 +188,11 @@ function ButtonCalculator() {
         // info - change input into operators
         if (Myele === "x") Myele = opp[1];
         if (Myele === "÷") Myele = opp[3];
+        // info - delete one element from NewArry 
+        clearOneEle(Myele, newArr);
         // info - add Myele ==> NewArry
-        newArr = [...arr, Myele];
+        if(Myele !== "D") newArr = [...arr, Myele];
+            
         // info - had l condition ki checky ila user ktab chihaja mrir ra9m f lbiday nta3 l calculator
         if (ForbiddenOpp.includes(newArr[0])) {
             // info - li rasni ndirlhom l 7adr homa (* /) 
@@ -255,9 +260,20 @@ function ButtonCalculator() {
             newNum = regular(newArr);
             setnumCalculated(newNum);
             setArr(newArr);
+        } else {
+            setArr([]);
+            setnumCalculated([]);
+            setOperator([]);
         }
+ 
     }
 
+    useEffect(() => {
+        return () => {
+            alert("Reaload !!!!!!!!!!!");
+        }
+    }, []);
+    
     // info - show the current situation
     console.log("/".repeat(55));
     console.log("this is out result", numCalculated);
@@ -293,17 +309,11 @@ function ButtonCalculator() {
     }
 
     // info - hadi function katam7i ele by ele
-    function clearOneEle() {
-        // clear one element by the time
-        let newArr = [...arr];
-        newArr.pop();
-        setArr(newArr);
-        // error - plz fix this
-        // error - chof fach adi tam7a chi3onsor darori ytam7awa 7ta hnaya
-        // error - sala7 7ta fach kita7sab l3onsor bo7do "15231" wla kandif oper bla number2 "121316 + "
-        // setOperator([]);
-        // setnumCalculated([]);
-        console.warn("delete !!!");
+    function clearOneEle(Myele, newArr) {
+        if (Myele === "D") {
+            console.warn("delete !!!");
+            return newArr.pop();
+        }
     }
 
     return (
@@ -328,7 +338,7 @@ function ButtonCalculator() {
             <button className="" onClick={clickedForCalc} >{"3"}</button>
             <button className="thisOrange" onClick={clickedForCalc} >{"+"}</button>
 
-            <button className="" onClick={clearOneEle} >{"D"}</button>
+            <button className="" onClick={clickedForCalc} >{"D"}</button>
             <button className="" onClick={clickedForCalc} >{"0"}</button>
             <button className="" onClick={clickedForCalc} >{"."}</button>
             <button className="thisOrange" onClick={calculateNow} >{"="}</button>
