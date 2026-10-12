@@ -268,6 +268,7 @@ function ButtonCalculator() {
  
     }
 
+    // just for testing
     useEffect(() => {
         return () => {
             alert("Reaload !!!!!!!!!!!");
