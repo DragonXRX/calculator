@@ -24,7 +24,6 @@ import { useEffect, useState } from "react";
 
 // info - lmohima nta3ha hiya katajma3 l ar9am
 function addshit(num, ops) {
-
     ////////////////////////
 
     // sipmle exemple
@@ -118,7 +117,6 @@ function addshit(num, ops) {
 function operera(var1, var2) {
     let newOper = var1.filter((ele, i) => i === 0 ? !(var2.includes(ele)) : ele)
                       .filter((ele) => var2.includes(ele));
-    console.log(newOper);
     return newOper;
 }
 
@@ -133,21 +131,12 @@ function operera(var1, var2) {
 function regular(var1) {
     ////////////////////////
     
-    // numToClc_regularEx expretion 1
-
-    // info - / (^\+\d+|^\-\d+) / ==> hna l user ila bda b + wla - daral ==> l + wm3aha ga3 num +215
-    // info - / (?<=\+)\d+ / ==> 3tini ay ra9m kibda b + wmadaralhomch
-    // info - / (?<=\-)\d+ / ==> 3tini ay ra9m kibda b - wmadaralhomch
-
-    // info - / ^\d+((?=\+)|(?=\-)) / ==> ay ra9m bda f serie b9adamo + wla - wmadaralhomch
-    // info - / (?<=\+)\d+ / ==> 3tini ay ra9m kibda b + wmadaralhomch
-    // info - / (?<=\-)\d+ / ==> 3tini ay ra9m kibda b - wmadaralhomch
+    // info - regular expretion
+    // warn - you shulde explen this shit
 
     ////////////////////////
     
-    let numToClc_regularEx = "";
-    if (var1[0] === "+" || var1[0] === "-") numToClc_regularEx = /((^\+\d+|^\-\d+)|(?<=\+)\d+|(?<=\-)\d+|(?<=\*)\d+|(?<=\/)\d+)/g;
-    else numToClc_regularEx = /((^\d+((?=\+)|(?=\-)|(?=\*)|(?=\/)))|(?<=\+)\d+|(?<=\-)\d+|(?<=\*)\d+|(?<=\/)\d+)/g;
+    let numToClc_regularEx = /(?:^|(?<=[\+\-\*\/]))\-?\d+/g;
 
     ////////////////////////
 
@@ -165,10 +154,30 @@ function regular(var1) {
     console.log("+".repeat(20));
     return finalClc;
 }
+    
+// info - hadi katkalkoli ay 3anasir daril l a9was ()
+// function calculateInParentes(newArr, opp, newOper, setOperator) {
+//     for(let i = 0; i < newArr.length; i++) {
+//         // info - check if the array has a parentheses ()
+//         if(newArr.indexOf("(") !== -1 && newArr.indexOf(")") !== -1) {
+//             // info - copy inside of ( this )
+//             const testgg = newArr.slice(newArr.indexOf("(") + 1, newArr.indexOf(")")); 
+//             const signToOp = operera(testgg, opp);
+//             // addshit function here
+//             const resultOfa9was = addshit(regular(testgg), signToOp);
+//             // info - copy inside and outside like this ( this )
+//             const baynala9was = newArr.slice(newArr.indexOf("("), newArr.indexOf(")") + 1);
+//             // info - replace () with result
+//             newArr.splice(newArr.indexOf("("), baynala9was.length, resultOfa9was); // start n-delete
+//             // info - delete the operator of parentheses ()
+//             newOper.splice(newOper.length - 1, signToOp.length);
+//             setOperator(newOper);              
+//         }     
+//     }
+// }
 
 // info - main function 
 function ButtonCalculator() {
-
     // Variables
     let [arr, setArr] = useState([]);
     let [numCalculated, setnumCalculated] = useState([]);
@@ -177,7 +186,6 @@ function ButtonCalculator() {
     // info - hadi function katkon f event "click"
     function clickedForCalc(e) {
         // variables
-        if(e.target.innerText === undefined) e.target.innerText = "" 
         let Myele = e.target.innerText;
         let newArr = [...arr];
         const opp = ["+", "*", "-", "/"];
@@ -188,9 +196,11 @@ function ButtonCalculator() {
         // info - change input into operators
         if (Myele === "x") Myele = opp[1];
         if (Myele === "÷") Myele = opp[3];
+
         // info - delete one element from NewArry 
         clearOneEle(Myele, newArr);
-        // info - add Myele ==> NewArry
+
+        // info - check if isnt "D" + add Myele ==> NewArry
         if(Myele !== "D") newArr = [...arr, Myele];
             
         // info - had l condition ki checky ila user ktab chihaja mrir ra9m f lbiday nta3 l calculator
@@ -232,6 +242,7 @@ function ButtonCalculator() {
             setOperator(newOper);
 
             // info - hadi katkalkoli ay 3anasir daril l a9was ()
+            // calculateInParentes(newArr, opp, newOper, setOperator);
             for(let i = 0; i < newArr.length; i++) {
                 // info - check if the array has a parentheses ()
                 if(newArr.indexOf("(") !== -1 && newArr.indexOf(")") !== -1) {
@@ -243,7 +254,7 @@ function ButtonCalculator() {
                     // info - copy inside and outside like this ( this )
                     const baynala9was = newArr.slice(newArr.indexOf("("), newArr.indexOf(")") + 1);
                     // info - replace () with result
-                    newArr.splice(newArr.indexOf("("), baynala9was.length, resultOfa9was); // start n-delete
+                    newArr.splice(newArr.indexOf("("), baynala9was.length, resultOfa9was.toString()); // start n-delete
                     // info - delete the operator of parentheses ()
                     newOper.splice(newOper.length - 1, signToOp.length);
                     setOperator(newOper);              
