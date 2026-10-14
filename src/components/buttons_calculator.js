@@ -312,6 +312,7 @@ function ButtonCalculator() {
     }
 
     // info - hadi function kadir clear l data
+    // error - biyn setArr w setArrForShow l7ala lwa7ida limakiw9a3ch 3adam tazamon howa ()
     function clearData() {         
         setnumCalculated([]);
         setOperator([]);
