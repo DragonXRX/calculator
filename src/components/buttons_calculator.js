@@ -18,7 +18,6 @@ import { useEffect, useState } from "react";
 // warn - rdam 3la zir H ==> hestory
 // warn - rdam 3la ta7sinat l basariya w song w sot
 // warn - learn how to use <npm run build>
-// error - sala7 7ta fach kita7sab l3onsor bo7do "15231" wla kandif oper bla number2 "121316 + "
 
 ////////////////////////
 
@@ -122,8 +121,7 @@ function operera(var1, var2) {
 
 ////////////////////////
 
-// info - regular expression for numToClc_regularEx
-// info - had regular expression katajma3 l num nta3 darb ( * / ) w nta3 l jam3 ( + - )
+// info - regular expression
 // info - [ 11, *55, -61, +11] ==> [ 11, 55, 61, 11]
 
 ////////////////////////
@@ -132,7 +130,11 @@ function regular(var1) {
     ////////////////////////
     
     // info - regular expretion
-    // warn - you shulde explen this shit
+    // (?: ) kata3ni jama3 had chorot li lda5al w taba9 3la li ba3dha
+    // ^ bidayat nas aw ra9m
+    // (?<=[\+\-\*\/]) kta3ni hado rashom yjiw lwala wchof chart li mba3do
+    // \-? had "-" katkon one dirha or zero madirhach
+    // \d+ wado kata3ni ila kan majmo3a nta3 l ar9am
 
     ////////////////////////
     
@@ -156,93 +158,7 @@ function regular(var1) {
 }
     
 // info - hadi katkalkoli ay 3anasir daril l a9was ()
-// function calculateInParentes(newArr, opp, newOper, setOperator) {
-//     for(let i = 0; i < newArr.length; i++) {
-//         // info - check if the array has a parentheses ()
-//         if(newArr.indexOf("(") !== -1 && newArr.indexOf(")") !== -1) {
-//             // info - copy inside of ( this )
-//             const testgg = newArr.slice(newArr.indexOf("(") + 1, newArr.indexOf(")")); 
-//             const signToOp = operera(testgg, opp);
-//             // addshit function here
-//             const resultOfa9was = addshit(regular(testgg), signToOp);
-//             // info - copy inside and outside like this ( this )
-//             const baynala9was = newArr.slice(newArr.indexOf("("), newArr.indexOf(")") + 1);
-//             // info - replace () with result
-//             newArr.splice(newArr.indexOf("("), baynala9was.length, resultOfa9was); // start n-delete
-//             // info - delete the operator of parentheses ()
-//             newOper.splice(newOper.length - 1, signToOp.length);
-//             setOperator(newOper);              
-//         }     
-//     }
-// }
-
-// info - main function 
-function ButtonCalculator() {
-    // Variables
-    let [arr, setArr] = useState([]);
-    let [numCalculated, setnumCalculated] = useState([]);
-    let [operator, setOperator] = useState([]);
-    
-    // info - hadi function katkon f event "click"
-    function clickedForCalc(e) {
-        // variables
-        let Myele = e.target.innerText;
-        let newArr = [...arr];
-        const opp = ["+", "*", "-", "/"];
-        const ForbiddenOpp = ["*", "/"];
-        let newOper = [...operator];
-        let newNum = [...numCalculated];
-
-        // info - change input into operators
-        if (Myele === "x") Myele = opp[1];
-        if (Myele === "÷") Myele = opp[3];
-
-        // info - delete one element from NewArry 
-        clearOneEle(Myele, newArr);
-
-        // info - check if isnt "D" + add Myele ==> NewArry
-        if(Myele !== "D") newArr = [...arr, Myele];
-            
-        // info - had l condition ki checky ila user ktab chihaja mrir ra9m f lbiday nta3 l calculator
-        if (ForbiddenOpp.includes(newArr[0])) {
-            // info - li rasni ndirlhom l 7adr homa (* /) 
-            newArr = [...arr];
-            console.error("you can't start with operators");
-        }
-
-        if (newArr.length !== 0) {
-            // info - hadi kadir l check and validation ila tla9a joj operators (5 + * 6 ==> error)
-            // info - hadi kadir l check and validation ila tla9a jor (())
-            let forTR = [...newArr].reduce((acc, curr) => {
-                if (opp.includes(acc[acc.length - 1]) && opp.includes(curr)) {
-                    console.error("you can't put 2 operators together");
-                    newArr = [...arr];
-                }
-                if(acc[acc.length - 1] === "(" && curr === "(") {
-                    console.error("you can't put 2 parentheses, I will fix it later");
-                    newArr = [...arr];
-                } else if(acc[acc.length - 1] === ")" && curr === ")") {
-                    console.error("you can't put 2 parentheses, I will fix it later");
-                    newArr = [...arr];
-                }
-                return acc + curr;
-            });
-
-            ////////////////////////
-
-            // info - kadaral jami3 l <operators> daral array
-            // learn - "find" like "filter" in hight order function
-            // info - if first ele ==> newArr is (+ * / -) ==> remove it
-            // info - set New Operator
-
-
-            ////////////////////////
-
-            newOper = operera(newArr, opp);
-            setOperator(newOper);
-
-            // info - hadi katkalkoli ay 3anasir daril l a9was ()
-            // calculateInParentes(newArr, opp, newOper, setOperator);
+function calculateInParentes(newArr, opp, newOper, setOperator) {
             for(let i = 0; i < newArr.length; i++) {
                 // info - check if the array has a parentheses ()
                 if(newArr.indexOf("(") !== -1 && newArr.indexOf(")") !== -1) {
@@ -260,6 +176,87 @@ function ButtonCalculator() {
                     setOperator(newOper);              
                 }     
             }
+}
+
+// info - main function 
+function ButtonCalculator() {
+    // Variables
+    let [arr, setArr] = useState([]);
+    let [arrForShow, setArrForShow] = useState([])
+    let [numCalculated, setnumCalculated] = useState([]);
+    let [operator, setOperator] = useState([]);
+    
+    // info - hadi function katkon f event "click"
+    function clickedForCalc(e) {
+        // variables
+        let Myele = e.target.innerText;
+        let MyeleForShow = e.target.innerText;
+        let newArr = [...arr];
+        let newArrForShow = [...arrForShow];
+        const opp = ["+", "*", "-", "/"];
+        const ForbiddenOpp = ["*", "/"];
+        let newOper = [...operator];
+        let newNum = [...numCalculated];
+
+        // info - change input into operators
+        if (Myele === "x") Myele = opp[1];
+        if (Myele === "÷") Myele = opp[3];
+
+        // info - delete one element from NewArry 
+        clearOneEle(Myele, newArr, newArrForShow);
+
+        // info - check if isnt "D" + add Myele ==> NewArry
+        if(Myele !== "D") {
+            newArr = [...arr, Myele];
+            newArrForShow = [...arrForShow, MyeleForShow];
+        }
+            
+        // testing porpose
+        console.log("newArrForShow ===> .........", newArrForShow);
+
+        // info - had l condition ki checky ila user ktab chihaja mrir ra9m f lbiday nta3 l calculator
+        if (ForbiddenOpp.includes(newArr[0])) {
+            // info - li rasni ndirlhom l 7adr homa (* /) 
+            newArr = [...arr];
+            newArrForShow = [...arrForShow];
+            console.error("you can't start with operators");
+        }
+
+        if (newArr.length !== 0) {
+            // info - hadi kadir l check and validation ila tla9a joj operators (5 + * 6 ==> error)
+            // info - hadi kadir l check and validation ila tla9a jor (())
+            let forTR = [...newArr].reduce((acc, curr) => {
+                if (opp.includes(acc[acc.length - 1]) && opp.includes(curr)) {
+                    console.error("you can't put 2 operators together");
+                    newArr = [...arr];
+                    newArrForShow = [...arrForShow];
+                }
+                if(acc[acc.length - 1] === "(" && curr === "(") {
+                    console.error("you can't put 2 parentheses, I will fix it later");
+                    newArr = [...arr];
+                    newArrForShow = [...arrForShow];
+                } else if(acc[acc.length - 1] === ")" && curr === ")") {
+                    console.error("you can't put 2 parentheses, I will fix it later");
+                    newArr = [...arr];
+                    newArrForShow = [...arrForShow];
+                }
+                return acc + curr;
+            });
+
+            ////////////////////////
+
+            // info - kadaral jami3 l <operators> daral array
+            // learn - "find" like "filter" in hight order function
+            // info - if first ele ==> newArr is (+ * / -) ==> remove it
+            // info - set New Operator
+
+            ////////////////////////
+
+            newOper = operera(newArr, opp);
+            setOperator(newOper);
+
+            // info - hadi katkalkoli ay 3anasir daril l a9was ()
+            calculateInParentes(newArr, opp, newOper, setOperator);
 
             ////////////////////////
 
@@ -271,12 +268,14 @@ function ButtonCalculator() {
             newNum = regular(newArr);
             setnumCalculated(newNum);
             setArr(newArr);
+            setArrForShow(newArrForShow);
         } else {
-            setArr([]);
-            setnumCalculated([]);
+            // info - ila kan l array.length = 0 hna kisafarhom
             setOperator([]);
+            setnumCalculated([]);
+            setArr([]);
+            setArrForShow([]);
         }
- 
     }
 
     // just for testing
@@ -290,6 +289,7 @@ function ButtonCalculator() {
     console.log("/".repeat(55));
     console.log("this is out result", numCalculated);
     console.log("arr out ==> ", arr);
+    console.log("arr for show ==> ", arrForShow);
     console.log("operator out waaaaaa chof hna l oper ==>", operator);
     console.log("/".repeat(55));
 
@@ -316,14 +316,16 @@ function ButtonCalculator() {
         setnumCalculated([]);
         setOperator([]);
         setArr([]);
+        setArrForShow([]);
         console.clear();
         console.warn("Data cleared!!!!!!");
     }
 
     // info - hadi function katam7i ele by ele
-    function clearOneEle(Myele, newArr) {
+    function clearOneEle(Myele, newArr, newArrForShow) {
         if (Myele === "D") {
             console.warn("delete !!!");
+            newArrForShow.pop()
             return newArr.pop();
         }
     }
