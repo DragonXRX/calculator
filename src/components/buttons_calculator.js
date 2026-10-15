@@ -156,7 +156,7 @@ function regular(var1) {
     console.log("+".repeat(20));
     return finalClc;
 }
-    
+
 // info - hadi katkalkoli ay 3anasir daril l a9was ()
 function calculateInParentes(newArr, opp, newOper, setOperator) {
             for(let i = 0; i < newArr.length; i++) {
@@ -203,7 +203,7 @@ function ButtonCalculator() {
         if (Myele === "÷") Myele = opp[3];
 
         // info - delete one element from NewArry 
-        clearOneEle(Myele, newArr, newArrForShow);
+        clearOneEle(Myele, setArr, newArrForShow);
 
         // info - check if isnt "D" + add Myele ==> NewArry
         if(Myele !== "D") {
@@ -323,11 +323,18 @@ function ButtonCalculator() {
     }
 
     // info - hadi function katam7i ele by ele
-    function clearOneEle(Myele, newArr, newArrForShow) {
+    function clearOneEle(Myele, setArr, newArrForShow) {
+        // error - bro plz fix this shit plz
         if (Myele === "D") {
             console.warn("delete !!!");
-            newArrForShow.pop()
-            return newArr.pop();
+            newArrForShow.pop();
+            let ghhhhh = [...newArrForShow].map((ele) => {
+                if(ele === "x") ele = "*";
+                if(ele === "÷") ele = "/";
+                return ele;
+            });
+            ghhhhh.pop();
+            return setArr(ghhhhh);
         }
     }
 
