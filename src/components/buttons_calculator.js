@@ -203,7 +203,6 @@ function ButtonCalculator() {
         if (Myele === "÷") Myele = opp[3];
 
         // info - delete one element from NewArry
-        // error - jarab trad l function
         if (Myele === "D") {
             console.warn("delete !!!");
             newArrForShow.pop();
@@ -214,7 +213,7 @@ function ButtonCalculator() {
             });
             newArr = [...changeTocalc];
         }
-        
+
         // info - check if isnt "D" + add Myele ==> NewArry
         if(Myele !== "D") {
             newArr = [...arr, Myele];
@@ -331,23 +330,6 @@ function ButtonCalculator() {
         console.clear();
         console.warn("Data cleared!!!!!!");
     }
-
-    // info - hadi function katam7i ele by ele
-    // function clearOneEle(Myele, newArr, newArrForShow) {
-    //     // error - bro plz fix this shit plz
-    //     if (Myele === "D") {
-    //         console.warn("delete !!!");
-    //         newArrForShow.pop();
-    //         let ghhhhh = [...newArrForShow].map((ele) => {
-    //             if(ele === "x") ele = "*";
-    //             if(ele === "÷") ele = "/";
-    //             return ele;
-    //         });
-    //         ghhhhh.pop();
-    //         console.log("this before ghhh; ", ghhhhh);
-    //         newArr = [...ghhhhh];
-    //     }
-    // }
 
     return (
         <div className='calculator_buttons'>
