@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 ////////////////////////
 
@@ -179,7 +179,7 @@ function calculateInParentes(newArr, opp, newOper, setOperator) {
 }
 
 // info - main function 
-function ButtonCalculator() {
+function ButtonCalculator({ onButtonClick }) {
     // Variables
     let [arr, setArr] = useState([]);
     let [arrForShow, setArrForShow] = useState([])
@@ -219,10 +219,7 @@ function ButtonCalculator() {
             newArr = [...arr, Myele];
             newArrForShow = [...arrForShow, MyeleForShow];
         }
-            
-        // testing porpose
-        console.log("newArrForShow ===> .........", newArrForShow);
-
+    
         // info - had l condition ki checky ila user ktab chihaja mrir ra9m f lbiday nta3 l calculator
         if (ForbiddenOpp.includes(newArr[0])) {
             // info - li rasni ndirlhom l 7adr homa (* /) 
@@ -287,18 +284,15 @@ function ButtonCalculator() {
         }
     }
 
-    // just for testing
-    useEffect(() => {
-        return () => {
-            alert("Reaload !!!!!!!!!!!");
-        }
-    }, []);
-    
     // info - show the current situation
     console.log("/".repeat(55));
     console.log("this is out result", numCalculated);
     console.log("arr out ==> ", arr);
+
     console.log("arr for show ==> ", arrForShow);
+    // this for push from child ==> parent
+    onButtonClick(arrForShow);
+    
     console.log("operator out waaaaaa chof hna l oper ==>", operator);
     console.log("/".repeat(55));
 
@@ -330,7 +324,7 @@ function ButtonCalculator() {
         console.clear();
         console.warn("Data cleared!!!!!!");
     }
-
+    
     return (
         <div className='calculator_buttons'>
             <button className="thisSimpleGray" onClick={clearData}>{"C"}</button>
