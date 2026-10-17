@@ -202,9 +202,19 @@ function ButtonCalculator() {
         if (Myele === "x") Myele = opp[1];
         if (Myele === "÷") Myele = opp[3];
 
-        // info - delete one element from NewArry 
-        clearOneEle(Myele, setArr, newArrForShow);
-
+        // info - delete one element from NewArry
+        // error - jarab trad l function
+        if (Myele === "D") {
+            console.warn("delete !!!");
+            newArrForShow.pop();
+            let changeTocalc = [...newArrForShow].map((ele) => {
+                if(ele === "x") ele = "*";
+                if(ele === "÷") ele = "/";
+                return ele;
+            });
+            newArr = [...changeTocalc];
+        }
+        
         // info - check if isnt "D" + add Myele ==> NewArry
         if(Myele !== "D") {
             newArr = [...arr, Myele];
@@ -323,20 +333,21 @@ function ButtonCalculator() {
     }
 
     // info - hadi function katam7i ele by ele
-    function clearOneEle(Myele, setArr, newArrForShow) {
-        // error - bro plz fix this shit plz
-        if (Myele === "D") {
-            console.warn("delete !!!");
-            newArrForShow.pop();
-            let ghhhhh = [...newArrForShow].map((ele) => {
-                if(ele === "x") ele = "*";
-                if(ele === "÷") ele = "/";
-                return ele;
-            });
-            ghhhhh.pop();
-            return setArr(ghhhhh);
-        }
-    }
+    // function clearOneEle(Myele, newArr, newArrForShow) {
+    //     // error - bro plz fix this shit plz
+    //     if (Myele === "D") {
+    //         console.warn("delete !!!");
+    //         newArrForShow.pop();
+    //         let ghhhhh = [...newArrForShow].map((ele) => {
+    //             if(ele === "x") ele = "*";
+    //             if(ele === "÷") ele = "/";
+    //             return ele;
+    //         });
+    //         ghhhhh.pop();
+    //         console.log("this before ghhh; ", ghhhhh);
+    //         newArr = [...ghhhhh];
+    //     }
+    // }
 
     return (
         <div className='calculator_buttons'>
