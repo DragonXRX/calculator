@@ -3,21 +3,13 @@ import { useState } from "react";
 
 ////////////////////////
 
-// error - min chorot li rasni nha9a9hom homa
-// - yabda l user dayman b number
-// - machi b * / bach tkon l3amaliya shiha
-// - may7sab l function 7ta tkamal 458 + 1 3ad 7sab
-// - wla 7ta yadrak l user 3la calculation
-// - wjami3 l machakil daharho 3la chakal message error()
-// - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
-
-// error - adi nraf3o state na3 had l file 7ta 5oh kadalik l parent ==> App.js
-// error - yamkan t9asam logik f page bo7adha w l button dahrin bo7adhom
-// warn - rdam 3la l click na3 "Delete" ay tam7i a5ir 3onsor
+// warn - yamkan t9asam logik f page bo7adha w l button dahrin bo7adhom
 // warn - rdam 3la ar9am l3achariya 1.333 ==> regular EXP
 // warn - rdam 3la zir H ==> hestory
 // warn - rdam 3la ta7sinat l basariya w song w sot
 // warn - learn how to use <npm run build>
+// warn - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
+// warn - wjami3 l machakil daharho 3la chakal message error()
 
 ////////////////////////
 
@@ -290,10 +282,11 @@ function ButtonCalculator({ onButtonClick }) {
     console.log("this is out result", numCalculated);
     console.log("arr out ==> ", arr);
     console.log("arr for show ==> ", arrForShow);  
+    console.log("operator out waaaaaa chof hna l oper ==>", operator);
+    console.log("your result is", finalResult);
+    console.log("/".repeat(55));
     // this for push from child ==> parent
     onButtonClick(arrForShow, finalResult);
-    console.log("operator out waaaaaa chof hna l oper ==>", operator);
-    console.log("/".repeat(55));
 
 
     ////////////////////////
@@ -304,26 +297,28 @@ function ButtonCalculator({ onButtonClick }) {
     ////////////////////////
 
     function calculateNow() {
-        // error - fix this 
-        const FinalResult = addshit(numCalculated, operator);
-        finalResult
+        const Result = addshit(numCalculated, operator);
         console.log("#".repeat(55));
         console.log("finale Operator ==> ", operator);
         console.log("finale number ========>", numCalculated);
-        console.log(FinalResult);
-        // this for push from child ==> parent
-        onButtonClick(arrForShow, FinalResult);
-        console.log("Calculated ");
+        console.log(Result);
+        setResult(Result);
+        console.log("Calculated");
         console.log("#".repeat(55));
     }
+    ////////////////////////
 
+    // Clear
     // info - hadi function kadir clear l data
-    // error - biyn setArr w setArrForShow l7ala lwa7ida limakiw9a3ch 3adam tazamon howa ()
-    function clearData() {         
+    
+    ////////////////////////
+
+    function clearData() {
         setnumCalculated([]);
         setOperator([]);
         setArr([]);
         setArrForShow([]);
+        setResult(0);
         console.clear();
         console.warn("Data cleared!!!!!!");
     }
