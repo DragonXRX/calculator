@@ -185,6 +185,7 @@ function ButtonCalculator({ onButtonClick }) {
     let [arrForShow, setArrForShow] = useState([])
     let [numCalculated, setnumCalculated] = useState([]);
     let [operator, setOperator] = useState([]);
+    let [finalResult, setResult] = useState(0);
     
     // info - hadi function katkon f event "click"
     function clickedForCalc(e) {
@@ -288,11 +289,9 @@ function ButtonCalculator({ onButtonClick }) {
     console.log("/".repeat(55));
     console.log("this is out result", numCalculated);
     console.log("arr out ==> ", arr);
-
-    console.log("arr for show ==> ", arrForShow);
+    console.log("arr for show ==> ", arrForShow);  
     // this for push from child ==> parent
-    onButtonClick(arrForShow);
-    
+    onButtonClick(arrForShow, finalResult);
     console.log("operator out waaaaaa chof hna l oper ==>", operator);
     console.log("/".repeat(55));
 
@@ -305,13 +304,17 @@ function ButtonCalculator({ onButtonClick }) {
     ////////////////////////
 
     function calculateNow() {
+        // error - fix this 
+        const FinalResult = addshit(numCalculated, operator);
+        finalResult
         console.log("#".repeat(55));
         console.log("finale Operator ==> ", operator);
         console.log("finale number ========>", numCalculated);
-        console.log(addshit(numCalculated, operator));
+        console.log(FinalResult);
+        // this for push from child ==> parent
+        onButtonClick(arrForShow, FinalResult);
         console.log("Calculated ");
         console.log("#".repeat(55));
-
     }
 
     // info - hadi function kadir clear l data

@@ -14,12 +14,15 @@ const [expression, setExpression] = useState("");
 const [result, setResult] = useState("0");
 
 // info - I can put function unside components
-  const handleButtonClick = (ele) => {
-        let solo = ele; 
-        if (solo.lenght === undefined) solo  = "0";
-        if(solo === "0") console.warn("hello this array for show", solo);
-        if(Array.isArray(ele)) console.warn("hello this array for show", ele);
+  const handleButtonClick = (inputFromUser, resultFromUser = 0) => {
+        console.warn("hello this array for UP <==", inputFromUser);
+        setExpression(inputFromUser);
+        console.warn("hello this array show resultFromUser ==>", resultFromUser);
+        setResult(resultFromUser);
   };
+
+  console.error(expression);
+  console.error(result);
 
 return (
     <div className="App">
