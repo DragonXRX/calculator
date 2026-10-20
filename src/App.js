@@ -17,9 +17,7 @@ const [result, setResult] = useState("0");
 
 // info - I can put function unside components
 const handleButtonClick = (inputFromUser, resultFromUser = 0) => {
-      console.warn("hello this array for UP <==", inputFromUser);
       setExpression(inputFromUser);
-      console.warn("hello this array show resultFromUser ==>", resultFromUser);
       setResult(resultFromUser);
 };
 
