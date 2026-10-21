@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 ////////////////////////
 
@@ -130,7 +130,8 @@ function regular(var1) {
 
     ////////////////////////
     
-    let numToClc_regularEx = /(?:^|(?<=[\+\-\*\/]))\-?\d+/g;
+    // error - this for testing porpose
+    let numToClc_regularEx = /(?:^|(?<=[\+\-\*\/]))\-?(\d+|\d+\.\d+)/g;
 
     ////////////////////////
 
@@ -286,7 +287,9 @@ function ButtonCalculator({ onButtonClick }) {
     console.log("your result is", finalResult);
     console.log("/".repeat(55));
     // this for push from child ==> parent
-    onButtonClick(arrForShow, finalResult);
+    useEffect(() => {
+         onButtonClick(arrForShow, finalResult);
+    }, [arrForShow, finalResult]);
 
 
     ////////////////////////
