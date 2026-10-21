@@ -4,10 +4,9 @@ import { useEffect, useState } from "react";
 ////////////////////////
 
 // warn - yamkan t9asam logik f page bo7adha w l button dahrin bo7adhom
-// warn - rdam 3la ar9am l3achariya 1.333 ==> regular EXP
-// warn - rdam 3la zir H ==> hestory
-// warn - rdam 3la ta7sinat l basariya w song w sot
-// warn - learn how to use <npm run build>
+// warn - rdam 3la zir H ==> history
+// warn - rdam 3la ta7sinat l basariya w song w sot w hover 3la elements
+// warn - learn how to use <npm run build> <npm run test>
 // warn - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
 // warn - wjami3 l machakil daharho 3la chakal message error()
 
@@ -127,11 +126,12 @@ function regular(var1) {
     // (?<=[\+\-\*\/]) kta3ni hado rashom yjiw lwala wchof chart li mba3do
     // \-? had "-" katkon one dirha or zero madirhach
     // \d+ wado kata3ni ila kan majmo3a nta3 l ar9am
+    // (\.\d+)? ila kan wa7ad l3adad blfasila dilo add
 
     ////////////////////////
     
     // error - this for testing porpose
-    let numToClc_regularEx = /(?:^|(?<=[\+\-\*\/]))\-?(\d+|\d+\.\d+)/g;
+    let numToClc_regularEx = /(?:^|(?<=[\+\-\*\/]))\-?\d+(\.\d+)?/g;
 
     ////////////////////////
 
