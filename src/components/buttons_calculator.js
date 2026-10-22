@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 
 // warn - yamkan t9asam logik f page bo7adha w l button dahrin bo7adhom
 // warn - rdam 3la zir H ==> history
-// warn - rdam 3la ta7sinat l basariya w song w sot w hover 3la elements
 // warn - learn how to use <npm run build> <npm run test>
 // warn - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
 // warn - wjami3 l machakil daharho 3la chakal message error()
+// error - rdam 3la () had l error (32+(23+1)+2)
 
 ////////////////////////
 
