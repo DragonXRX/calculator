@@ -52,7 +52,8 @@
 
 .main_clc .inputHere {
     text-align: start;
-    height: 25px;
+    height: 43px;
+    overflow-y: auto;
 }
 
 .main_clc .resultHere {
@@ -77,4 +78,7 @@
     background-color: var(--MainGrey);
     cursor: pointer;
     font-weight: bolder;
+    transition: 0.3s;
+} .main_clc .calculator_buttons button:hover {
+    background-color: #393939;
 }

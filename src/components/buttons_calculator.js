@@ -278,7 +278,7 @@ function ButtonCalculator({ onButtonClick }) {
         }
     }
 
-    // info - show the current situation
+    // info - show the current situation for testing
     console.log("/".repeat(55));
     console.log("this is out result", numCalculated);
     console.log("arr out ==> ", arr);
@@ -320,33 +320,52 @@ function ButtonCalculator({ onButtonClick }) {
         console.clear();
         console.warn("Data cleared!!!!!!");
     }
+
+    // info - hadi katajlma3 l click + sound
+    function clickedSong(e) {
+        clickedForCalc(e);
+        playSong('/clicksong.mp3');
+    }
     
+    // info - play song on click button
+    function playSong(yourSound) {
+        // info - play song on click
+        const song = new Audio(yourSound);
+        
+        // Reset to the beginning if it's already playing (optional)
+        song.currentTime = 0;
+
+        // Play the song
+        song.play();
+    }
+    
+
     return (
         <div className='calculator_buttons'>
-            <button className="thisSimpleGray" onClick={clearData}>{"C"}</button>
-            <button className="thisSimpleGray" onClick={clickedForCalc} >{"("}</button>
-            <button className="thisSimpleGray" onClick={clickedForCalc} >{")"}</button>
-            <button className="thisOrange" onClick={clickedForCalc} >{"÷"}</button>
+            <button className="thisSimpleGray" onClick={() => {clearData();playSong('/clearItemsAll.mp3');}}>{"C"}</button>
+            <button className="thisSimpleGray" onClick={clickedSong} >{"("}</button>
+            <button className="thisSimpleGray" onClick={clickedSong} >{")"}</button>
+            <button className="thisOrange" onClick={clickedSong} >{"÷"}</button>
 
-            <button className="" onClick={clickedForCalc} >{"7"}</button>
-            <button className="" onClick={clickedForCalc} >{"8"}</button>
-            <button className="" onClick={clickedForCalc} >{"9"}</button>
-            <button className="thisOrange" onClick={clickedForCalc} >{"x"}</button>
+            <button className="" onClick={clickedSong} >{"7"}</button>
+            <button className="" onClick={clickedSong} >{"8"}</button>
+            <button className="" onClick={clickedSong} >{"9"}</button>
+            <button className="thisOrange" onClick={clickedSong} >{"x"}</button>
 
-            <button className="" onClick={clickedForCalc} >{"4"}</button>
-            <button className="" onClick={clickedForCalc} >{"5"}</button>
-            <button className="" onClick={clickedForCalc} >{"6"}</button>
-            <button className="thisOrange" onClick={clickedForCalc} >{"-"}</button>
+            <button className="" onClick={clickedSong} >{"4"}</button>
+            <button className="" onClick={clickedSong} >{"5"}</button>
+            <button className="" onClick={clickedSong} >{"6"}</button>
+            <button className="thisOrange" onClick={clickedSong} >{"-"}</button>
 
-            <button className="" onClick={clickedForCalc} >{"1"}</button>
-            <button className="" onClick={clickedForCalc} >{"2"}</button>
-            <button className="" onClick={clickedForCalc} >{"3"}</button>
-            <button className="thisOrange" onClick={clickedForCalc} >{"+"}</button>
+            <button className="" onClick={clickedSong} >{"1"}</button>
+            <button className="" onClick={clickedSong} >{"2"}</button>
+            <button className="" onClick={clickedSong} >{"3"}</button>
+            <button className="thisOrange" onClick={clickedSong} >{"+"}</button>
 
-            <button className="" onClick={clickedForCalc} >{"D"}</button>
-            <button className="" onClick={clickedForCalc} >{"0"}</button>
-            <button className="" onClick={clickedForCalc} >{"."}</button>
-            <button className="thisOrange" onClick={calculateNow} >{"="}</button>
+            <button className="" onClick={(e) => {clickedForCalc(e);playSong('/deleteOne.mp3');}} >{"D"}</button>
+            <button className="" onClick={clickedSong} >{"0"}</button>
+            <button className="" onClick={clickedSong} >{"."}</button>
+            <button className="thisOrange" onClick={() => {calculateNow();playSong('/clicksong.mp3');}} >{"="}</button>
 
         </div>
     );
