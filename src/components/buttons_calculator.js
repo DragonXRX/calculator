@@ -286,7 +286,8 @@ function ButtonCalculator({ onButtonClick }) {
     console.log("operator out waaaaaa chof hna l oper ==>", operator);
     console.log("your result is", finalResult);
     console.log("/".repeat(55));
-    // this for push from child ==> parent
+
+    // info - this for push from child ==> parent
     useEffect(() => {
          onButtonClick(arrForShow, finalResult);
     }, [arrForShow, finalResult]);
@@ -301,13 +302,7 @@ function ButtonCalculator({ onButtonClick }) {
 
     function calculateNow() {
         const Result = addshit(numCalculated, operator);
-        console.log("#".repeat(55));
-        console.log("finale Operator ==> ", operator);
-        console.log("finale number ========>", numCalculated);
-        console.log(Result);
         setResult(Result);
-        console.log("Calculated");
-        console.log("#".repeat(55));
     }
     ////////////////////////
 
