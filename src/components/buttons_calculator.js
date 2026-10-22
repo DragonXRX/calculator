@@ -198,7 +198,7 @@ function ButtonCalculator({ onButtonClick }) {
 
         // info - delete one element from NewArry
         if (Myele === "D") {
-            console.warn("delete !!!");
+            console.info("delete !!!");
             newArrForShow.pop();
             let changeTocalc = [...newArrForShow].map((ele) => {
                 if(ele === "x") ele = "*";
