@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 // warn - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
 // warn - wjami3 l machakil daharho 3la chakal message error()
 // error - rdam 3la () had l error (32+(23+1)+2)
+// error - spend more time i this project plz
 
 ////////////////////////
 
