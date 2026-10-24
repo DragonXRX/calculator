@@ -7,11 +7,12 @@ function App() {
 
 ////////////////////////
 
-// info - props work = parent ==> child i guess it doesnt work I mean this child ==> parent
-// info - adi hiya rabit li kirbat l info man parent <==> child
+// warn - rdam 3la () had l error (32+(23+1)+2) ==> 60
+//      - kanatmana trdam 3liha flmosta9bal 
 
 ////////////////////////
 
+// info - adi hiya rabit li kirbat l info man parent <==> child
 const [expression, setExpression] = useState("");
 const [result, setResult] = useState("0");
 

@@ -8,8 +8,6 @@ import { useEffect, useState } from "react";
 // warn - learn how to use <npm run build> <npm run test>
 // warn - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
 // warn - wjami3 l machakil daharho 3la chakal message error()
-// error - rdam 3la () had l error (32+(23+1)+2)
-// error - spend more time i this project plz
 
 ////////////////////////
 
@@ -342,6 +340,7 @@ function ButtonCalculator({ onButtonClick }) {
     
 
     return (
+        <>
         <div className='calculator_buttons'>
             <button className="thisSimpleGray" onClick={() => {clearData();playSong('/clearItemsAll.mp3');}}>{"C"}</button>
             <button className="thisSimpleGray" onClick={clickedSong} >{"("}</button>
@@ -367,8 +366,9 @@ function ButtonCalculator({ onButtonClick }) {
             <button className="" onClick={clickedSong} >{"0"}</button>
             <button className="" onClick={clickedSong} >{"."}</button>
             <button className="thisOrange" onClick={() => {calculateNow();playSong('/clicksong.mp3');}} >{"="}</button>
-
         </div>
+        <button className="History" >H</button>
+        </>
     );
 }
 

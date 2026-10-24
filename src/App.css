@@ -29,12 +29,25 @@
 /* Main body*/
 .main_clc {
     background-color: var(--MainBlack);
-    border-radius: 15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
     margin: 30px auto;
     max-width: 400px;
     padding: 15px;
+    position: relative;
 }
-
+/* History section*/
+.main_clc .History {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #2b2b2b;
+    color: white;
+    border: none;
+    font-size: 25px;
+}
 
 /* result section*/
 .main_clc .show_result {
@@ -53,7 +66,7 @@
 .main_clc .inputHere {
     text-align: start;
     height: 43px;
-    overflow-y: auto;
+    overflow-x: auto;
 }
 
 .main_clc .resultHere {
