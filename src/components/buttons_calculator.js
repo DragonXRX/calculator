@@ -4,10 +4,14 @@ import { useEffect, useState } from "react";
 ////////////////////////
 
 // warn - yamkan t9asam logik f page bo7adha w l button dahrin bo7adhom
-// warn - rdam 3la zir H ==> history
+// error - rdam 3la zir H ==> history
 // warn - learn how to use <npm run build> <npm run test>
 // warn - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
 // warn - wjami3 l machakil daharho 3la chakal message error()
+// warn - rdam kadalik 3la fach yadrat l user 3la keyboard yaktab f l calculator
+// error - fach kadir = mobachara ki3ti error plz hundule it
+// error - 7ta fach kataktab () fawal star
+// error - 7ta fach kataktab .. bazaf nta3 l fasilat wla 1...3 ==> error
 
 ////////////////////////
 
@@ -340,35 +344,42 @@ function ButtonCalculator({ onButtonClick }) {
     
 
     return (
-        <>
-        <div className='calculator_buttons'>
-            <button className="thisSimpleGray" onClick={() => {clearData();playSong('/clearItemsAll.mp3');}}>{"C"}</button>
-            <button className="thisSimpleGray" onClick={clickedSong} >{"("}</button>
-            <button className="thisSimpleGray" onClick={clickedSong} >{")"}</button>
-            <button className="thisOrange" onClick={clickedSong} >{"÷"}</button>
+        <div className="calculator_container">
+            <div className="calculator_toolbar">
+                <button className="History" title="History" aria-label="History">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                </button>
+            </div>
+            <div className='calculator_buttons'>
+                <button className="thisSimpleGray" title="C" onClick={() => {clearData();playSong('/clearItemsAll.mp3');}}>{"C"}</button>
+                <button className="thisSimpleGray" title="(" onClick={clickedSong} >{"("}</button>
+                <button className="thisSimpleGray" title=")" onClick={clickedSong} >{")"}</button>
+                <button className="thisOrange" title="÷" onClick={clickedSong} >{"÷"}</button>
 
-            <button className="" onClick={clickedSong} >{"7"}</button>
-            <button className="" onClick={clickedSong} >{"8"}</button>
-            <button className="" onClick={clickedSong} >{"9"}</button>
-            <button className="thisOrange" onClick={clickedSong} >{"x"}</button>
+                <button className="" title="7" onClick={clickedSong} >{"7"}</button>
+                <button className="" title="8" onClick={clickedSong} >{"8"}</button>
+                <button className="" title="9" onClick={clickedSong} >{"9"}</button>
+                <button className="thisOrange" title="x" onClick={clickedSong} >{"x"}</button>
 
-            <button className="" onClick={clickedSong} >{"4"}</button>
-            <button className="" onClick={clickedSong} >{"5"}</button>
-            <button className="" onClick={clickedSong} >{"6"}</button>
-            <button className="thisOrange" onClick={clickedSong} >{"-"}</button>
+                <button className="" title="4" onClick={clickedSong} >{"4"}</button>
+                <button className="" title="5" onClick={clickedSong} >{"5"}</button>
+                <button className="" title="6" onClick={clickedSong} >{"6"}</button>
+                <button className="thisOrange" title="-" onClick={clickedSong} >{"-"}</button>
 
-            <button className="" onClick={clickedSong} >{"1"}</button>
-            <button className="" onClick={clickedSong} >{"2"}</button>
-            <button className="" onClick={clickedSong} >{"3"}</button>
-            <button className="thisOrange" onClick={clickedSong} >{"+"}</button>
+                <button className="" title="1" onClick={clickedSong} >{"1"}</button>
+                <button className="" title="2" onClick={clickedSong} >{"2"}</button>
+                <button className="" title="3" onClick={clickedSong} >{"3"}</button>
+                <button className="thisOrange" title="+" onClick={clickedSong} >{"+"}</button>
 
-            <button className="" onClick={(e) => {clickedForCalc(e);playSong('/deleteOne.mp3');}} >{"D"}</button>
-            <button className="" onClick={clickedSong} >{"0"}</button>
-            <button className="" onClick={clickedSong} >{"."}</button>
-            <button className="thisOrange" onClick={() => {calculateNow();playSong('/clicksong.mp3');}} >{"="}</button>
+                <button className="" title="D" onClick={(e) => {clickedForCalc(e);playSong('/deleteOne.mp3');}} >{"D"}</button>
+                <button className="" title="0" onClick={clickedSong} >{"0"}</button>
+                <button className="" title="." onClick={clickedSong} >{"."}</button>
+                <button className="thisOrange" title="=" onClick={() => {calculateNow();playSong('/clicksong.mp3');}} >{"="}</button>
+            </div>
         </div>
-        <button className="History" >H</button>
-        </>
     );
 }
 
