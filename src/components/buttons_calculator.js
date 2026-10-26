@@ -362,6 +362,8 @@ function ButtonCalculator({ onButtonClick }) {
 
     function gg() {
         console.log("history", arrForShow, finalResult);
+        // info - clear store data in browser
+        localStorage.clear();
     }
     
 
