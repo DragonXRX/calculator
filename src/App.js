@@ -25,6 +25,17 @@ const handleButtonClick = (inputFromUser, resultFromUser = 0) => {
 return (
     <div className="App">
        <div className='main_clc'>
+           <div className='History_show'>
+            <div>close</div>
+            <div className='operator_calculation'>
+              <p>1+1</p>
+              <p>=2</p>
+            </div>
+            <div className='operator_calculation'>
+              <p>1+3</p>
+              <p>=2</p>
+            </div>
+           </div>
            <ShowResult inputHere={expression} resultFinal={result}/>
            <ButtonCalculator onButtonClick={handleButtonClick} />
        </div>

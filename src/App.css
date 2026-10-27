@@ -72,6 +72,40 @@
     transform: scale(0.95);
 }
 
+.main_clc .History_show {
+    background-color: #000000d1;
+    height: 100%;
+    width: 75%;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    border-radius: 20px;
+    /*display: none;*/
+}
+
+.main_clc .History_show > div {
+    text-align: end;
+    color: white;
+}
+
+
+.main_clc .History_show .operator_calculation {
+    border-color: transparent transparent white;
+    border-width: 0px 0px 1px;
+    border-style: solid;
+}
+
+.main_clc .History_show .operator_calculation p {
+    color: white;
+    padding: 10px 15px;
+    font-weight: bold;
+}
+
+.main_clc .History_show .operator_calculation p:nth-of-type(2) {
+    color: var(--MainOrange);
+}
+
 /* result section*/
 .main_clc .show_result {
     background-color: var(--MainWhite);
