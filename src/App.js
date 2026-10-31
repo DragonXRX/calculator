@@ -22,11 +22,29 @@ const handleButtonClick = (inputFromUser, resultFromUser = 0) => {
       setResult(resultFromUser);
 };
 
+function Art({one, two}) {
+  let show = localStorage.getItem("mainArray");
+  let toarr = [...show];
+  let result = localStorage.getItem("finalResult");
+  console.log(toarr);
+  console.log(result);
+  return(
+          <div className='operator_calculation'>
+              <p>{one}</p>
+              <p>{two}</p>
+          </div>
+  )
+}
+
+
+
 return (
     <div className="App">
        <div className='main_clc'>
            <div className='History_show'>
-            <div>close</div>
+            <div className='close'>
+              <button type="button" className='btn_close_history' aria-label="إغلاق السجل">✕</button>
+            </div>
             <div className='operator_calculation'>
               <p>1+1</p>
               <p>=2</p>
@@ -35,6 +53,7 @@ return (
               <p>1+3</p>
               <p>=2</p>
             </div>
+            <Art one={"1+1"} two={"2"}/>
            </div>
            <ShowResult inputHere={expression} resultFinal={result}/>
            <ButtonCalculator onButtonClick={handleButtonClick} />

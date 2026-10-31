@@ -310,6 +310,7 @@ function ButtonCalculator({ onButtonClick }) {
 
         // info - this for store data in the browers storage
         // info - validation check if the varible is exist
+        // error - convert it to obj not array
 
         ////////////////////////
 
