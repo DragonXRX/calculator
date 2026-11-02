@@ -23,11 +23,11 @@ const handleButtonClick = (inputFromUser, resultFromUser = 0) => {
 };
 
 function Art({one, two}) {
-  let show = localStorage.getItem("mainArray");
-  let toarr = [...show];
-  let result = localStorage.getItem("finalResult");
-  console.log(toarr);
-  console.log(result);
+  //  let show = localStorage.getItem("mainArray");
+  //  let toarr = JSON.parse(show);
+  // let result = localStorage.getItem("finalResult");
+  // console.log("-----------------this is toarr", toarr);
+  // console.log(result);
   return(
           <div className='operator_calculation'>
               <p>{one}</p>
