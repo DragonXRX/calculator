@@ -37,6 +37,20 @@ function Art({one, two}) {
 }
 
 
+let myData = [1, 1, 1, 2, 3, "A"];
+// let myUniqueData = new Set([1, 1, 1, 2, 3]); // يمكن ادخال مصفوفة
+// let myUniqueData = new Set(myData); // يمكن ادخال مصفوفة معلن
+// let myUniqueData = new Set().add(1).add(1).add(1).add(2).add(3); // يمكن اضافة العناصر يدويا
+let myUniqueData = new Set();
+
+myUniqueData.add(1).add(1).add(1);
+myUniqueData.add(2).add(3).add("A");
+
+console.log(myUniqueData);
+console.log(myData);
+
+// ["1","+","2"],["2","+","3"] ==> stringe
+console.log("Main Array from localStorage:", localStorage.getItem("mainArray"));
 
 return (
     <div className="App">

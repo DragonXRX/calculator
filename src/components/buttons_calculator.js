@@ -318,11 +318,15 @@ function ButtonCalculator({ onButtonClick }) {
         if(localStorage.getItem("finalResult") === null) localStorage.setItem("finalResult", "");
 
         // info - validation check if the variable is higher than 0 and adding value to variable
-        if(localStorage.getItem("mainArray").length === 0) localStorage.setItem("mainArray", [JSON.stringify(arrForShow)]);
-        else if(localStorage.getItem("mainArray").length > 0) localStorage.setItem("mainArray", [ localStorage.getItem("mainArray"), JSON.stringify(arrForShow)]);
-        const arr = JSON.parse([localStorage.getItem("mainArray")]);
+        if(localStorage.getItem("mainArray").length === 0) localStorage.setItem("mainArray", JSON.stringify(arrForShow));
+        else if(localStorage.getItem("mainArray").length > 0) localStorage.setItem("mainArray", [ localStorage.getItem("mainArray"), JSON.stringify(arrForShow) ]);
+        
+        // error - JSON.parse ==> convert string to object
+        const arr = JSON.parse(localStorage.getItem("mainArray"));
+        //const ss = [arr];
         console.log("this is arr from localStorage", arr);
-        if(localStorage.getItem("finalResult").length === 0) localStorage.setItem("finalResult", [JSON.stringify(Result)]);
+        //console.log("this is ss from localStorage", ss);  
+        if(localStorage.getItem("finalResult").length === 0) localStorage.setItem("finalResult", JSON.stringify(Result));
         else if(localStorage.getItem("finalResult").length > 0) localStorage.setItem("finalResult", [ localStorage.getItem("finalResult"), JSON.stringify(Result)]);
         // info - clear store data in browser
         //localStorage.clear();
