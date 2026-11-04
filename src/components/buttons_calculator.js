@@ -314,20 +314,21 @@ function ButtonCalculator({ onButtonClick }) {
 
         ////////////////////////
 
-        if(localStorage.getItem("mainArray") === null) localStorage.setItem("mainArray", "");
-        if(localStorage.getItem("finalResult") === null) localStorage.setItem("finalResult", "");
-
         // info - validation check if the variable is higher than 0 and adding value to variable
-        if(localStorage.getItem("mainArray").length === 0) localStorage.setItem("mainArray", JSON.stringify(arrForShow));
-        else if(localStorage.getItem("mainArray").length > 0) localStorage.setItem("mainArray", [ localStorage.getItem("mainArray"), JSON.stringify(arrForShow) ]);
-        
-        // error - JSON.parse ==> convert string to object
-        const arr = JSON.parse(localStorage.getItem("mainArray"));
-        //const ss = [arr];
-        console.log("this is arr from localStorage", arr);
-        //console.log("this is ss from localStorage", ss);  
-        if(localStorage.getItem("finalResult").length === 0) localStorage.setItem("finalResult", JSON.stringify(Result));
-        else if(localStorage.getItem("finalResult").length > 0) localStorage.setItem("finalResult", [ localStorage.getItem("finalResult"), JSON.stringify(Result)]);
+        let testresult = { arr: [arrForShow], res: [Result]};
+        // info - validation check if the variable is not null and adding value ""
+        if(localStorage.getItem("mainArray") === null) localStorage.setItem("mainArray", "");
+        // warn - plz fix this
+        if(localStorage.getItem("mainArray").length === 0) {
+            localStorage.setItem("mainArray", JSON.stringify(testresult));
+        }
+        else if(localStorage.getItem("mainArray").length > 0) {
+            let changed = JSON.parse(localStorage.getItem("mainArray"));
+            changed.arr.push(arrForShow);
+            changed.res.push(Result);
+            localStorage.setItem("mainArray", JSON.stringify(changed));
+        }
+
         // info - clear store data in browser
         //localStorage.clear();
     }
@@ -366,10 +367,9 @@ function ButtonCalculator({ onButtonClick }) {
         // Play the song
         song.play();
     }
-
-    function gg() {
-        console.log("history", arrForShow, finalResult);
-        // info - clear store data in browser
+    
+    // info - clear store data in browser
+    function historyCTA() {
         localStorage.clear();
     }
     
@@ -377,7 +377,7 @@ function ButtonCalculator({ onButtonClick }) {
     return (
         <div className="calculator_container">
             <div className="calculator_toolbar">
-                <button className="History" title="History" aria-label="History" onClick={gg}>
+                <button className="History" title="History" aria-label="History" onClick={historyCTA}>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                         <circle cx="12" cy="12" r="10"></circle>
                         <polyline points="12 6 12 12 16 14"></polyline>

@@ -16,58 +16,40 @@ function App() {
 const [expression, setExpression] = useState("");
 const [result, setResult] = useState("0");
 
+
 // info - I can put function unside components
 const handleButtonClick = (inputFromUser, resultFromUser = 0) => {
       setExpression(inputFromUser);
       setResult(resultFromUser);
 };
 
-function Art({one, two}) {
-  //  let show = localStorage.getItem("mainArray");
-  //  let toarr = JSON.parse(show);
-  // let result = localStorage.getItem("finalResult");
-  // console.log("-----------------this is toarr", toarr);
-  // console.log(result);
-  return(
-          <div className='operator_calculation'>
-              <p>{one}</p>
-              <p>{two}</p>
-          </div>
-  )
+// info - katarod l value man localstorage w kadifha ka article f l page nta3 history
+function Article () {
+  let Htmls = [];
+
+  if(localStorage.getItem("mainArray") !== null) {
+  const mainArray = JSON.parse(localStorage.getItem("mainArray"));
+  console.log("Parsed Main Array:", mainArray);
+    for (let i = 0; i < mainArray.arr.length; i++) {
+       Htmls.push(
+        <div key={i} className='operator_calculation'>
+         <p>{mainArray.arr[i]}</p>
+         <p>= {mainArray.res[i]}</p>
+        </div>
+       );
+    }
+  }
+  return Htmls;  
 }
-
-
-let myData = [1, 1, 1, 2, 3, "A"];
-// let myUniqueData = new Set([1, 1, 1, 2, 3]); // يمكن ادخال مصفوفة
-// let myUniqueData = new Set(myData); // يمكن ادخال مصفوفة معلن
-// let myUniqueData = new Set().add(1).add(1).add(1).add(2).add(3); // يمكن اضافة العناصر يدويا
-let myUniqueData = new Set();
-
-myUniqueData.add(1).add(1).add(1);
-myUniqueData.add(2).add(3).add("A");
-
-console.log(myUniqueData);
-console.log(myData);
-
-// ["1","+","2"],["2","+","3"] ==> stringe
-console.log("Main Array from localStorage:", localStorage.getItem("mainArray"));
 
 return (
     <div className="App">
        <div className='main_clc'>
            <div className='History_show'>
-            <div className='close'>
-              <button type="button" className='btn_close_history' aria-label="إغلاق السجل">✕</button>
-            </div>
-            <div className='operator_calculation'>
-              <p>1+1</p>
-              <p>=2</p>
-            </div>
-            <div className='operator_calculation'>
-              <p>1+3</p>
-              <p>=2</p>
-            </div>
-            <Art one={"1+1"} two={"2"}/>
+              <div className='close'>
+                <button type="button" className='btn_close_history' aria-label="إغلاق السجل">✕</button>
+              </div>
+              {Article()}
            </div>
            <ShowResult inputHere={expression} resultFinal={result}/>
            <ButtonCalculator onButtonClick={handleButtonClick} />
