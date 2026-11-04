@@ -370,10 +370,10 @@ function ButtonCalculator({ onButtonClick }) {
     
     // info - clear store data in browser
     function historyCTA() {
-        localStorage.clear();
+        // error - rmdam 3la fach adi dir click l history button adi tadhar
+        console.warn("clicked historyCTA");
     }
     
-
     return (
         <div className="calculator_container">
             <div className="calculator_toolbar">
