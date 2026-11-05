@@ -1,20 +1,16 @@
 
 import { useState } from 'react';
 
-function HistoryShow() {
+function HistoryShow( { forCss, forCssTransition } ) {
     const [bol, setBol] = useState(false);
+    const [css, setCss] = useState(forCss);
     // info - clear store data in browser
     function clearHistory() {
-        // info - reload the all the page 
+        // info - reload all page 
         // window.location.reload();
         localStorage.clear();
         setBol(!bol);
     }
-    console.log("Current bol value:", bol);
-    // useEffect(() => {
-    //       // This will run when the component is mounted
-    //       console.error("Component reloaded after clearing localStorage");
-    // }, [bol]);
 
     // info - katarod l value man localstorage 
     // - w kadifha ka article f l page nta3 history
@@ -35,8 +31,9 @@ function HistoryShow() {
         }
         return Htmls;  
     }
+
      return (
-        <div className='History_show'>
+        <div className='History_show' style={{ left: forCss ? '0' : "-75%" }} >
               <div className='close'>
                 <button type="button" className='btn_reset_history' title="clear history" aria-label="clear history" onClick={clearHistory}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -44,7 +41,7 @@ function HistoryShow() {
                     <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
                   </svg>
                 </button>
-                <button type="button" className='btn_close_history' title="close history" aria-label="close history">✕</button>
+                <button type="button" onClick={() => forCssTransition(!forCss)} className='btn_close_history' title="close history" aria-label="close history">✕</button>
               </div>
               {Article()}
         </div>

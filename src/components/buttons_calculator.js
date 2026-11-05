@@ -13,6 +13,8 @@ import { useEffect, useState } from "react";
 // error - 7ta fach kataktab () fawal star
 // error - 7ta fach kataktab .. bazaf nta3 l fasilat wla 1...3 ==> error
 
+// error - lmara jaya dir add l sound effect f l button nta3 l history + l cleardata + close history + l delete one + l clear all + l click button
+
 ////////////////////////
 
 // info - lmohima nta3ha hiya katajma3 l ar9am
@@ -175,14 +177,21 @@ function calculateInParentes(newArr, opp, newOper, setOperator) {
 }
 
 // info - main function 
-function ButtonCalculator({ onButtonClick }) {
+function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
     // Variables
     let [arr, setArr] = useState([]);
     let [arrForShow, setArrForShow] = useState([])
     let [numCalculated, setnumCalculated] = useState([]);
     let [operator, setOperator] = useState([]);
     let [finalResult, setResult] = useState(0);
+    let [css, setCss] = useState(forCss);
     
+    // info - bach t7adat forcss li jaya man parent ay bara
+    useEffect(() => {
+        setCss(forCss);
+        console.log("Updated CSS value from parent:", forCss);
+    }, [forCss]);
+
     // info - hadi function katkon f event "click"
     function clickedForCalc(e) {
         // variables
@@ -291,9 +300,13 @@ function ButtonCalculator({ onButtonClick }) {
     console.log("/".repeat(55));
 
     // info - this for push from child ==> parent
+    // - result
+    // - array for show
+    // - css for history show
     useEffect(() => {
          onButtonClick(arrForShow, finalResult);
-    }, [arrForShow, finalResult]);
+         forCssTransition(css);
+    }, [arrForShow, finalResult, css]);
 
 
     ////////////////////////
@@ -328,9 +341,6 @@ function ButtonCalculator({ onButtonClick }) {
             changed.res.push(Result);
             localStorage.setItem("mainArray", JSON.stringify(changed));
         }
-
-        // info - clear store data in browser
-        //localStorage.clear();
     }
 
     ////////////////////////
@@ -368,10 +378,9 @@ function ButtonCalculator({ onButtonClick }) {
         song.play();
     }
     
-    // info - clear store data in browser
+    // info - show store data in browser
     function historyCTA() {
-        // error - rmdam 3la fach adi dir click l history button adi tadhar
-        console.warn("clicked historyCTA");
+        setCss(!css);
     }
     
     return (
