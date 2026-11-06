@@ -2,7 +2,7 @@ import './App.css';
 import ButtonCalculator from './components/buttons_calculator';
 import ShowResult from './components/show_result';
 import HistoryShow from './components/history_show';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function App() {
 

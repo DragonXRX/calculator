@@ -19,13 +19,6 @@ function addshit(num, ops) {
     // + +
     // * /
 
-    // right
-    // 5 + ( 2 * 6 ) + ( 3 / 2 ) 
-    // = 5 + 12 + 1.5 = 18.5
-    // false
-    // ( 5 + 2 + 3 ) * 6 / 2
-    // = 10 * 6 / 2 = 16
-
     ////////////////////////
 
     // hint - this explenation is for the function "addshit" and how it works
@@ -124,13 +117,15 @@ function regular(var1) {
 
     ////////////////////////
 
-    console.log("+".repeat(20));
-    const numToClc = var1.join("").match(numToClc_regularEx);
-    let checkArrNull_Add = numToClc !== null ? numToClc : [];
-    console.log("=======> REGULAR EXP ( + - ) checkArrNull:", checkArrNull_Add);
-    let finalClc = [...checkArrNull_Add].map((ele) => +ele);
-    console.log("=======> REGULAR EXP ( + - ) changedTonum:", finalClc);
-    console.log("+".repeat(20));
+    // for testing porpose
+    // console.log("+".repeat(20));
+     const numToClc = var1.join("").match(numToClc_regularEx);
+     let checkArrNull_Add = numToClc !== null ? numToClc : [];
+    // console.log("=======> REGULAR EXP ( + - ) checkArrNull:", checkArrNull_Add);
+     let finalClc = [...checkArrNull_Add].map((ele) => +ele);
+    // console.log("=======> REGULAR EXP ( + - ) changedTonum:", finalClc);
+    // console.log("+".repeat(20));
+
     return finalClc;
 }
 

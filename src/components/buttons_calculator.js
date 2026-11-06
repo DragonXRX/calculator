@@ -5,7 +5,6 @@ import { addshit, operera, regular, calculateInParentes, playSong } from "./myfu
 ////////////////////////
 
 // warn - yamkan t9asam logik f page bo7adha w l button dahrin bo7adhom
-// error - rdam 3la zir H ==> history
 // warn - learn how to use <npm run build> <npm run test>
 // warn - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
 // warn - wjami3 l machakil daharho 3la chakal message error()
@@ -29,7 +28,6 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
     // info - bach t7adat forcss li jaya man parent ay bara
     useEffect(() => {
         setCss(forCss);
-        console.log("Updated CSS value from parent:", forCss);
     }, [forCss]);
 
     // info - hadi function katkon f event "click" button l3adiya
@@ -131,13 +129,11 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
     }
 
     // info - show the current situation for testing
-    console.log("/".repeat(55));
-    console.log("this is out result", numCalculated);
+    console.log("*".repeat(55));
     console.log("arr out ==> ", arr);
     console.log("arr for show ==> ", arrForShow);  
-    console.log("operator out waaaaaa chof hna l oper ==>", operator);
     console.log("your result is", finalResult);
-    console.log("/".repeat(55));
+    console.log("*".repeat(55));
 
     // info - this for push from child ==> parent
     // - result
@@ -204,21 +200,11 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
     function clickedSong(e) {
         // info - hadi function katkon f event "click" button l3adiya 
         clickedForCalc(e);
-        console.log("clicked button:", e);
 
         // info - hadi function kat3ti l sound effect
         playSong('/clicksong.mp3');
     }
-
-    // function keyboardInput(e) {
-    //     // info - hadi function katkon f event "click" button l3adiya 
-    //     clickedForCalc(e);
-    // }
-    function hello(e) {
-        // info - hadi function katkon f event "click" button l3adiya 
-        console.log("hello:", e);
-    }
-
+   
     // info - show store data in browser
     function historyCTA() {
         // info - hadi katbadal css nta3 history show
@@ -228,7 +214,7 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
     }
     
     return (
-        <div className="calculator_container" onFocus={hello}>
+        <div className="calculator_container">
             <div className="calculator_toolbar">
                 <button className="History" title="History" aria-label="History" onClick={historyCTA}>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -267,5 +253,4 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
     );
 }
 
-// info - export any function or variable you want to use in other files
 export default ButtonCalculator;

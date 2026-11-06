@@ -24,7 +24,8 @@ function HistoryShow( { forCss, forCssTransition } ) {
 
         if(localStorage.getItem("mainArray") !== null) {
         const mainArray = JSON.parse(localStorage.getItem("mainArray"));
-        console.log("Parsed Main Array:", mainArray);
+        // for testing porpose
+        // console.log("Parsed Main Array:", mainArray);
             for (let i = 0; i < mainArray.arr.length; i++) {
             Htmls.push(
                 <div key={i} className='operator_calculation'>
