@@ -1,15 +1,20 @@
 
 import { useState } from 'react';
+import { playSong } from './myfunctions';
 
 function HistoryShow( { forCss, forCssTransition } ) {
+    // info - this for comfirm the click of restor button
     const [bol, setBol] = useState(false);
-    const [css, setCss] = useState(forCss);
+    
     // info - clear store data in browser
     function clearHistory() {
         // info - reload all page 
         // window.location.reload();
         localStorage.clear();
+        // info - hadi kadir reload lcoponent nta3 history show
         setBol(!bol);
+        // info - hadi kat3ti l sound effect
+        playSong('/historysound.mp3');
     }
 
     // info - katarod l value man localstorage 
@@ -41,7 +46,7 @@ function HistoryShow( { forCss, forCssTransition } ) {
                     <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
                   </svg>
                 </button>
-                <button type="button" onClick={() => forCssTransition(!forCss)} className='btn_close_history' title="close history" aria-label="close history">✕</button>
+                <button type="button" onClick={() => {forCssTransition(!forCss); playSong('/historysound.mp3');}} className='btn_close_history' title="close history" aria-label="close history">✕</button>
               </div>
               {Article()}
         </div>
