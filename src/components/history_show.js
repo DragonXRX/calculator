@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { playSong } from './myfunctions';
+import { playSong, Article } from './myfunctions';
 
 function HistoryShow( { forCss, forCssTransition } ) {
     // info - this for comfirm the click of restor button
@@ -15,27 +15,6 @@ function HistoryShow( { forCss, forCssTransition } ) {
         setBol(!bol);
         // info - hadi kat3ti l sound effect
         playSong('/historysound.mp3');
-    }
-
-    // info - katarod l value man localstorage 
-    // - w kadifha ka article f l page nta3 history
-    function Article () {
-        let Htmls = [];
-
-        if(localStorage.getItem("mainArray") !== null) {
-        const mainArray = JSON.parse(localStorage.getItem("mainArray"));
-        // for testing porpose
-        // console.log("Parsed Main Array:", mainArray);
-            for (let i = 0; i < mainArray.arr.length; i++) {
-            Htmls.push(
-                <div key={i} className='operator_calculation'>
-                <p>{mainArray.arr[i]}</p>
-                <p>= {mainArray.res[i]}</p>
-                </div>
-            );
-            }
-        }
-        return Htmls;  
     }
 
      return (

@@ -1,10 +1,9 @@
 
 import { useEffect, useState } from "react";
-import { addshit, operera, regular, calculateInParentes, playSong } from "./myfunctions";
+import { operera, regular, calculateInParentes, playSong, calculateNow } from "./myfunctions";
 
 ////////////////////////
 
-// warn - yamkan t9asam logik f page bo7adha w l button dahrin bo7adhom
 // warn - learn how to use <npm run build> <npm run test>
 // warn - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
 // warn - wjami3 l machakil daharho 3la chakal message error()
@@ -17,7 +16,7 @@ import { addshit, operera, regular, calculateInParentes, playSong } from "./myfu
 
 // info - main function 
 function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
-    // Variables
+    // Variables or States
     let [arr, setArr] = useState([]);
     let [arrForShow, setArrForShow] = useState([])
     let [numCalculated, setnumCalculated] = useState([]);
@@ -29,6 +28,19 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
     useEffect(() => {
         setCss(forCss);
     }, [forCss]);
+    ////////////////////////
+
+    // info - this for push from child ==> parent
+    // - result
+    // - array for show
+    // - css for history show
+
+    ////////////////////////
+
+    useEffect(() => {
+         onButtonClick(arrForShow, finalResult);
+         forCssTransition(css);
+    }, [arrForShow, finalResult, css]);
 
     // info - hadi function katkon f event "click" button l3adiya
     function clickedForCalc(e) {
@@ -128,57 +140,6 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
         }
     }
 
-    // info - show the current situation for testing
-    console.log("*".repeat(55));
-    console.log("arr out ==> ", arr);
-    console.log("arr for show ==> ", arrForShow);  
-    console.log("your result is", finalResult);
-    console.log("*".repeat(55));
-
-    // info - this for push from child ==> parent
-    // - result
-    // - array for show
-    // - css for history show
-    useEffect(() => {
-         onButtonClick(arrForShow, finalResult);
-         forCssTransition(css);
-    }, [arrForShow, finalResult, css]);
-
-
-    ////////////////////////
-
-    // calculation
-    // info - hadi rah katbiyan i l result niha iya
-
-    ////////////////////////
-
-    function calculateNow() {
-        const Result = addshit(numCalculated, operator);
-        setResult(Result);
-        ////////////////////////
-
-        // info - this for store data in the browers storage
-        // info - validation check if the varible is exist
-        // error - convert it to obj not array
-
-        ////////////////////////
-
-        // info - validation check if the variable is higher than 0 and adding value to variable
-        let testresult = { arr: [arrForShow], res: [Result]};
-        // info - validation check if the variable is not null and adding value ""
-        if(localStorage.getItem("mainArray") === null) localStorage.setItem("mainArray", "");
-        // warn - plz fix this
-        if(localStorage.getItem("mainArray").length === 0) {
-            localStorage.setItem("mainArray", JSON.stringify(testresult));
-        }
-        else if(localStorage.getItem("mainArray").length > 0) {
-            let changed = JSON.parse(localStorage.getItem("mainArray"));
-            changed.arr.push(arrForShow);
-            changed.res.push(Result);
-            localStorage.setItem("mainArray", JSON.stringify(changed));
-        }
-    }
-
     ////////////////////////
 
     // Clear
@@ -212,6 +173,14 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
         // info - hadi kat3ti l sound effect
         playSong('/historysound.mp3');
     }
+
+    // info - show the current situation for testing
+    // info - for testing porpose
+    console.log("*".repeat(55));
+    console.log("arr out ==> ", arr);
+    console.log("arr for show ==> ", arrForShow);  
+    console.log("your result is", finalResult);
+    console.log("*".repeat(55));
     
     return (
         <div className="calculator_container">
@@ -247,7 +216,7 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
                 <button className="" title="D" onClick={(e) => {clickedForCalc(e);playSong('/deleteOne.mp3');}} >{"D"}</button>
                 <button className="" title="0" onClick={clickedSong} >{"0"}</button>
                 <button className="" title="." onClick={clickedSong} >{"."}</button>
-                <button className="thisOrange" title="=" onClick={() => {calculateNow();playSong('/clicksong.mp3');}} >{"="}</button>
+                <button className="thisOrange" title="=" onClick={() => {calculateNow(numCalculated, operator, arrForShow, setResult);playSong('/clicksong.mp3');}} >{"="}</button>
             </div>
         </div>
     );

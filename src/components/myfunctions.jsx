@@ -1,4 +1,7 @@
 
+
+///////////////////////// LOGIC /////////////////////////
+
 // info - lmohima nta3ha hiya katajma3 l ar9am
 function addshit(num, ops) {
     ////////////////////////
@@ -150,6 +153,69 @@ function calculateInParentes(newArr, opp, newOper, setOperator) {
             }
 }
 
+////////////////////////
+
+    // calculation
+    // info - hadi rah katbiyan i l result niha iya
+
+////////////////////////
+
+function calculateNow(numCalculated, operator, arrForShow, setResult) {
+        const Result = addshit(numCalculated, operator);
+        setResult(Result);
+        ////////////////////////
+
+        // info - this for store data in the browers storage
+        // info - validation check if the varible is exist
+        // error - convert it to obj not array
+
+        ////////////////////////
+
+        // info - validation check if the variable is higher than 0 and adding value to variable
+        let testresult = { arr: [arrForShow], res: [Result]};
+        // info - validation check if the variable is not null and adding value ""
+        if(localStorage.getItem("mainArray") === null) localStorage.setItem("mainArray", "");
+        // warn - plz fix this
+        if(localStorage.getItem("mainArray").length === 0) {
+            localStorage.setItem("mainArray", JSON.stringify(testresult));
+        }
+        else if(localStorage.getItem("mainArray").length > 0) {
+            let changed = JSON.parse(localStorage.getItem("mainArray"));
+            changed.arr.push(arrForShow);
+            changed.res.push(Result);
+            localStorage.setItem("mainArray", JSON.stringify(changed));
+        }
+}
+
+
+/////////////////////// STYLING /////////////////////////
+
+///////////////////////
+
+// info - katarod l value man localstorage 
+// - w kadifha ka article f l page nta3 history
+
+///////////////////////
+
+function Article () {
+    let Htmls = [];
+
+    if(localStorage.getItem("mainArray") !== null) {
+    const mainArray = JSON.parse(localStorage.getItem("mainArray"));
+    // for testing porpose
+    // console.log("Parsed Main Array:", mainArray);
+        for (let i = 0; i < mainArray.arr.length; i++) {
+            Htmls.push(
+                <div key={i} className='operator_calculation'>
+                <p>{mainArray.arr[i]}</p>
+                <p>= {mainArray.res[i]}</p>
+                </div>
+            );
+        }
+    }
+    return Htmls;  
+}
+
 // info - play song on click button
 function playSong(yourSound) {
     // info - play song on click
@@ -162,5 +228,5 @@ function playSong(yourSound) {
     song.play();
 }
 
-export { addshit, operera, regular, calculateInParentes, playSong };
+export { addshit, operera, regular, calculateInParentes, playSong, calculateNow, Article };
 

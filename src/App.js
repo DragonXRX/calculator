@@ -19,15 +19,16 @@ const [result, setResult] = useState("0");
 const [css, setCss] = useState(false);
 
 
-// info - I can put function unside components
+// info - function update expression and result from child to parent
 const handleButtonClick = (inputFromUser, resultFromUser = 0) => {
       setExpression(inputFromUser);
       setResult(resultFromUser);
 };
-const forCssTransition = (csss) => {
-    setCss(csss);
-}
 
+// info - function update css for history show
+const forCssTransition = (Css) => {
+    setCss(Css);
+}
 
 return (
     <div className="App">
