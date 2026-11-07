@@ -9,8 +9,7 @@ import { operera, regular, calculateInParentes, playSong, calculateNow } from ".
 // warn - wjami3 l machakil daharho 3la chakal message error()
 // warn - rdam kadalik 3la fach yadrat l user 3la keyboard yaktab f l calculator
 // error - fach kadir = mobachara ki3ti error plz hundule it
-// error - 7ta fach kataktab () fawal star
-// error - 7ta fach kataktab .. bazaf nta3 l fasilat wla 1...3 ==> error
+// error - rdam 3la (56-2)(5+1) ==> 546 whada li ana l user madar walo bin l a9was 
 
 ////////////////////////
 
@@ -97,8 +96,17 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
                     console.error("you can't put 2 parentheses, I will fix it later");
                     newArr = [...arr];
                     newArrForShow = [...arrForShow];
-                } else if(acc[acc.length - 1] === ")" && curr === ")") {
+                }
+                else if(acc[acc.length - 1] === ")" && curr === ")") {
                     console.error("you can't put 2 parentheses, I will fix it later");
+                    newArr = [...arr];
+                    newArrForShow = [...arrForShow];
+                } else if(acc[acc.length - 1] === "(" && curr === ")") {
+                    console.error("Empty parentheses cannot be used.");
+                    newArr = [...arr];
+                    newArrForShow = [...arrForShow];
+                } else if(acc[acc.length - 1] === "." && curr === ".") {
+                    console.error("You cannot place two consecutive dots.");
                     newArr = [...arr];
                     newArrForShow = [...arrForShow];
                 }
