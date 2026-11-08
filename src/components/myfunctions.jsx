@@ -16,6 +16,7 @@ function addshit(num, ops) {
     // 5 2 3 
     // + +
     // * /
+
     // how it calculated
     // 5 + 2 + 3 * 6 / 2 = 16
     // 5 2 3
@@ -47,33 +48,37 @@ function addshit(num, ops) {
 
     ////////////////////////
 
-    for(let i = 0; i < ops.length; i++) {
-        if(ops[i] === "*" || ops[i] === "/") {
-            console.log("for clc ==<", num[i], i);
-            console.log("for clc 1 ==< ", num[i + 1], i + 1);
-            let result = ops[i] === "*" 
-                        ? num[i] * num[i + 1] 
-                        : num[i] / num[i + 1]
-            // ele ==> index , tow element selected , to replace
-            num.splice(i, 2, result); 
-            // ele ==> index , tow element selected
-            ops.splice(i, 1); 
-            // info - had l i-- kana7tajoha f ila kamalna man l3onsor l7ali maynagach yab9a nafso li anaho tbadal
-            i--
+    if (num !== 0 || ops !== 0) {
+        for(let i = 0; i < ops.length; i++) {
+            if(ops[i] === "*" || ops[i] === "/") {
+                console.log("for clc ==<", num[i], i);
+                console.log("for clc 1 ==< ", num[i + 1], i + 1);
+                let result = ops[i] === "*" 
+                            ? num[i] * num[i + 1] 
+                            : num[i] / num[i + 1]
+                // ele ==> index , tow element selected , to replace
+                num.splice(i, 2, result); 
+                // ele ==> index , tow element selected
+                ops.splice(i, 1); 
+                // info - had l i-- kana7tajoha f ila kamalna man l3onsor l7ali maynagach yab9a nafso li anaho tbadal
+                i--;
+            }
         }
-    }
 
-    // info - this for + - calculation
-    let fordd = num.reduce((acc, curr, i) => {
-        if (ops[i - 1] === "+") {
-            return acc + curr;
-        }
-        if (ops[i - 1] === "-") {
-            return acc - curr;
-        }
-        return curr;
-    });
-     return fordd;
+        // info - this for + - calculation
+        let fordd = num.reduce((acc, curr, i) => {
+            if (ops[i - 1] === "+") {
+                return acc + curr;
+            }
+            if (ops[i - 1] === "-") {
+                return acc - curr;
+            }
+            return curr;
+        });
+        return fordd;
+    } else {
+       return 0
+    }
 }
 
 ////////////////////////
@@ -160,7 +165,7 @@ function calculateInParentes(newArr, opp, newOper, setOperator) {
 
 ////////////////////////
 
-function calculateNow(numCalculated, operator, arrForShow, setResult) {
+function calculateNow(numCalculated = 0, operator = 0, arrForShow, setResult) {
         const Result = addshit(numCalculated, operator);
         setResult(Result);
         ////////////////////////

@@ -9,7 +9,6 @@ import { operera, regular, calculateInParentes, playSong, calculateNow } from ".
 // warn - wjami3 l machakil daharho 3la chakal message error()
 // warn - rdam kadalik 3la fach yadrat l user 3la keyboard yaktab f l calculator
 // error - fach kadir = mobachara ki3ti error plz hundule it
-// error - rdam 3la (56-2)(5+1) ==> 546 whada li ana l user madar walo bin l a9was 
 
 ////////////////////////
 
@@ -49,7 +48,7 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
         let newArr = [...arr];
         let newArrForShow = [...arrForShow];
         const opp = ["+", "*", "-", "/"];
-        const ForbiddenOpp = ["*", "/"];
+        const ForbiddenOpp = ["*", "/", ")"];
         let newOper = [...operator];
         let newNum = [...numCalculated];
 
@@ -80,38 +79,88 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
             // info - li rasni ndirlhom l 7adr homa (* /) 
             newArr = [...arr];
             newArrForShow = [...arrForShow];
-            console.error("you can't start with operators");
+            console.error("you can't start with operators, or this parentheses <)>");
         }
 
         if (newArr.length !== 0) {
+
+            ////////////////////////
+
+            // function 1
             // info - hadi kadir l check and validation ila tla9a joj operators (5 + * 6 ==> error)
             // info - hadi kadir l check and validation ila tla9a jor (())
-            let forTR = [...newArr].reduce((acc, curr) => {
+            // info - hadi kadir l check and validation ila l user dar () matab3in
+            // info - hadi kadir l check and validation ila l user dar .. matab3in
+            
+            // function 2
+            // info - hadi kadir l check and validation ila l user dar nsa ydir operator (* + / -) mora parentheses 
+            
+            ////////////////////////
+
+            let checkValidation1 = [...newArr].reduce((acc, curr) => {
                 if (opp.includes(acc[acc.length - 1]) && opp.includes(curr)) {
                     console.error("you can't put 2 operators together");
                     newArr = [...arr];
                     newArrForShow = [...arrForShow];
                 }
-                if(acc[acc.length - 1] === "(" && curr === "(") {
+                else if(acc[acc.length - 1] === "(" && curr === "(") {
                     console.error("you can't put 2 parentheses, I will fix it later");
                     newArr = [...arr];
                     newArrForShow = [...arrForShow];
                 }
-                else if(acc[acc.length - 1] === ")" && curr === ")") {
-                    console.error("you can't put 2 parentheses, I will fix it later");
-                    newArr = [...arr];
-                    newArrForShow = [...arrForShow];
-                } else if(acc[acc.length - 1] === "(" && curr === ")") {
+                else if(Number(acc[acc.length - 1]) && curr === "(") {
+                    console.error("We replaced The Void with multiplication..");
+                    // Remove 1 element starting at '('
+                    newArr.splice((newArr.length - 1), 1); 
+                    newArr.push("*");
+                    newArr.push("(");
+                    newArrForShow.splice((newArrForShow.length - 1), 1); 
+                    newArrForShow.push("x");
+                    newArrForShow.push("(");
+                }
+                else if(acc[acc.length - 1] === "(" && curr === ")") {
                     console.error("Empty parentheses cannot be used.");
                     newArr = [...arr];
                     newArrForShow = [...arrForShow];
-                } else if(acc[acc.length - 1] === "." && curr === ".") {
+                }
+                else if(acc[acc.length - 1] === "." && curr === ".") {
                     console.error("You cannot place two consecutive dots.");
                     newArr = [...arr];
                     newArrForShow = [...arrForShow];
                 }
                 return acc + curr;
             });
+            let checkValidation2 = [...newArrForShow].reduce((acc, curr) => {      
+                if(acc[acc.length - 1] === ")" && curr === "(") {
+                    console.error("We replaced The Void with multiplication..");
+                    // Remove 1 element starting at '('
+                    newArr.splice((newArr.length - 1), 1); 
+                    newArr.push("*");
+                    newArr.push("(");
+                    newArrForShow.splice((newArrForShow.length - 1), 1); 
+                    newArrForShow.push("x");
+                    newArrForShow.push("(");
+                } 
+                else if(acc[acc.length - 1] === ")" && curr === ")") {
+                    console.error("you can't put 2 parentheses, I will fix it later");
+                    newArr = [...arr];
+                    newArrForShow = [...arrForShow];
+                }
+                else if(acc[acc.length - 1] === ")" && Number(curr)) {
+                    console.error("We replaced The Void with multiplication..");
+                    // Remove 1 element starting at '('
+                    newArr.splice((newArr.length - 1), 1); 
+                    newArr.push("*");
+                    newArr.push("(");
+                    newArr.push(curr);
+                    newArrForShow.splice((newArrForShow.length - 1), 1); 
+                    newArrForShow.push("x");
+                    newArrForShow.push("(");
+                    newArrForShow.push(curr);
+                }
+                return acc + curr;
+            });
+
 
             ////////////////////////
 
