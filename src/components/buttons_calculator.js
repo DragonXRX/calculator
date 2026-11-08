@@ -4,11 +4,15 @@ import { operera, regular, calculateInParentes, playSong, calculateNow } from ".
 
 ////////////////////////
 
+// error - rdam kadalik 3la fach yadrat l user 3la keyboard yaktab f l calculator
+// error - rdam 3la fach l user ydir (+53+6) ==> NaN
+// error - rdam 3la fach l user kidaral (235+(23565+4-(556+6))) ==> error
+// error - 7asan l perfermence bach l user ydir delete raso ya3raf l program bi ana l array fach tkon rawya maydirch delete
+// error - 7asan l perfermence bach l user ydir clearAll raso ya3raf l program bi ana l array fach tkon rawya maydirch clearAll
+// error - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila trayar wa7ad man l var ==> best perfermence
+// warn 7awal t7asan l button kibano Ai Slope
 // warn - learn how to use <npm run build> <npm run test>
-// warn - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila ila trayar wa7ad man l var
-// warn - wjami3 l machakil daharho 3la chakal message error()
-// warn - rdam kadalik 3la fach yadrat l user 3la keyboard yaktab f l calculator
-// error - fach kadir = mobachara ki3ti error plz hundule it
+
 
 ////////////////////////
 
