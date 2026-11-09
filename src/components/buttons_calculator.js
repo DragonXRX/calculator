@@ -4,13 +4,17 @@ import { operera, regular, calculateInParentes, playSong, calculateNow } from ".
 
 ////////////////////////
 
+
 // error - rdam kadalik 3la fach yadrat l user 3la keyboard yaktab f l calculator
-// error - rdam 3la fach l user ydir (+53+6) ==> NaN
+// error - rdam 3la (53+6 ==> error 
+// erorr - rdam 3la had l error (23+) ==> error 
+// error - rdam 3la hadi 86-9)
+
 // error - rdam 3la fach l user kidaral (235+(23565+4-(556+6))) ==> error
 // error - 7asan l perfermence bach l user ydir delete raso ya3raf l program bi ana l array fach tkon rawya maydirch delete
 // error - 7asan l perfermence bach l user ydir clearAll raso ya3raf l program bi ana l array fach tkon rawya maydirch clearAll
 // error - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila trayar wa7ad man l var ==> best perfermence
-// warn 7awal t7asan l button kibano Ai Slope
+// warn - 7awal t7asan l button kibano Ai Slope
 // warn - learn how to use <npm run build> <npm run test>
 
 
@@ -30,6 +34,7 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
     useEffect(() => {
         setCss(forCss);
     }, [forCss]);
+
     ////////////////////////
 
     // info - this for push from child ==> parent
@@ -86,6 +91,7 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
             console.error("you can't start with operators, or this parentheses <)>");
         }
 
+        // info - the newArr [1, 3, 5] must be >0
         if (newArr.length !== 0) {
 
             ////////////////////////
@@ -254,7 +260,7 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
                 </button>
             </div>
             <div className='calculator_buttons'>
-                <button className="thisSimpleGray" title="C" onClick={() => {clearData();playSong('/clearItemsAll.mp3');}}>{"C"}</button>
+                <button className="thisSimpleGray" title="Clear" onClick={() => {clearData();playSong('/clearItemsAll.mp3');}}>{"C"}</button>
                 <button className="thisSimpleGray" title="(" onClick={clickedSong} >{"("}</button>
                 <button className="thisSimpleGray" title=")" onClick={clickedSong} >{")"}</button>
                 <button className="thisOrange" title="÷" onClick={clickedSong} >{"÷"}</button>
@@ -274,10 +280,10 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
                 <button className="" title="3" onClick={clickedSong} >{"3"}</button>
                 <button className="thisOrange" title="+" onClick={clickedSong} >{"+"}</button>
 
-                <button className="" title="D" onClick={(e) => {clickedForCalc(e);playSong('/deleteOne.mp3');}} >{"D"}</button>
+                <button className="" title="Delete" onClick={(e) => {clickedForCalc(e);playSong('/deleteOne.mp3');}} >{"D"}</button>
                 <button className="" title="0" onClick={clickedSong} >{"0"}</button>
                 <button className="" title="." onClick={clickedSong} >{"."}</button>
-                <button className="thisOrange" title="=" onClick={() => {calculateNow(numCalculated, operator, arrForShow, setResult);playSong('/clicksong.mp3');}} >{"="}</button>
+                <button className="thisOrange" title="=" onClick={() => {calculateNow(numCalculated, operator, arrForShow, setResult, arr, setArr, setArrForShow);playSong('/clicksong.mp3');}} >{"="}</button>
             </div>
         </div>
     );

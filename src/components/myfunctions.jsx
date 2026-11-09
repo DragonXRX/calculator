@@ -136,8 +136,9 @@ function regular(var1) {
 
 // info - hadi katkalkoli ay 3anasir daril l a9was ()
 function calculateInParentes(newArr, opp, newOper, setOperator) {
+            // info - lil3ilm had l loop katakol l perfermance nta3 l app 
             for(let i = 0; i < newArr.length; i++) {
-                // info - check if the array has a parentheses ()
+                // info - check if the array has a parentheses ()       
                 if(newArr.indexOf("(") !== -1 && newArr.indexOf(")") !== -1) {
                     // info - copy inside of ( this )
                     const testgg = newArr.slice(newArr.indexOf("(") + 1, newArr.indexOf(")")); 
@@ -162,7 +163,27 @@ function calculateInParentes(newArr, opp, newOper, setOperator) {
 
 ////////////////////////
 
-function calculateNow(numCalculated, operator, arrForShow, setResult) {
+function calculateNow(numCalculated, operator, arrForShow, setResult, arr, setArr, setArrForShow) {
+
+        // arr.indexOf("(") ==> kayan 1> ==> true
+        // arr.indexOf("(") ==> makayan -1 ==> false
+
+        // arr.indexOf(")") ==> kayan 1> ==> false
+        // arr.indexOf(")") ==> makayan -1 ==> true
+
+        // error - hna yamkan l programme ki3tamad 3la array la9dima
+        // error - yamkan rasni hta ndrat 3la click
+        // 1+1+(1+1)+0 ==> 4 ==> work
+        // 1+1+(1+1) ==> 3 ==> doesnt work
+
+
+        if(arr.indexOf("(") !== -1 && arr.indexOf(")") === -1) {
+            console.log("do it");
+            setArr([...arr, ")"]);
+            setArrForShow([...arrForShow, ")"])
+        }
+
+        
         let Result = 0;
         if (numCalculated.length !== 0 && operator.length !== 0) Result = addshit(numCalculated, operator);
         setResult(Result);
