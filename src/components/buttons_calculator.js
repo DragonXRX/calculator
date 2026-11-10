@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { operera, regular, calculateInParentes, playSong, calculateNow } from "./myfunctions";
+import { addshit, operera, regular, calculateInParentes, playSong, calculateNow } from "./myfunctions";
 
 ////////////////////////
 
@@ -34,6 +34,20 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
     useEffect(() => {
         setCss(forCss);
     }, [forCss]);
+
+    // test
+    useEffect(() => {
+        console.log("paronthes ....");
+        // info - hadi katkalkoli ay 3anasir daril l a9was ()
+        const opp = ["+", "*", "-", "/"];
+        calculateInParentes(arr, opp, operator, setOperator);
+        setnumCalculated(regular(arr));
+        let Results = 0;
+        if (numCalculated.length !== 0 && operator.length !== 0) {
+            Results = addshit(numCalculated, operator);
+            setResult(Results);
+        }
+    }, [arr]);
 
     ////////////////////////
 

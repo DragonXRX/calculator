@@ -176,6 +176,13 @@ function calculateNow(numCalculated, operator, arrForShow, setResult, arr, setAr
         // 1+1+(1+1)+0 ==> 4 ==> work
         // 1+1+(1+1) ==> 3 ==> doesnt work
 
+        // info - for knew
+        // - fach kandif hna l ) fla5ar ila user madaroch hna kataw9a3 mochkila
+        // - awalan kat7adat bara walakin l a9was daril arr mazal matkalculawch ay rashom yt7aydo bach yaw9a3 l calc
+        // - whna kigolak rasak bi ana l 7al howa tstad3i "clickedForCalc" f useeffect ralat li anaha marbota event
+        // - idan l7al li wsaltlo howa kanastad3i l function "calculateInParentes" ==> delete parenthese
+        // - walakin mazal mat7asbatch bach trayar result adi nastad3i kadalik function "calculateNow"
+
 
         if(arr.indexOf("(") !== -1 && arr.indexOf(")") === -1) {
             console.log("do it");
