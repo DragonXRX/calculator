@@ -163,18 +163,8 @@ function calculateInParentes(newArr, opp, newOper, setOperator) {
 
 ////////////////////////
 
-function calculateNow(numCalculated, operator, arrForShow, setResult, arr, setArr, setArrForShow) {
-
-        // arr.indexOf("(") ==> kayan 1> ==> true
-        // arr.indexOf("(") ==> makayan -1 ==> false
-
-        // arr.indexOf(")") ==> kayan 1> ==> false
-        // arr.indexOf(")") ==> makayan -1 ==> true
-
-        // error - hna yamkan l programme ki3tamad 3la array la9dima
-        // error - yamkan rasni hta ndrat 3la click
-        // 1+1+(1+1)+0 ==> 4 ==> work
-        // 1+1+(1+1) ==> 3 ==> doesnt work
+function calculateNow(numCalculated, operator, arrForShow, setResult, arr, setArr, setArrForShow, setOperator) {
+        ///////////////////////
 
         // info - for knew
         // - fach kandif hna l ) fla5ar ila user madaroch hna kataw9a3 mochkila
@@ -182,23 +172,45 @@ function calculateNow(numCalculated, operator, arrForShow, setResult, arr, setAr
         // - whna kigolak rasak bi ana l 7al howa tstad3i "clickedForCalc" f useeffect ralat li anaha marbota event
         // - idan l7al li wsaltlo howa kanastad3i l function "calculateInParentes" ==> delete parenthese
         // - walakin mazal mat7asbatch bach trayar result adi nastad3i kadalik function "calculateNow"
-
+        
+        ///////////////////////
 
         if(arr.indexOf("(") !== -1 && arr.indexOf(")") === -1) {
             console.log("do it");
-            setArr([...arr, ")"]);
-            setArrForShow([...arrForShow, ")"])
+            console.log("paronthes ....");
+            
+            let arrParo = [...arr, ")"];
+            setArr(arrParo);
+            let arrShParo = [...arrForShow, ")"];
+            setArrForShow(arrShParo);
+            
+            // info - hado homa l paternes li kana3tamad 3lihom f tasnif "arr"
+            const opp = ["+", "*", "-", "/"];
+            // info - hadi kata7sab ga3 l numbers li daral l a9was ()
+            calculateInParentes(arrParo, opp, operator, setOperator);
+            // info - hna l user mada5al walo ay numCalculated, operator = 0 
+            let Results = 0;
+            if (numCalculated.length !== 0 || operator.length !== 0) {
+                // info - hado homa l 9iyam jdad li 3tamadt 3lihom 3iwad num + opp l5arijiya
+                let newOpp = operera(arrParo, opp);
+                let newNum = regular(arrParo);
+                // info - hadi kata7sab + kadir update l result
+                Results = addshit(newNum, newOpp);
+            }
+            setResult(Results);
+        } else {
+            let Result = 0;
+            if (numCalculated.length !== 0 || operator.length !== 0) Result = addshit(numCalculated, operator);
+            setResult(Result);
+            updateHistory(arrForShow, Result);
         }
+}
 
-        
-        let Result = 0;
-        if (numCalculated.length !== 0 && operator.length !== 0) Result = addshit(numCalculated, operator);
-        setResult(Result);
+function updateHistory(arrForShow, Result) {
         ////////////////////////
 
         // info - this for store data in the browers storage
         // info - validation check if the varible is exist
-        // error - convert it to obj not array
 
         ////////////////////////
 
@@ -216,6 +228,7 @@ function calculateNow(numCalculated, operator, arrForShow, setResult, arr, setAr
             changed.res.push(Result);
             localStorage.setItem("mainArray", JSON.stringify(changed));
         }
+
 }
 
 
@@ -259,5 +272,5 @@ function playSong(yourSound) {
     song.play();
 }
 
-export { addshit, operera, regular, calculateInParentes, playSong, calculateNow, Article };
+export { addshit, operera, regular, calculateInParentes, playSong, calculateNow, updateHistory, Article };
 

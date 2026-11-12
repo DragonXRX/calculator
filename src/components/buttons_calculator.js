@@ -1,14 +1,13 @@
 
 import { useEffect, useState } from "react";
-import { addshit, operera, regular, calculateInParentes, playSong, calculateNow } from "./myfunctions";
+import { operera, regular, calculateInParentes, playSong, calculateNow, updateHistory } from "./myfunctions";
 
 ////////////////////////
 
 
 // error - rdam kadalik 3la fach yadrat l user 3la keyboard yaktab f l calculator
-// error - rdam 3la (53+6 ==> error 
 // erorr - rdam 3la had l error (23+) ==> error 
-// error - rdam 3la hadi 86-9)
+// error - rdam 3la hadi 86-9) ==> error
 
 // error - rdam 3la fach l user kidaral (235+(23565+4-(556+6))) ==> error
 // error - 7asan l perfermence bach l user ydir delete raso ya3raf l program bi ana l array fach tkon rawya maydirch delete
@@ -35,32 +34,19 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
         setCss(forCss);
     }, [forCss]);
 
-    // test
-    useEffect(() => {
-        console.log("paronthes ....");
-        // info - hadi katkalkoli ay 3anasir daril l a9was ()
-        const opp = ["+", "*", "-", "/"];
-        calculateInParentes(arr, opp, operator, setOperator);
-        setnumCalculated(regular(arr));
-        let Results = 0;
-        if (numCalculated.length !== 0 && operator.length !== 0) {
-            Results = addshit(numCalculated, operator);
-            setResult(Results);
-        }
-    }, [arr]);
-
     ////////////////////////
 
     // info - this for push from child ==> parent
     // - result
     // - array for show
     // - css for history show
+    // info - hnaya rah kana3tamdo 3la finalResult machi l event nta3 l click f ta7dit
 
     ////////////////////////
 
     useEffect(() => {
-         onButtonClick(arrForShow, finalResult);
-         forCssTransition(css);
+        onButtonClick(arrForShow, finalResult);
+        forCssTransition(css);
     }, [arrForShow, finalResult, css]);
 
     // info - hadi function katkon f event "click" button l3adiya
@@ -297,7 +283,7 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
                 <button className="" title="Delete" onClick={(e) => {clickedForCalc(e);playSong('/deleteOne.mp3');}} >{"D"}</button>
                 <button className="" title="0" onClick={clickedSong} >{"0"}</button>
                 <button className="" title="." onClick={clickedSong} >{"."}</button>
-                <button className="thisOrange" title="=" onClick={() => {calculateNow(numCalculated, operator, arrForShow, setResult, arr, setArr, setArrForShow);playSong('/clicksong.mp3');}} >{"="}</button>
+                <button className="thisOrange" title="=" onClick={() => {calculateNow(numCalculated, operator, arrForShow, setResult, arr, setArr, setArrForShow, setOperator);playSong('/clicksong.mp3');}} >{"="}</button>
             </div>
         </div>
     );
