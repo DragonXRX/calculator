@@ -1,6 +1,8 @@
 
 import { useEffect, useState } from "react";
 import { operera, regular, calculateInParentes, playSong, calculateNow, updateHistory } from "./myfunctions";
+import { clearHistory } from "./history_show";
+
 
 ////////////////////////
 
@@ -28,6 +30,7 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
     let [operator, setOperator] = useState([]);
     let [finalResult, setResult] = useState(0);
     let [css, setCss] = useState(forCss);
+    let [bol, setBol] = useState(false);
     
     // info - bach t7adat forcss li jaya man parent ay bara
     useEffect(() => {
@@ -48,6 +51,11 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
         onButtonClick(arrForShow, finalResult);
         forCssTransition(css);
     }, [arrForShow, finalResult, css]);
+
+
+    ///
+    
+
 
     // info - hadi function katkon f event "click" button l3adiya
     function clickedForCalc(e) {
@@ -252,13 +260,24 @@ function ButtonCalculator({ onButtonClick, forCssTransition, forCss }) {
     return (
         <div className="calculator_container">
             <div className="calculator_toolbar">
-                <button className="History" title="History" aria-label="History" onClick={historyCTA}>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
+                <button type="button" className="btn_clear_memory" title="Clear History" aria-label="Clear History" onClick={() => clearHistory(bol, setBol)}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M3 6h18"></path>
+                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                        <line x1="14" y1="11" x2="14" y2="17"></line>
                     </svg>
                 </button>
+                <button type="button" className="History" title="History" aria-label="History" onClick={historyCTA}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                        <path d="M3 3v5h5"></path>
+                        <polyline points="12 7 12 12 15 15"></polyline>
+                    </svg>
+                </button>            
             </div>
+            
             <div className='calculator_buttons'>
                 <button className="thisSimpleGray" title="Clear" onClick={() => {clearData();playSong('/clearItemsAll.mp3');}}>{"C"}</button>
                 <button className="thisSimpleGray" title="(" onClick={clickedSong} >{"("}</button>
