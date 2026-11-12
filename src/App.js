@@ -4,6 +4,22 @@ import ShowResult from './components/show_result';
 import HistoryShow from './components/history_show';
 import { useState } from 'react';
 
+////////////////////////
+
+
+// error - rdam kadalik 3la fach yadrat l user 3la keyboard yaktab f l calculator
+// erorr - rdam 3la had l error (23+) ==> error 
+// error - rdam 3la hadi 86-9) ==> error
+
+// error - rdam 3la fach l user kidaral (235+(23565+4-(556+6))) ==> error
+// error - 7asan l perfermence bach l user ydir delete raso ya3raf l program bi ana l array fach tkon rawya maydirch delete
+// error - 7asan l perfermence bach l user ydir clearAll raso ya3raf l program bi ana l array fach tkon rawya maydirch clearAll
+// error - useMemo katanfa3 f b7al had l mawa9if li anaha makat3awadch la7sab ila trayar wa7ad man l var ==> best perfermence
+// warn - learn how to use <npm run build> <npm run test>
+
+
+////////////////////////
+
 function App() {
 
 ////////////////////////
